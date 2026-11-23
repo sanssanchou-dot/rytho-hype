@@ -501,7 +501,15 @@ body.light #glowFloor{opacity:.7!important}
  -webkit-mask:radial-gradient(44vw 40vw at 100% 100%,#000 0%,transparent 75%);mask:radial-gradient(44vw 40vw at 100% 100%,#000 0%,transparent 75%)}
 body.light #dotsW{background-image:radial-gradient(circle,rgba(11,11,18,.9) 1px,transparent 1.6px);opacity:.16}
 body.light #dotsG{opacity:.7}body.light #dotsI{opacity:.5}
-#p04 .pd-fig{aspect-ratio:3/4;height:74vh!important;margin-left:auto;margin-right:auto}#p04 .pd-fig img{width:100%;height:100%;object-fit:contain}#chooser{flex-wrap:wrap;justify-content:center;max-width:900px}.famhero{display:block;margin:3vh auto 0;max-width:1500px;border-radius:22px;overflow:hidden}.famhero img{width:100%;display:block}#s-family .fam{margin-top:8vh!important}#s-family .fam figure{height:34vh!important}</style>
+#p04 .pd-fig{aspect-ratio:3/4;height:74vh!important;margin-left:auto;margin-right:auto}#p04 .pd-fig img{width:100%;height:100%;object-fit:contain}#chooser{flex-wrap:wrap;justify-content:center;max-width:900px}.famhero{display:block;margin:3vh auto 0;max-width:1500px;border-radius:22px;overflow:hidden}.famhero img{width:100%;display:block}#s-family .fam{margin-top:8vh!important}#s-family .fam figure{height:34vh!important}
+/* sqrt-scaled lineup (true heights .18/.26/1.02/2.69 m) */
+#s-family .fam{grid-template-columns:.8fr .9fr 1.5fr 2.2fr!important}
+#s-family .fam a:nth-child(1) figure img{max-height:26%!important}
+#s-family .fam a:nth-child(2) figure img{max-height:31%!important}
+#s-family .fam a:nth-child(3) figure img{max-height:62%!important}
+#s-family .fam a:nth-child(4) figure img{max-height:100%!important}
+#s-family .fam em::after{content:attr(data-h);margin-left:8px;color:var(--dim)}
+</style>
 </head>
 <body>
 <div id="themeT" class="glass"><button data-th="dark" class="on">DARK</button><button data-th="light">LIGHT</button></div>
@@ -554,12 +562,12 @@ body.light #dotsG{opacity:.7}body.light #dotsI{opacity:.5}
   <h2 class="rv">一座塔，<br>拆成四個產品<span class="dot">.</span></h2>
   <p class="body rv" style="margin-top:22px">由小到大：從一顆透明模組的隨身音響，到整組可訂製的高訂。02 起內建 Wi-Fi 與 AI。</p>
   <picture class="famhero rv"><source media="(max-width:900px)" srcset="img/family_port.webp"><img src="img/family.webp" alt="RYTHO HYPE family at true scale"></picture>
-  <p class="pd-miss" style="text-align:center">真實比例 · 原模型渲染（01 為代理模型）· 缺：03 左右一對</p>
+  <p class="pd-miss" style="text-align:center">真實比例 · 原模型渲染（01 為代理模型）· </p>
   <div class="fam rv">
-    <a href="#p01"><figure><img src="img/portable_cut.webp" alt=""></figure><b>01</b><span>隨身</span><em>Bluetooth</em></a>
-    <a href="#p02"><figure><img src="img/homeBcoax.webp" alt=""></figure><b>02</b><span>單顆＋底座</span><em class="ai">Wi-Fi · AI</em></a>
-    <a href="#p03"><figure><img src="img/homeA_nobase.webp" alt=""></figure><b>03</b><span>上半段兩節</span><em class="ai">Wi-Fi · AI</em></a>
-    <a href="#p04"><figure><img src="img/ring.webp" alt=""></figure><b>04</b><span>整組高訂</span><em class="ai">Wi-Fi · AI</em></a>
+    <a href="#p01"><figure><img src="img/portable_cut.webp" alt=""></figure><b>01</b><span>隨身</span><em data-h="H 180 mm">Bluetooth</em></a>
+    <a href="#p02"><figure><img src="img/u02.webp" alt=""></figure><b>02</b><span>單顆＋底座</span><em class="ai" data-h="H 261 mm">Wi-Fi · AI</em></a>
+    <a href="#p03"><figure><img src="img/u03.webp" alt=""></figure><b>03</b><span>上半段兩節</span><em class="ai" data-h="H 1,022 mm ×2">Wi-Fi · AI</em></a>
+    <a href="#p04"><figure><img src="img/u04.webp" alt=""></figure><b>04</b><span>整組高訂</span><em class="ai" data-h="H 2,693 mm ×2">Wi-Fi · AI</em></a>
   </div>
 </div></section>
 <section class="pd" id="p01"><div class="wrap">
@@ -585,7 +593,7 @@ body.light #dotsG{opacity:.7}body.light #dotsI{opacity:.5}
   <div class="pd-head rv"><span class="pd-n">02</span><span class="pd-en">Home AI · Single</span></div>
   <h2 class="pd-t rv">單顆＋底座</h2>
   <p class="pd-line rv">一顆透明模組，中心加同軸高音。</p>
-  <figure class="pd-fig rv"><img src="img/homeBcoax.webp" alt="單顆＋底座"></figure>
+  <figure class="pd-fig rv"><img src="img/u02.webp" alt="單顆＋底座"></figure>
   
   <dl class="pd-facts rv">
     <div><dt>取自整塔</dt><dd>透明中音模組 ×1＋新增同軸高音、底座</dd></div>
@@ -598,7 +606,7 @@ body.light #dotsG{opacity:.7}body.light #dotsI{opacity:.5}
   <div class="pd-head rv"><span class="pd-n">03</span><span class="pd-en">Home AI · Upper Two</span></div>
   <h2 class="pd-t rv">上半段兩節</h2>
   <p class="pd-line rv">整塔上半段直接取下，自己就能站立。</p>
-  <figure class="pd-fig rv"><img src="img/homeA_nobase.webp" alt="上半段兩節"></figure>
+  <figure class="pd-fig rv"><img src="img/u03.webp" alt="上半段兩節"></figure>
   
   <dl class="pd-facts rv">
     <div><dt>取自整塔</dt><dd>小圓高音 ×2、方形單體、透明中音 ×1</dd></div>
