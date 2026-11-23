@@ -80,9 +80,9 @@ section{position:relative}
 
 /* explode */
 #s-explode{height:420vh}
-.pin{position:sticky;top:0;height:100svh;display:grid;grid-template-columns:1fr minmax(320px,46vh) 1fr;align-items:center;gap:20px;padding:80px 28px 40px;max-width:1500px;margin:0 auto}
-.ex-stage{position:relative;height:84svh;display:grid;place-items:center}
-#exCanvas{height:100%;width:auto;max-width:100%}
+.pin{position:sticky;top:0;height:100svh;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;padding:80px 28px 40px;max-width:1500px;margin:0 auto}
+.ex-stage{position:relative;display:grid;place-items:center}
+#exCanvas{height:80svh;width:auto;max-width:90vw;display:block}
 .ex-labels{display:flex;flex-direction:column;gap:14px}
 .ex-labels.r{align-items:flex-end;text-align:right}
 .lab{opacity:.18;transition:.5s;padding:12px 16px;border-radius:16px;max-width:280px}
@@ -95,7 +95,7 @@ section{position:relative}
 .ex-groups{position:absolute;inset:auto 0 70px 0;display:flex;justify-content:center;gap:10px;opacity:0;transition:.6s}
 .ex-groups.on{opacity:1}
 .ex-groups{display:flex;white-space:nowrap}.ex-groups a{font:600 13px var(--en),var(--zh);padding:10px 16px;border-radius:999px;white-space:nowrap}.ex-groups a:hover{background:rgba(255,255,255,.12)}
-@media(max-width:900px){.pin{padding-top:120px;padding-bottom:90px;grid-template-columns:1fr;grid-template-rows:auto 1fr auto}.ex-labels{flex-direction:row;flex-wrap:wrap;justify-content:center}.ex-labels.r{align-items:center}.lab{padding:6px 10px}.lab span{display:none}.ex-labels.r{display:none}.ex-head{top:74px}.ex-stage{height:58svh}}
+@media(max-width:900px){.pin{padding-top:120px;padding-bottom:90px;grid-template-columns:1fr;grid-template-rows:auto 1fr auto}.ex-labels{flex-direction:row;flex-wrap:wrap;justify-content:center}.ex-labels.r{align-items:center}.lab{padding:6px 10px}.lab span{display:none}.ex-labels.r{display:none}.ex-head{top:74px}#exCanvas{height:56svh}}
 
 /* proposals */
 .prop{padding:18vh 0 10vh}
@@ -211,7 +211,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
       <div class="lab glass" data-at=".26"><b>HIGH</b><span>方形面單體 · 原箱體</span></div>
       <div class="lab glass" data-at=".34"><b>TRANSPARENT MID ×3</b><span>玻音先創透明振膜 · 螺旋腔</span></div>
     </div>
-    <div class="ex-stage"><canvas id="exCanvas" width="1080" height="1440"></canvas>
+    <div class="ex-stage"><canvas id="exCanvas" width="544" height="1367"></canvas>
       <div class="ex-groups glass" id="exGroups" style="border-radius:999px;left:50%;right:auto;transform:translateX(-50%);padding:6px;bottom:4%;position:absolute">
         <a href="#p01">01 隨身</a><a href="#p02">02 上半段</a><a href="#p03">03 單顆</a><a href="#p04">04 整組</a></div>
     </div>
@@ -388,9 +388,9 @@ const ss=[...say.children];
 /* ---------- explode canvas ---------- */
 const exC=$('#exCanvas'),ex=exC.getContext('2d');const FR=72,frames=[];let haveSeq=false,fallback=new Image();
 fallback.src='img/core.webp';fallback.onload=()=>{if(!haveSeq)drawFallback(0)};
-function drawFallback(p){ex.clearRect(0,0,1080,1440);const s=1+p*.08;ex.save();ex.translate(540,720);ex.scale(s,s);ex.globalAlpha=1;ex.drawImage(fallback,-540*1.2,-720*1.2,1080*1.2,1440*1.2);ex.restore()}
+function drawFallback(p){ex.clearRect(0,0,544,1367);ex.drawImage(fallback,-150,180,844,1125)}
 (function probe(){const im=new Image();im.onload=()=>{haveSeq=true;$('#exMissing').style.display='none';frames[0]=im;for(let i=2;i<=FR;i++){const x=new Image();x.src=`img/explode/explode_${String(i).padStart(4,'0')}.webp`;frames[i-1]=x}};im.src='img/explode/explode_0001.webp'})();
-function drawExplode(p){if(!haveSeq)return drawFallback(p);const i=Math.round(p*(FR-1));const im=frames[i];if(im&&im.complete){ex.clearRect(0,0,1080,1440);ex.drawImage(im,0,0,1080,1440)}}
+function drawExplode(p){if(!haveSeq)return drawFallback(p);const i=Math.round(p*(FR-1));const im=frames[i];if(im&&im.complete){ex.clearRect(0,0,544,1367);ex.drawImage(im,0,0,544,1367)}}
 
 /* ---------- scroll ---------- */
 const filmFrame=$('#filmFrame'),labs=$$('.lab'),links=$$('header a.l');
@@ -402,7 +402,7 @@ function onScroll(){const y=scrollY,vh=innerHeight;
  const r=say.getBoundingClientRect();const sp=clamp((vh*.85-r.top)/(r.height+vh*.4));const n=Math.floor(sp*ss.length);ss.forEach((s,i)=>{s.classList.toggle('lit',i<n);s.classList.toggle('g',!!s.dataset.g)});
  // explode
  const e=$('#s-explode'),er=e.getBoundingClientRect();const ep=clamp(-er.top/(er.height-vh));
- drawExplode(clamp(ep/.7));$('#exPct').textContent=String(Math.round(ep*100)).padStart(3,'0');
+ drawExplode(clamp((ep-.05)/.6));$('#exPct').textContent=String(Math.round(ep*100)).padStart(3,'0');
  labs.forEach(l=>l.classList.toggle('on',ep>=+l.dataset.at));$('#exGroups').classList.toggle('on',ep>.72);
  // bg mode
  const inEx=er.top<vh*.5&&er.bottom>vh*.5;const ai=['s-ai','p02','p03','p04'].some(id=>{const b=document.getElementById(id).getBoundingClientRect();return b.top<vh*.6&&b.bottom>vh*.4});
