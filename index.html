@@ -353,6 +353,16 @@ body.light .orb .caus{border-bottom-color:rgba(61,46,188,.5)}
 #s-explode .ex-foot{z-index:2}
 #s-explode .pin::before{inset:6% 10%}
 @media(max-width:900px){#s-explode .ex-labels{top:auto;bottom:90px;transform:none}#s-explode #labL{left:12px;right:60px}}
+
+/* explode labels v3: one side, all at once, aligned to modules */
+#exLabs{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;transition:opacity .6s}
+#exLabs.on{opacity:1}
+.xl{position:absolute;left:0;top:0;transform:translateY(-50%);white-space:nowrap}
+.xl b{display:block;font:500 12px var(--mono);letter-spacing:.12em;color:var(--ice)}
+.xl span{display:block;font:400 12px var(--zh);color:var(--mute);margin-top:3px}
+.xl.c b{color:var(--lime)}
+body.light .xl.c b{color:#4a7410}
+@media(max-width:900px){.xl span{display:none}.xl b{font-size:10px}}
 </style>
 </head>
 <body>
@@ -385,19 +395,16 @@ body.light .orb .caus{border-bottom-color:rgba(61,46,188,.5)}
 <section id="s-explode">
   <div class="pin">
     <div class="ex-head"><span class="mono">EX / Exploded</span><span class="mono" id="exPct">000</span></div>
-    <div class="ex-labels" id="labL">
-      <div class="lab" data-at=".18"><div><span class="tg">TWEETER ×2</span><span class="sub">小圓高音模組 · 原箱體</span></div><span class="ln"></span></div>
-      <div class="lab" data-at=".26"><div><span class="tg">HIGH</span><span class="sub">方形面單體 · 原箱體</span></div><span class="ln"></span></div>
-      <div class="lab" data-at=".34"><div><span class="tg">TRANSPARENT MID ×3</span><span class="sub">玻音先創透明振膜 · 螺旋腔</span></div><span class="ln"></span></div>
-    </div>
+    
     <div class="ex-stage"><canvas id="exCanvas" width="1920" height="1080"></canvas>
-      <div class="ex-groups glass" id="exGroups" style="border-radius:999px;left:50%;right:auto;transform:translateX(-50%);padding:6px;bottom:4%;position:absolute">
-        <a href="#p01">01 隨身</a><a href="#p02">02 上半段</a><a href="#p03">03 單顆</a><a href="#p04">04 整組</a></div>
+      
     </div>
-    <div class="ex-labels r" id="labR">
-      <div class="lab" data-at=".42"><span class="ln"></span><div style="text-align:right"><span class="tg">WOOFER ×2</span><span class="sub">低音模組 · 原箱體</span></div></div>
-      <div class="lab" data-at=".50"><span class="ln"></span><div style="text-align:right"><span class="tg">CHASSIS</span><span class="sub">帶卡榫的承載主體 · 唯一可變件</span></div></div>
-      <div class="lab" data-at=".62"><span class="ln"></span><div style="text-align:right"><span class="tg">→ 01—04</span><span class="sub">拆開後，重組成四個提案</span></div></div>
+    <div id="exLabs">
+      <div class="xl" data-y=".09"><b>TWEETER ×2</b><span>小圓高音模組 · 原箱體</span></div>
+      <div class="xl" data-y=".19"><b>HIGH</b><span>方形面單體 · 原箱體</span></div>
+      <div class="xl" data-y=".42"><b>TRANSPARENT MID ×3</b><span>玻音先創透明振膜 · 螺旋腔</span></div>
+      <div class="xl" data-y=".80"><b>WOOFER ×2</b><span>低音模組 · 原箱體</span></div>
+      <div class="xl c" data-y=".56" data-side="body"><b>CHASSIS</b><span>帶卡榫的承載主體 · 唯一可變件</span></div>
     </div>
     <div class="ex-foot"><p class="missing" id="exMissing"><span><b>缺：整塔爆炸序列</b>（Blender 原模型渲染中，72 格）。目前用固定八組的靜態渲染頂替。</span></p></div>
   </div>
@@ -567,7 +574,8 @@ const ss=[...say.querySelectorAll('span')];
 /* ---------- explode canvas ---------- */
 const exC=$('#exCanvas'),ex=exC.getContext('2d');const FR=72,frames=[];let haveSeq=false,fallback=new Image();
 fallback.src='img/core.webp';fallback.onload=()=>{if(!haveSeq)drawFallback(0)};
-function fitDraw(im){const cw=exC.width=exC.clientWidth*Math.min(2,devicePixelRatio||1),ch=exC.height=exC.clientHeight*Math.min(2,devicePixelRatio||1);const s=Math.min(cw/im.naturalWidth,ch/im.naturalHeight)*.96;const w=im.naturalWidth*s,h=im.naturalHeight*s;ex.clearRect(0,0,cw,ch);ex.drawImage(im,(cw-w)/2,(ch-h)/2+ch*.02,w,h)}
+function fitDraw(im){const cw=exC.width=exC.clientWidth*Math.min(2,devicePixelRatio||1),ch=exC.height=exC.clientHeight*Math.min(2,devicePixelRatio||1);const s=Math.min(cw/im.naturalWidth,ch/im.naturalHeight)*.96;const w=im.naturalWidth*s,h=im.naturalHeight*s;ex.clearRect(0,0,cw,ch);const X=(cw-w)/2,Y=(ch-h)/2+ch*.02;ex.drawImage(im,X,Y,w,h);placeLabs(X,Y,w,h,cw)}
+function placeLabs(X,Y,w,h,cw){const k=exC.clientWidth/cw;const right=(X+w*(window.LAB_RIGHT||1))*k+24;$$('.xl').forEach(l=>{l.style.left=right+'px';l.style.top=((Y+h*+l.dataset.y)*k)+'px'})}
 function drawFallback(p){fitDraw(fallback)}
 (function probe(){const im=new Image();im.onload=()=>{haveSeq=true;$('#exMissing').style.display='none';frames[0]=im;for(let i=2;i<=FR;i++){const x=new Image();x.src=`img/explode/explode_${String(i).padStart(4,'0')}.webp`;frames[i-1]=x}};im.src='img/explode/explode_0001.webp'})();
 function drawExplode(p){if(!haveSeq)return drawFallback(p);const i=Math.round(p*(FR-1));const im=frames[i];if(im&&im.complete&&im.naturalWidth)fitDraw(im)}
@@ -584,7 +592,7 @@ function onScroll(){const y=scrollY,vh=innerHeight;
  // explode
  const e=$('#s-explode'),er=e.getBoundingClientRect();const ep=clamp(-er.top/(er.height-vh));
  drawExplode(clamp((ep-.05)/.6));$('#exPct').textContent=String(Math.round(ep*100)).padStart(3,'0');
- labs.forEach(l=>l.classList.toggle('on',ep>=+l.dataset.at));$('#exGroups').classList.toggle('on',ep>.72);
+ $('#exLabs').classList.toggle('on',ep>.08);
  // bg mode
  const inEx=er.top<vh*.5&&er.bottom>vh*.5;const ai=['s-ai','p02','p03','p04'].some(id=>{const b=document.getElementById(id).getBoundingClientRect();return b.top<vh*.6&&b.bottom>vh*.4});
  mode.thin=y<vh*.8?1:0;mode.spread=inEx?Math.sin(clamp(ep/.8)*Math.PI)*.5:0;mode.ai=ai?1:0;document.body.classList.toggle('ai-on',ai);
