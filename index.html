@@ -303,11 +303,28 @@ body.light .missing{color:rgba(11,11,18,.5)}
 body.light .missing b{color:#b06a00}
 body.light .spec div{border-color:rgba(11,11,18,.08)}
 body.light #s-cta .pill .go,body.light .pill .go{color:#0B0B12}
+
+#s-core .core-bg{left:-84px;right:0}@media(max-width:900px){#s-core .core-bg{left:0}}
+/* ---- 65/35 ratio: base colour owns the top 65%, colour rises only from the bottom ---- */
+#bg{-webkit-mask-image:linear-gradient(180deg,transparent 0%,transparent 58%,rgba(0,0,0,.55) 74%,#000 92%);mask-image:linear-gradient(180deg,transparent 0%,transparent 58%,rgba(0,0,0,.55) 74%,#000 92%)}
+#glowFloor{position:fixed;left:0;right:0;bottom:0;height:42vh;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(60% 70% at 50% 118%,rgba(182,228,103,.85) 0%,rgba(182,228,103,0) 42%),
+  radial-gradient(90% 110% at 50% 125%,rgba(47,191,165,.7) 0%,rgba(47,191,165,0) 58%),
+  radial-gradient(120% 140% at 50% 135%,rgba(61,46,188,.85) 0%,rgba(61,46,188,0) 70%);
+ transition:opacity .6s}
+#glowFloor::after{content:"";position:absolute;inset:0;opacity:.22;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+body.ai-on #glowFloor{filter:hue-rotate(-18deg) saturate(1.15)}
+body.light #glowFloor{opacity:.55}
+body.light #bg{opacity:.8}
+.core-bg{background:radial-gradient(80% 50% at 50% 118%,rgba(61,46,188,.6),transparent 70%),radial-gradient(50% 30% at 50% 112%,rgba(182,228,103,.35),transparent 70%),#000!important}
+body.light .core-bg{background:radial-gradient(80% 50% at 50% 118%,rgba(61,46,188,.22),transparent 70%),radial-gradient(50% 30% at 50% 112%,rgba(182,228,103,.3),transparent 70%),#F2F3ED!important}
+#flow{opacity:.5!important}
 </style>
 </head>
 <body>
 <div id="themeT" class="glass"><button data-th="dark" class="on">DARK</button><button data-th="light">LIGHT</button></div>
-<div id="bg"><canvas id="flow"></canvas><canvas id="wave"></canvas></div>
+<div id="glowFloor"></div><div id="bg"><canvas id="flow"></canvas><canvas id="wave"></canvas></div>
 
 <nav id="rail" class="glass"><a class="star" href="#s-film">✦</a><a class="ch" href="#s-film" data-id="s-film" data-t="Film"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>00</span></a><a class="ch" href="#s-core" data-id="s-core" data-t="Diaphragm"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>+</span></a><a class="ch" href="#s-explode" data-id="s-explode" data-t="Explode"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>EX</span></a><a class="ch" href="#p01" data-id="p01" data-t="Portable"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>01</span></a><a class="ch ai" href="#p02" data-id="p02" data-t="Home AI · Upper"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>02</span></a><a class="ch ai" href="#p03" data-id="p03" data-t="Home AI · Single"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>03</span></a><a class="ch ai" href="#p04" data-id="p04" data-t="Bespoke"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>04</span></a><a class="ch" href="#s-partner" data-id="s-partner" data-t="Partner"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>→</span></a><div class="rail-line"><i id="railDot"></i></div></nav>
 <div id="chipTitle" class="glass"><b id="ctN">00</b><span id="ctT">Film</span></div>
@@ -493,14 +510,14 @@ let mode={spread:0,ai:0,thin:1};const isLight=()=>document.body.classList.contai
 function init(){W=innerWidth;H=innerHeight;f.width=W/3;f.height=H/3;w.width=W*dpr;w.height=H*dpr;wx.setTransform(dpr,0,0,dpr,0,0);
  P=[];const N=Math.min(14000,Math.round(W*7));for(let i=0;i<N;i++){const u=Math.random();P.push({u,v:(Math.random()+Math.random()+Math.random())/3-.5,s:Math.random(),k:Math.floor(u*90),a:Math.random()*6.28,r:Math.random()})}}
 const mix=(a,b,t)=>a+(b-a)*t;
-function band(t,off,lw,col){const fw=f.width,fh=f.height;fx.beginPath();for(let i=0;i<=60;i++){const u=i/60;const Y=fh*(.55-.22*Math.sin(u*3+off+t*.3)-.07*Math.sin(u*9-t*.7+off));i?fx.lineTo(u*fw,Y):fx.moveTo(u*fw,Y)}fx.lineWidth=lw;fx.strokeStyle=col;fx.lineCap='round';fx.stroke()}
+function band(t,off,lw,col){const fw=f.width,fh=f.height;fx.beginPath();for(let i=0;i<=60;i++){const u=i/60;const Y=fh*(.86-.08*Math.sin(u*3+off+t*.3)-.04*Math.sin(u*9-t*.7+off));i?fx.lineTo(u*fw,Y):fx.moveTo(u*fw,Y)}fx.lineWidth=lw;fx.strokeStyle=col;fx.lineCap='round';fx.stroke()}
 let cur={spread:0,ai:0,thin:1};
 function draw(T){const t=T*.001;for(const k in cur)cur[k]=mix(cur[k],mode[k],.06);
  const fh=f.height;fx.clearRect(0,0,f.width,fh);fx.globalCompositeOperation='lighter';const al=.55*(1-cur.thin*.5);
  band(t,0,fh*.16,`rgba(${mix(120,95,cur.ai)},${mix(140,70,cur.ai)},255,${al})`);band(t,.6,fh*.06,`rgba(235,242,255,${al*1.3})`);band(t,2.2,fh*.05,`rgba(61,46,188,${al*1.5})`);band(t,3.4,fh*.018,`rgba(182,228,103,${al*.8})`);
  wx.clearRect(0,0,W,H);
- for(const p of P){const X=p.u*W;const env=(.16+.14*Math.sin(p.u*3.2+t*.4)+.05*Math.sin(p.u*11-t))*(1-cur.thin*.85);
-  const spike=1+.55*Math.pow(Math.abs(Math.sin(p.k*1.7+t*2.2)),3);const cy=H*(.6-.2*Math.sin(p.u*2.6+.6+t*.25));
+ for(const p of P){const X=p.u*W;const env=(.07+.05*Math.sin(p.u*3.2+t*.4)+.02*Math.sin(p.u*11-t))*(1-cur.thin*.85);
+  const spike=1+.55*Math.pow(Math.abs(Math.sin(p.k*1.7+t*2.2)),3);const cy=H*(.84-.08*Math.sin(p.u*2.6+.6+t*.25));
   let Y=cy+p.v*H*env*spike*1.4,XX=X;
   if(cur.spread>.01){XX=X+Math.cos(p.a+t*.2)*p.r*W*.35*cur.spread;Y=Y+Math.sin(p.a+t*.2)*p.r*H*.45*cur.spread}
   const g=1-p.u;let c=cur.ai>.5?[mix(236,61,g*cur.ai),mix(242,46,g*cur.ai),mix(255,188,g*cur.ai)]:[mix(236,61,g),mix(242,46,g),255];if(isLight())c=[mix(20,61,g),mix(22,46,g),mix(40,188,g)];
@@ -536,7 +553,7 @@ function onScroll(){const y=scrollY,vh=innerHeight;
  labs.forEach(l=>l.classList.toggle('on',ep>=+l.dataset.at));$('#exGroups').classList.toggle('on',ep>.72);
  // bg mode
  const inEx=er.top<vh*.5&&er.bottom>vh*.5;const ai=['s-ai','p02','p03','p04'].some(id=>{const b=document.getElementById(id).getBoundingClientRect();return b.top<vh*.6&&b.bottom>vh*.4});
- mode.thin=y<vh*.8?1:0;mode.spread=inEx?Math.sin(clamp(ep/.8)*Math.PI):0;mode.ai=ai?1:0;
+ mode.thin=y<vh*.8?1:0;mode.spread=inEx?Math.sin(clamp(ep/.8)*Math.PI)*.5:0;mode.ai=ai?1:0;document.body.classList.toggle('ai-on',ai);
  // nav
  let ci=0;chs.forEach((c,i)=>{const s=document.getElementById(c.dataset.id).getBoundingClientRect();const pr=clamp((vh*.5-s.top)/s.height);c.querySelector('.pg').style.strokeDashoffset=106.8*(1-pr);if(s.top<vh*.5)ci=i});
  chs.forEach((c,i)=>c.classList.toggle('on',i===ci));
