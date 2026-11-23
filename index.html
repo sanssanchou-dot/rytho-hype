@@ -163,22 +163,50 @@ section{position:relative}
 #s-cta .pill{margin:40px auto 0;max-width:520px}
 footer{position:relative;z-index:1;padding:40px 28px 60px}
 footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid rgba(238,242,255,.16);padding-top:18px}
+
+#s-core{min-height:100svh;display:grid;align-items:center;padding:0;overflow:hidden}
+.core-bg{position:absolute;inset:0;z-index:-1;background:
+ radial-gradient(42% 60% at 78% 50%,rgba(61,46,188,.55),transparent 70%),
+ radial-gradient(30% 40% at 70% 62%,rgba(47,191,165,.18),transparent 70%),
+ radial-gradient(18% 22% at 76% 44%,rgba(238,242,255,.22),transparent 70%),#000}
+.core-bg::after{content:"";position:absolute;inset:0;opacity:.18;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+#s-core .say{font-size:clamp(40px,6.4vw,104px);line-height:1.18;letter-spacing:-.02em}
+
+#rail{position:fixed;left:16px;top:50%;transform:translateY(-50%);z-index:40;width:58px;padding:12px 0 14px;border-radius:999px;display:flex;flex-direction:column;align-items:center;gap:6px}
+#rail .star{font-size:18px;color:var(--ice);padding:6px 0 10px;border-bottom:1px solid rgba(255,255,255,.12);width:70%;text-align:center;margin-bottom:4px}
+#rail .ch{position:relative;width:40px;height:40px;display:grid;place-items:center;border-radius:50%;transition:.3s}
+#rail .ch svg{position:absolute;inset:0;transform:rotate(-90deg)}
+#rail .ch .tr{fill:none;stroke:rgba(255,255,255,.08);stroke-width:2}
+#rail .ch .pg{fill:none;stroke:var(--lime);stroke-width:2;stroke-linecap:round;stroke-dasharray:106.8;stroke-dashoffset:106.8;transition:stroke-dashoffset .2s}
+#rail .ch.ai .pg{stroke:#8a7dff}
+#rail .ch span{font:600 11px var(--en);color:var(--dim);transition:.3s}
+#rail .ch.on{background:rgba(255,255,255,.92);box-shadow:0 0 18px rgba(182,228,103,.35)}
+#rail .ch.on span{color:#000}
+#rail .ch.on .tr{stroke:transparent}
+#rail .ch::after{content:attr(data-t);position:absolute;left:52px;white-space:nowrap;font:500 12px var(--en);color:var(--ice);padding:7px 12px;border-radius:999px;background:rgba(20,20,30,.75);backdrop-filter:blur(10px);opacity:0;transform:translateX(-6px);transition:.25s;pointer-events:none}
+#rail .ch:hover::after{opacity:1;transform:none}
+.rail-line{width:2px;height:54px;background:rgba(255,255,255,.14);border-radius:2px;margin-top:6px;position:relative}
+.rail-line i{position:absolute;left:-3px;width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 10px var(--lime);top:0}
+#dialX{position:fixed;left:-150px;top:50%;width:300px;height:300px;transform:translateY(-50%);z-index:30;pointer-events:none;opacity:0;transition:opacity .4s}
+#dial.show{opacity:1}
+#dial .arc{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(238,242,255,.12)}
+#dialNums span{position:absolute;left:50%;top:50%;font:600 26px var(--mono);color:rgba(238,242,255,.13);transition:transform .6s cubic-bezier(.2,.7,.1,1),opacity .6s}
+#dial .cur{position:absolute;left:168px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:14px;white-space:nowrap}
+#dial .cur b{font:600 46px var(--mono);letter-spacing:-.04em;color:var(--ice)}
+#dial .cur span{font:500 12px var(--en);color:var(--mute);letter-spacing:.06em;max-width:110px;line-height:1.3;white-space:normal}
+main,footer{padding-left:84px}
+#chipTitle{position:fixed;left:84px;top:50%;z-index:39;display:flex;align-items:center;gap:10px;padding:8px 16px 8px 12px;border-radius:999px;opacity:0;transform:translateX(-8px);transition:opacity .35s,transform .35s,top .45s cubic-bezier(.2,.7,.1,1);pointer-events:none}
+#chipTitle.show{opacity:1;transform:none}
+#chipTitle b{font:600 18px var(--mono);color:var(--lime);letter-spacing:-.02em}
+#chipTitle span{font:500 12px var(--en);color:var(--ice);letter-spacing:.06em;white-space:nowrap}
+@media(max-width:900px){#rail{left:auto;right:8px;width:46px;padding:8px 0}#rail .ch{width:32px;height:32px}#rail .ch span{font-size:9.5px}#rail .star,.rail-line{display:none}#chipTitle{display:none}main,footer{padding-left:0}main .wrap{padding-right:62px}}
 </style>
 </head>
 <body>
 <div id="bg"><canvas id="flow"></canvas><canvas id="wave"></canvas></div>
 
-<header class="glass" id="hdr">
-  <a class="logo" href="#s-film">OPQ</a>
-  <a class="l" href="#s-core">DIAPHRAGM</a>
-  <a class="l k" href="#s-explode">EXPLODE</a>
-  <a class="l k" href="#p01">01</a>
-  <a class="l k ai" href="#p02">02</a>
-  <a class="l k ai" href="#p03">03</a>
-  <a class="l k ai" href="#p04">04</a>
-  <a class="l" href="#s-partner">PARTNER</a>
-  <span id="prog"></span>
-</header>
+<nav id="rail" class="glass"><a class="star" href="#s-film">✦</a><a class="ch" href="#s-film" data-id="s-film" data-t="Film"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>00</span></a><a class="ch" href="#s-core" data-id="s-core" data-t="Diaphragm"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>+</span></a><a class="ch" href="#s-explode" data-id="s-explode" data-t="Explode"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>EX</span></a><a class="ch" href="#p01" data-id="p01" data-t="Portable"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>01</span></a><a class="ch ai" href="#p02" data-id="p02" data-t="Home AI · Upper"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>02</span></a><a class="ch ai" href="#p03" data-id="p03" data-t="Home AI · Single"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>03</span></a><a class="ch ai" href="#p04" data-id="p04" data-t="Bespoke"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>04</span></a><a class="ch" href="#s-partner" data-id="s-partner" data-t="Partner"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>→</span></a><div class="rail-line"><i id="railDot"></i></div></nav>
+<div id="chipTitle" class="glass"><b id="ctN">00</b><span id="ctT">Film</span></div>
 
 <main>
 <!-- 00 FILM -->
@@ -195,11 +223,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
 <div class="wrap" style="margin-top:-6svh;position:relative;z-index:2"><p class="missing"><span><b>缺：主影片</b>（製作中）。目前暫用 APEX 12 秒光影研究片（261027 外殼）。完整 39 秒片：<a href="https://drive.google.com/file/d/1wEdVd3YfNT0FC5xiAqlCfke0GSylkl78/view" target="_blank" rel="noopener" style="text-decoration:underline">Drive 連結</a></span></p></div>
 
 <!-- CORE -->
-<section id="s-core"><div class="wrap">
-  <div class="runhead"><b>OPQ STUDIO</b><span class="mono">+ / The Diaphragm</span></div>
+<section id="s-core"><div class="core-bg"></div><div class="wrap">
   <p class="say" id="say"></p>
-  <p class="small rv" style="margin-top:40px;max-width:560px">振膜的成分、型號、適用頻段和參數，待玻音先創提供。本頁不宣稱任何聲學性能。</p>
-  <p class="missing"><span><b>缺：透明振膜實拍或微距渲染</b>（供應商樣品照片）</span></p>
 </div></section>
 
 <!-- EXPLODE -->
@@ -381,9 +406,9 @@ function draw(T){const t=T*.001;for(const k in cur)cur[k]=mix(cur[k],mode[k],.06
 addEventListener('resize',init);init();requestAnimationFrame(draw)})();
 
 /* ---------- statement word light ---------- */
-const sentence='玻音先創的透明振膜，讓聲音的源頭，第一次被看見。';
-const say=$('#say');[...sentence].forEach((c,i)=>{const s=document.createElement('span');s.textContent=c;if(i>=2&&i<=8)s.dataset.g=1;say.appendChild(s)});
-const ss=[...say.children];
+const sentence='玻璃振膜＋透明箱體，\n讓聲音第一次被看見。';
+const say=$('#say');[...sentence].forEach((c,i)=>{if(c==='\n'){say.appendChild(document.createElement('br'));return}const s=document.createElement('span');s.textContent=c;if(i===4)s.dataset.g=1;say.appendChild(s)});
+const ss=[...say.querySelectorAll('span')];
 
 /* ---------- explode canvas ---------- */
 const exC=$('#exCanvas'),ex=exC.getContext('2d');const FR=72,frames=[];let haveSeq=false,fallback=new Image();
@@ -393,9 +418,10 @@ function drawFallback(p){ex.clearRect(0,0,544,1367);ex.drawImage(fallback,-150,1
 function drawExplode(p){if(!haveSeq)return drawFallback(p);const i=Math.round(p*(FR-1));const im=frames[i];if(im&&im.complete){ex.clearRect(0,0,544,1367);ex.drawImage(im,0,0,544,1367)}}
 
 /* ---------- scroll ---------- */
-const filmFrame=$('#filmFrame'),labs=$$('.lab'),links=$$('header a.l');
+const filmFrame=$('#filmFrame'),labs=$$('.lab'),chs=$$('#rail .ch');
+let lastCi=-1,chipT;
 function onScroll(){const y=scrollY,vh=innerHeight;
- $('#prog').style.transform=`scaleX(${y/(document.body.scrollHeight-vh)})`;
+ $('#railDot').style.top=(y/(document.body.scrollHeight-vh))*46+'px';
  // film shrink
  const fp=clamp(y/(vh*.9));filmFrame.style.transform=`scale(${1-fp*.18}) translateY(${fp*8}vh)`;filmFrame.style.opacity=1-fp*.6;
  // statement
@@ -408,7 +434,9 @@ function onScroll(){const y=scrollY,vh=innerHeight;
  const inEx=er.top<vh*.5&&er.bottom>vh*.5;const ai=['s-ai','p02','p03','p04'].some(id=>{const b=document.getElementById(id).getBoundingClientRect();return b.top<vh*.6&&b.bottom>vh*.4});
  mode.thin=y<vh*.8?1:0;mode.spread=inEx?Math.sin(clamp(ep/.8)*Math.PI):0;mode.ai=ai?1:0;
  // nav
- let cur='';$$('main section[id]').forEach(s=>{if(s.getBoundingClientRect().top<vh*.45)cur=s.id});links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+cur));
+ let ci=0;chs.forEach((c,i)=>{const s=document.getElementById(c.dataset.id).getBoundingClientRect();const pr=clamp((vh*.5-s.top)/s.height);c.querySelector('.pg').style.strokeDashoffset=106.8*(1-pr);if(s.top<vh*.5)ci=i});
+ chs.forEach((c,i)=>c.classList.toggle('on',i===ci));
+ if(ci!==lastCi){lastCi=ci;const r=chs[ci].getBoundingClientRect(),ct=$('#chipTitle');$('#ctN').textContent=chs[ci].querySelector('span').textContent;$('#ctT').textContent=chs[ci].dataset.t;ct.style.top=(r.top+r.height/2-18)+'px';ct.classList.add('show');clearTimeout(chipT);chipT=setTimeout(()=>ct.classList.remove('show'),1800)}
 }
 addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();
 
