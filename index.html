@@ -479,11 +479,15 @@ main,footer{padding-left:76px!important}
 @keyframes drift2{to{background-position:3vw 2vw,-3vw -2vw,-2vw 3vw,2vw -2vw}}
 body.light #glowFloor{opacity:.7!important}
 .say span.lit.g{color:inherit!important}
+
+/* ---- dot field: everything coloured is a dot ---- */
+#glowFloor,#s-explode .pin::before{display:none!important}
+#dots{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 </style>
 </head>
 <body>
 <div id="themeT" class="glass"><button data-th="dark" class="on">DARK</button><button data-th="light">LIGHT</button></div>
-<div id="glowFloor"></div><div id="bg"><canvas id="flow"></canvas><canvas id="wave"></canvas></div>
+<div id="glowFloor"></div><canvas id="dots"></canvas><div id="bg"><canvas id="flow"></canvas><canvas id="wave"></canvas></div>
 
 <nav id="rail" class="glass"><a class="star" href="#s-film"><i class="gdot"></i></a><a class="ch" href="#s-film" data-id="s-film" data-t="Film"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>00</span></a><a class="ch" href="#s-core" data-id="s-core" data-t="Diaphragm"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>+</span></a><a class="ch" href="#s-explode" data-id="s-explode" data-t="Explode"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>EX</span></a><a class="ch" href="#p01" data-id="p01" data-t="Portable"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>01</span></a><a class="ch ai" href="#p02" data-id="p02" data-t="Home AI · Single"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>02</span></a><a class="ch ai" href="#p03" data-id="p03" data-t="Home AI · Upper Two"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>03</span></a><a class="ch ai" href="#p04" data-id="p04" data-t="Bespoke"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>04</span></a><a class="ch" href="#s-partner" data-id="s-partner" data-t="Partner"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>→</span></a><div class="rail-line"><i id="railDot"></i></div></nav>
 <div id="chipTitle" class="glass"><b id="ctN">00</b><span id="ctT">Film</span></div>
@@ -534,7 +538,7 @@ body.light #glowFloor{opacity:.7!important}
   <div class="fam rv">
     <a href="#p01"><figure><img src="img/portable_cut.webp" alt=""></figure><b>01</b><span>隨身</span><em>Bluetooth</em></a>
     <a href="#p02"><figure><img src="img/homeBcoax.webp" alt=""></figure><b>02</b><span>單顆＋底座</span><em class="ai">Wi-Fi · AI</em></a>
-    <a href="#p03"><figure><img src="img/homeA.webp" alt=""></figure><b>03</b><span>上半段兩節</span><em class="ai">Wi-Fi · AI</em></a>
+    <a href="#p03"><figure><img src="img/homeA_nobase.webp" alt=""></figure><b>03</b><span>上半段兩節</span><em class="ai">Wi-Fi · AI</em></a>
     <a href="#p04"><figure><img src="img/ring.webp" alt=""></figure><b>04</b><span>整組高訂</span><em class="ai">Wi-Fi · AI</em></a>
   </div>
 </div></section>
@@ -573,8 +577,8 @@ body.light #glowFloor{opacity:.7!important}
 <section class="pd ai" id="p03"><div class="wrap">
   <div class="pd-head rv"><span class="pd-n">03</span><span class="pd-en">Home AI · Upper Two</span></div>
   <h2 class="pd-t rv">上半段兩節</h2>
-  <p class="pd-line rv">整塔上半段直接取下，加一座底座。</p>
-  <figure class="pd-fig rv"><img src="img/homeA.webp" alt="上半段兩節"></figure>
+  <p class="pd-line rv">整塔上半段直接取下，自己就能站立。</p>
+  <figure class="pd-fig rv"><img src="img/homeA_nobase.webp" alt="上半段兩節"></figure>
   
   <dl class="pd-facts rv">
     <div><dt>取自整塔</dt><dd>小圓高音 ×2、方形單體、透明中音 ×1</dd></div>
@@ -702,6 +706,27 @@ $$('.stage').forEach(st=>{const h=document.createElement('div');h.className='hud
 function setTheme(th){document.body.classList.toggle('light',th==='light');$$('#themeT button').forEach(b=>b.classList.toggle('on',b.dataset.th===th));try{localStorage.setItem('rh-theme',th)}catch(e){}}
 $$('#themeT button').forEach(b=>b.onclick=()=>setTheme(b.dataset.th));
 setTheme(new URLSearchParams(location.search).get('theme')||(()=>{try{return localStorage.getItem('rh-theme')}catch(e){}})()||'dark');
+
+/* dot field */
+(()=>{const c=document.getElementById('dots'),x=c.getContext('2d');let W,H,D=[];const dpr=Math.min(2,devicePixelRatio||1);const G=14;
+const h=(a,b)=>{const s=Math.sin(a*127.1+b*311.7)*43758.5453;return s-Math.floor(s)};
+function init(){W=innerWidth;H=innerHeight;c.width=W*dpr;c.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0);D=[];
+ for(let j=0;j<=H/G+1;j++)for(let i=0;i<=W/G+1;i++){const X=i*G+(j%2)*G/2,Y=j*G;const u=X/W,v=Y/H;
+  // base white field: denser toward lower half, fading upward
+  let base=Math.pow(Math.max(0,v-.15)/.85,1.6)*.55+.05;
+  // coloured clusters
+  const dg=Math.hypot(u-.06,v-.08), di=Math.hypot(u-.94,v-.92), dt=Math.hypot(u-.9,v-.15);
+  const g=Math.max(0,1-dg/.32), ind=Math.max(0,1-di/.42), te=Math.max(0,1-dt/.22);
+  let col=[238,242,255],cw=0;
+  if(g>ind&&g>te&&g>0){col=[182,228,103];cw=g}else if(ind>te&&ind>0){col=[124,110,255];cw=ind}else if(te>0){col=[47,191,165];cw=te}
+  const a=Math.min(.95,base*.85+cw*1.05);if(a<.03)continue;
+  D.push({X,Y,a,col,ph:h(i,j)*6.28,sp:.4+h(j,i)*1.4,r:.7+cw*1.1+h(i+3,j)*.5})}}
+function light(){return document.body.classList.contains('light')}
+function draw(T){const t=T*.001;x.clearRect(0,0,W,H);const L=light();
+ for(const d of D){const f=.35+.65*Math.max(0,Math.sin(t*d.sp+d.ph));const a=d.a*f;if(a<.02)continue;
+  const col=(L&&d.col[0]===238)?[30,32,48]:d.col;x.fillStyle=`rgba(${col[0]},${col[1]},${col[2]},${L?a*.7:a})`;x.beginPath();x.arc(d.X,d.Y,d.r,0,6.283);x.fill()}
+ requestAnimationFrame(draw)}
+addEventListener('resize',init);init();requestAnimationFrame(draw)})();
 /* bespoke chooser */
 $$('#chooser button').forEach(b=>b.onclick=()=>{$$('#chooser button').forEach(x=>x.classList.toggle('on',x===b));const im=$('#bodyImg');im.style.opacity=0;setTimeout(()=>{im.src=b.dataset.img;im.style.opacity=1},220);$('#bodyNote').textContent=b.dataset.ai==='1'?'AI 概念圖（Codex）· 單體與箱體依原配置，主體待 CAD':'Ring／Branch／Fold：原網格渲染'});
 </script>
