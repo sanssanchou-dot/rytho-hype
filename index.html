@@ -489,11 +489,23 @@ body.light #glowFloor{opacity:.7!important}
 #rail::before{top:-28px!important;background:radial-gradient(circle at 100% 0,transparent 27.5px,rgba(18,18,22,.86) 28px)!important}
 #rail::after{bottom:-28px!important;background:radial-gradient(circle at 100% 100%,transparent 27.5px,rgba(6,6,9,.92) 28px)!important}
 #rail{border-radius:0 28px 28px 0!important}
+
+/* dot field v3: same as old explode halftone (9px grid, 1px dots), static, aligned; colour only as dots */
+#dots{display:none!important}
+#dotsW,#dotsG,#dotsI{position:fixed;inset:0;z-index:0;pointer-events:none;background-size:9px 9px;background-position:0 0}
+#dotsW{background-image:radial-gradient(circle,rgba(238,242,255,.9) 1px,transparent 1.6px);opacity:.22;
+ -webkit-mask:radial-gradient(70% 75% at 50% 55%,#000 15%,transparent 80%);mask:radial-gradient(70% 75% at 50% 55%,#000 15%,transparent 80%)}
+#dotsG{background-image:radial-gradient(circle,rgba(182,228,103,1) 1px,transparent 1.6px);opacity:.55;
+ -webkit-mask:radial-gradient(38vw 34vw at 0% 0%,#000 0%,transparent 75%);mask:radial-gradient(38vw 34vw at 0% 0%,#000 0%,transparent 75%)}
+#dotsI{background-image:radial-gradient(circle,rgba(124,110,255,1) 1px,transparent 1.6px);opacity:.6;
+ -webkit-mask:radial-gradient(44vw 40vw at 100% 100%,#000 0%,transparent 75%);mask:radial-gradient(44vw 40vw at 100% 100%,#000 0%,transparent 75%)}
+body.light #dotsW{background-image:radial-gradient(circle,rgba(11,11,18,.9) 1px,transparent 1.6px);opacity:.16}
+body.light #dotsG{opacity:.7}body.light #dotsI{opacity:.5}
 </style>
 </head>
 <body>
 <div id="themeT" class="glass"><button data-th="dark" class="on">DARK</button><button data-th="light">LIGHT</button></div>
-<div id="glowFloor"></div><canvas id="dots"></canvas><div id="bg"><canvas id="flow"></canvas><canvas id="wave"></canvas></div>
+<div id="glowFloor"></div><canvas id="dots"></canvas><div id="dotsW"></div><div id="dotsG"></div><div id="dotsI"></div><div id="bg"><canvas id="flow"></canvas><canvas id="wave"></canvas></div>
 
 <nav id="rail" class="glass"><a class="star" href="#s-film"><i class="gdot"></i></a><a class="ch" href="#s-film" data-id="s-film" data-t="Film"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>00</span></a><a class="ch" href="#s-core" data-id="s-core" data-t="Diaphragm"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>+</span></a><a class="ch" href="#s-explode" data-id="s-explode" data-t="Explode"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>EX</span></a><a class="ch" href="#p01" data-id="p01" data-t="Portable"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>01</span></a><a class="ch ai" href="#p02" data-id="p02" data-t="Home AI · Single"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>02</span></a><a class="ch ai" href="#p03" data-id="p03" data-t="Home AI · Upper Two"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>03</span></a><a class="ch ai" href="#p04" data-id="p04" data-t="Bespoke"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>04</span></a><a class="ch" href="#s-partner" data-id="s-partner" data-t="Partner"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>→</span></a><div class="rail-line"><i id="railDot"></i></div></nav>
 <div id="chipTitle" class="glass"><b id="ctN">00</b><span id="ctT">Film</span></div>
