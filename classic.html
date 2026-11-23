@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>RYTHO HYPE — 透明振膜，成為主角｜OPQ</title>
+<meta name="description" content="OPQ × 玻音先創 — RYTHO HYPE 可視化聲學系列產品提案">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;700;800&family=Noto+Sans+HK:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0b0d12;--ink2:#4a505c;--ink3:#8a90a0;
+  --glass:rgba(255,255,255,.42);--glass-strong:rgba(255,255,255,.62);
+  --edge:rgba(255,255,255,.75);--shadow:0 30px 80px -30px rgba(30,40,70,.35);
+  --r:32px;--max:1240px;
+  --en:'Alexandria',system-ui,sans-serif;--zh:'Noto Sans HK','PingFang TC','Microsoft JhengHei',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--en),var(--zh);color:var(--ink);background:#eef1f6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+
+/* ---------- ambient liquid background ---------- */
+.ambient{position:fixed;inset:0;z-index:-2;overflow:hidden;background:radial-gradient(120% 90% at 50% 0%,#f9fbff 0%,#e8ecf4 55%,#dfe4ee 100%)}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;will-change:transform;animation:drift 28s ease-in-out infinite alternate}
+.b1{width:46vw;height:46vw;left:-10vw;top:-8vw;background:radial-gradient(circle,#bcd6ff,transparent 70%)}
+.b2{width:40vw;height:40vw;right:-8vw;top:30vh;background:radial-gradient(circle,#f3d9c4,transparent 70%);animation-delay:-9s}
+.b3{width:50vw;height:50vw;left:20vw;bottom:-25vw;background:radial-gradient(circle,#d6ccff,transparent 70%);animation-delay:-17s}
+@keyframes drift{to{transform:translate3d(6vw,4vh,0) scale(1.12)}}
+.grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ---------- liquid glass ---------- */
+.glass{position:relative;background:linear-gradient(135deg,rgba(255,255,255,.55),rgba(255,255,255,.22));
+  -webkit-backdrop-filter:blur(28px) saturate(190%);backdrop-filter:blur(28px) saturate(190%);
+  border-radius:var(--r);box-shadow:var(--shadow),inset 0 1px 0 var(--edge),inset 0 -1px 0 rgba(255,255,255,.25),inset 0 0 0 1px rgba(255,255,255,.35);isolation:isolate}
+.glass::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:-1;
+  background:radial-gradient(120% 60% at 20% 0%,rgba(255,255,255,.75),transparent 55%),radial-gradient(80% 50% at 100% 100%,rgba(190,210,255,.25),transparent 60%)}
+.glass::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;padding:1px;
+  background:linear-gradient(140deg,rgba(255,255,255,.95),rgba(255,255,255,.1) 35%,rgba(255,255,255,0) 60%,rgba(255,255,255,.6));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+
+/* ---------- nav ---------- */
+nav{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:50;display:flex;align-items:center;gap:4px;padding:6px;border-radius:999px;width:max-content;max-width:calc(100vw - 24px)}
+nav .logo{font-weight:800;letter-spacing:.04em;padding:8px 16px;font-size:15px}
+nav a.l{font-size:13px;color:var(--ink2);padding:8px 14px;border-radius:999px;transition:.25s}
+nav a.l:hover,nav a.l.on{background:rgba(255,255,255,.7);color:var(--ink);box-shadow:inset 0 1px 0 #fff,0 4px 14px -6px rgba(0,0,0,.25)}
+@media(max-width:760px){nav a.l:not(.keep){display:none}}
+
+/* ---------- layout ---------- */
+section{position:relative;padding:140px 24px}
+.wrap{max-width:var(--max);margin:0 auto}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--ink3);margin-bottom:18px}
+h1,h2,h3{font-weight:800;letter-spacing:-.02em;line-height:1.05}
+.zh{font-family:var(--zh)}
+h2{font-size:clamp(40px,6.4vw,88px)}
+h2 .zh{font-weight:700;letter-spacing:0}
+.lead{font-family:var(--zh);font-size:clamp(18px,1.6vw,22px);line-height:1.75;color:var(--ink2);max-width:640px;margin-top:24px}
+.grad{background:linear-gradient(100deg,#0b0d12 10%,#5b6b8c 50%,#0b0d12 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.note{font-family:var(--zh);font-size:12px;color:var(--ink3);line-height:1.6;margin-top:14px}
+.tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.08em;padding:8px 14px;border-radius:999px;color:var(--ink2)}
+.tag i{width:7px;height:7px;border-radius:50%;background:#30d158;box-shadow:0 0 10px #30d158}
+.tag.ai i{background:#bf5af2;box-shadow:0 0 10px #bf5af2}
+
+.reveal{opacity:0;transform:translateY(40px) scale(.985);transition:opacity 1.1s cubic-bezier(.2,.7,.1,1),transform 1.1s cubic-bezier(.2,.7,.1,1)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+
+/* ---------- hero ---------- */
+.hero{min-height:100svh;display:grid;place-items:center;padding-top:120px;text-align:center;overflow:hidden}
+.hero h1{font-size:clamp(64px,13vw,200px);letter-spacing:-.045em}
+.hero .sub{font-family:var(--zh);font-size:clamp(22px,3vw,40px);font-weight:700;margin-top:10px}
+.hero .lens{position:relative;width:min(560px,82vw);aspect-ratio:1;margin:40px auto 0;border-radius:50%;display:grid;place-items:center}
+.hero .lens img{width:88%;transform:translateY(2%);filter:drop-shadow(0 40px 40px rgba(20,30,60,.28));animation:float 7s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-3%) rotate(-1.5deg)}}
+.hero .ring{position:absolute;inset:-6%;border-radius:50%;border:1px solid rgba(255,255,255,.8);box-shadow:inset 0 0 60px rgba(255,255,255,.5);animation:spin 40s linear infinite;background:conic-gradient(from 0deg,transparent,rgba(160,190,255,.25),transparent 30%,rgba(255,210,180,.2),transparent 60%)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero .line{font-size:13px;letter-spacing:.3em;color:var(--ink3);margin-top:26px;font-weight:600}
+.scrollhint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.25em;color:var(--ink3)}
+
+/* ---------- statement ---------- */
+.statement{text-align:center}
+.statement p.big{font-family:var(--zh);font-weight:700;font-size:clamp(30px,4.6vw,64px);line-height:1.35;letter-spacing:-.01em}
+.statement p.big span{color:var(--ink3);transition:color .6s}
+.statement p.big span.lit{color:var(--ink)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:70px}
+.stat{padding:34px 28px;text-align:left}
+.stat b{font-size:44px;font-weight:800;display:block;letter-spacing:-.03em}
+.stat span{font-family:var(--zh);color:var(--ink2);font-size:15px;line-height:1.6;display:block;margin-top:8px}
+@media(max-width:760px){.stats{grid-template-columns:1fr}}
+
+/* ---------- product lines ---------- */
+.lines{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:60px}
+.lineCard{padding:28px;display:flex;flex-direction:column;min-height:520px;overflow:hidden;transition:transform .5s cubic-bezier(.2,.7,.1,1)}
+.lineCard:hover{transform:translateY(-8px)}
+.lineCard .num{font-size:13px;font-weight:700;color:var(--ink3);letter-spacing:.15em}
+.lineCard h3{font-size:32px;margin-top:10px}
+.lineCard p{font-family:var(--zh);color:var(--ink2);margin-top:10px;line-height:1.6;font-size:15px}
+.lineCard .pic{flex:1;display:grid;place-items:center;margin-top:16px}
+.lineCard .pic img{max-height:300px;object-fit:contain;filter:drop-shadow(0 24px 24px rgba(20,30,60,.22))}
+@media(max-width:900px){.lines{grid-template-columns:1fr}}
+
+/* ---------- feature (product) ---------- */
+.feature{display:grid;grid-template-columns:1fr 1.15fr;gap:40px;align-items:center}
+.feature.flip{grid-template-columns:1.15fr 1fr}.feature.flip .copy{order:2}
+.stage{position:relative;border-radius:40px;min-height:640px;display:grid;place-items:center;overflow:hidden}
+.stage img{max-height:600px;width:auto;object-fit:contain;filter:drop-shadow(0 50px 50px rgba(20,30,60,.3));transition:transform .2s ease-out}
+.stage.wide img,.lineCard .pic img[src*=portable]{mix-blend-mode:multiply}
+.stage.wide img{width:96%;max-height:none;border-radius:26px;filter:none}
+.stage .chip{position:absolute;left:22px;bottom:22px}
+.specs{margin-top:34px;padding:8px 24px}
+.specs div{display:grid;grid-template-columns:170px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid rgba(10,20,40,.08);font-size:14px}
+.specs div:last-child{border:0}
+.specs dt{font-weight:700;font-size:11px;letter-spacing:.12em;color:var(--ink3);padding-top:3px}
+.specs dd{font-family:var(--zh);color:var(--ink)}
+@media(max-width:900px){.feature,.feature.flip{grid-template-columns:1fr}.feature.flip .copy{order:0}.stage{min-height:440px}.stage img{max-height:420px}.specs div{grid-template-columns:1fr}}
+
+/* ---------- home switch ---------- */
+.seg{display:inline-flex;padding:5px;border-radius:999px;gap:4px;margin-top:30px}
+.seg button{all:unset;cursor:pointer;font-size:14px;font-weight:600;padding:10px 20px;border-radius:999px;color:var(--ink2);transition:.35s}
+.seg button.on{background:rgba(255,255,255,.85);color:var(--ink);box-shadow:inset 0 1px 0 #fff,0 6px 18px -8px rgba(0,0,0,.35)}
+.pane{display:none}.pane.on{display:block;animation:fadeup .7s cubic-bezier(.2,.7,.1,1)}
+@keyframes fadeup{from{opacity:0;transform:translateY(16px)}}
+.swap img{animation:fadeup .7s cubic-bezier(.2,.7,.1,1)}
+
+/* ---------- bespoke ---------- */
+.dark{color:#f5f5f7;background:#000}
+.dark .eyebrow,.dark .note{color:#86868b}.dark .lead{color:#a1a1a6}
+.dark .grad{background:linear-gradient(100deg,#fff 10%,#9aa6c2 50%,#fff 90%);-webkit-background-clip:text;background-clip:text}
+.bespokeHero{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.bespokeHero img{border-radius:30px;max-height:760px;margin:auto}
+@media(max-width:900px){.bespokeHero{grid-template-columns:1fr}}
+.bodies{margin-top:70px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.body{padding:18px 18px 24px;cursor:pointer;transition:transform .5s cubic-bezier(.2,.7,.1,1)}
+.body:hover{transform:translateY(-6px)}
+.body img{aspect-ratio:3/4;object-fit:contain;width:100%;filter:drop-shadow(0 30px 30px rgba(20,30,60,.28))}
+.body b{display:block;font-size:16px;margin-top:8px}.body span{font-family:var(--zh);font-size:13px;color:var(--ink2)}
+.body.fixed{outline:2px dashed rgba(10,20,40,.18);outline-offset:-10px}
+@media(max-width:900px){.bodies{grid-template-columns:repeat(2,1fr)}}
+.lightbox{position:fixed;inset:0;z-index:80;display:none;place-items:center;background:rgba(230,235,245,.55);-webkit-backdrop-filter:blur(30px);backdrop-filter:blur(30px)}
+.lightbox.on{display:grid}.lightbox img{max-height:90vh;max-width:92vw;filter:drop-shadow(0 50px 60px rgba(20,30,60,.35))}
+
+/* ---------- refs ---------- */
+.refs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
+.ref{padding:14px 14px 22px}
+.ref img{aspect-ratio:1;object-fit:cover;width:100%;border-radius:22px}
+.ref b{display:block;margin:16px 6px 4px;font-size:15px}.ref span{font-family:var(--zh);font-size:13px;color:var(--ink2);margin:0 6px;display:block}
+@media(max-width:760px){.refs{grid-template-columns:1fr}}
+
+/* ---------- partner / roadmap ---------- */
+.partners{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
+.partner{padding:34px}
+.partner b{font-size:13px;letter-spacing:.14em;color:var(--ink3);display:block}
+.partner h3{font-family:var(--zh);font-size:26px;margin:10px 0 14px}
+.partner p{font-family:var(--zh);color:var(--ink2);line-height:1.7;font-size:15px}
+@media(max-width:900px){.partners{grid-template-columns:1fr}}
+.road{margin-top:56px;position:relative}
+.road::before{content:"";position:absolute;left:31px;top:20px;bottom:20px;width:2px;background:linear-gradient(#0b0d12,rgba(11,13,18,.08))}
+.step{display:grid;grid-template-columns:64px 1fr;gap:24px;align-items:start;margin-bottom:18px}
+.step .dot{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font-weight:800}
+.step .glass{padding:24px 28px}
+.step h3{font-family:var(--zh);font-size:22px}.step p{font-family:var(--zh);color:var(--ink2);margin-top:6px;font-size:15px}
+
+/* ---------- film ---------- */
+.film{min-height:100svh;display:grid;align-items:center;overflow:hidden}
+.film .bg{position:absolute;inset:0;background:url(img/macro.webp) right center/cover no-repeat;opacity:.85;transform:scale(1.08)}
+.film .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#000 20%,rgba(0,0,0,.4) 60%,transparent)}
+.film .wrap{position:relative;width:100%}
+.play{display:inline-flex;align-items:center;gap:14px;margin-top:36px;padding:16px 26px 16px 18px;border-radius:999px;color:#fff;font-weight:600;
+  background:linear-gradient(135deg,rgba(255,255,255,.22),rgba(255,255,255,.06));-webkit-backdrop-filter:blur(20px) saturate(180%);backdrop-filter:blur(20px) saturate(180%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 0 0 1px rgba(255,255,255,.18),0 20px 50px -20px rgba(0,0,0,.8)}
+.play i{width:42px;height:42px;border-radius:50%;background:#fff;display:grid;place-items:center;color:#000;font-style:normal}
+footer{padding:60px 24px 80px;text-align:center;font-size:12px;color:var(--ink3);background:#000}
+footer b{color:#f5f5f7;font-size:18px;letter-spacing:.06em;display:block;margin-bottom:10px}
+</style>
+</head>
+<body>
+<div class="ambient"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+<div class="grain"></div>
+
+<nav class="glass" id="nav">
+  <a class="logo" href="#top">OPQ</a>
+  <a class="l" href="#core">透明振膜</a>
+  <a class="l keep" href="#lines">產品線</a>
+  <a class="l" href="#portable">隨身</a>
+  <a class="l" href="#home">家用</a>
+  <a class="l keep" href="#bespoke">高訂</a>
+  <a class="l" href="#partner">合作</a>
+  <a class="l keep" href="#film">影片</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div>
+    <div class="eyebrow reveal">OPQ × 玻音先創 · Product Proposal 2026</div>
+    <h1 class="reveal d1 grad">RYTHO HYPE</h1>
+    <p class="sub reveal d2">透明振膜，成為主角。</p>
+    <div class="lens glass reveal d3"><div class="ring"></div><img src="img/homeBcoax.webp" alt="透明振膜同軸模組"></div>
+    <p class="line reveal">PORTABLE &nbsp;/&nbsp; HOME &nbsp;/&nbsp; BESPOKE HI-FI</p>
+  </div>
+  <div class="scrollhint">SCROLL</div>
+</section>
+
+<!-- STATEMENT -->
+<section class="statement" id="core">
+  <div class="wrap">
+    <div class="eyebrow reveal">The Technology</div>
+    <p class="big" id="words"></p>
+    <div class="stats">
+      <div class="stat glass reveal"><b>01</b><span>玻音先創透明振膜<br>本次合作的技術起點</span></div>
+      <div class="stat glass reveal d1"><b>03</b><span>產品線：隨身、家用、高訂<br>同一套可視化聲學語言</span></div>
+      <div class="stat glass reveal d2"><b>08</b><span>高訂固定單體＋箱體<br>只換帶卡榫的承載主體</span></div>
+    </div>
+    <p class="note reveal">振膜成分、型號、適用頻段與參數待供應商提供。本頁不宣稱聲學性能。</p>
+  </div>
+</section>
+
+<!-- LINES -->
+<section id="lines">
+  <div class="wrap">
+    <div class="eyebrow reveal">Product Portfolio</div>
+    <h2 class="reveal">三條產品線，<br><span class="zh">一套辨識語言。</span></h2>
+    <div class="lines">
+      <a href="#portable" class="lineCard glass reveal"><span class="num">01 · PORTABLE</span><h3>隨身</h3><p>日常攜帶。透明振膜與緊湊螺旋內構，系列入門產品。</p><div class="pic"><img src="img/portable.webp" alt=""></div></a>
+      <a href="#home" class="lineCard glass reveal d1"><span class="num">02 · HOME</span><h3>家用</h3><p>家居與桌面。原上段直接獨立，或單顆透明模組加底座。</p><div class="pic"><img src="img/homeA.webp" alt=""></div></a>
+      <a href="#bespoke" class="lineCard glass reveal d2"><span class="num">03 · BESPOKE HI-FI</span><h3>高訂</h3><p>收藏與空間合作。單體箱體固定，承載主體可訂製。</p><div class="pic"><img src="img/ring.webp" alt=""></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- PORTABLE -->
+<section id="portable">
+  <div class="wrap feature">
+    <div class="copy">
+      <div class="eyebrow reveal">01 · Portable Bluetooth</div>
+      <h2 class="reveal"><span class="zh">把透明振膜，<br>帶進日常。</span></h2>
+      <p class="lead reveal">透明振膜與螺旋內構一同被看見。金屬端框與提帶，讓技術主角走入生活。</p>
+      <dl class="specs glass reveal">
+        <div><dt>SYSTEM</dt><dd>主動式隨身藍牙音響〔提案〕</dd></div>
+        <div><dt>DIAPHRAGM</dt><dd>玻音先創透明振膜；型號／口徑／數量待選</dd></div>
+        <div><dt>STRUCTURE</dt><dd>透明腔體＋螺旋流道候選；聲學效益待驗證</dd></div>
+        <div><dt>POWER</dt><dd>內建電池、USB-C 充電〔目標〕</dd></div>
+        <div><dt>FASTENERS</dt><dd>原 9 處孔位保留，改米字槽沉頭</dd></div>
+      </dl>
+    </div>
+    <div class="stage wide glass reveal d1"><img src="img/portable.webp" alt="隨身藍牙音響概念"><span class="chip tag glass ai"><i></i>AI CONCEPT</span></div>
+  </div>
+</section>
+
+<!-- HOME -->
+<section id="home">
+  <div class="wrap">
+    <div class="eyebrow reveal">02 · Home Speaker</div>
+    <h2 class="reveal"><span class="zh">家用，兩個方向。</span></h2>
+    <div class="seg glass reveal" id="seg"><button class="on" data-p="A">A · 原上段獨立</button><button data-p="B">B · 透明模組</button></div>
+
+    <div class="pane on" id="pA">
+      <div class="feature flip" style="margin-top:40px">
+        <div class="copy">
+          <h3 style="font-size:clamp(30px,3.4vw,48px)" class="zh">紅圈原上段，<br>直接成為家用音響。</h3>
+          <p class="lead">保留原上段的單體、箱體與排列：兩顆小圓、方形單體與第一顆透明模組，連同原支撐段配置獨立底座。</p>
+          <dl class="specs glass">
+            <div><dt>ASSEMBLY</dt><dd>原四組：小圓×2／方形／透明模組</dd></div>
+            <div><dt>CABINETS</dt><dd>原上段各箱體不動，保留原排列</dd></div>
+            <div><dt>MOUNTING</dt><dd>原支撐段＋新底座；裝拆介面待核對</dd></div>
+            <div><dt>AMP</dt><dd>藍牙功放／分頻整合方式待評估</dd></div>
+          </dl>
+        </div>
+        <div class="stage glass tilt"><img src="img/homeA.webp" alt="HOME A 原模型渲染"><span class="chip tag glass"><i></i>原模型渲染 · 底座為新提案</span></div>
+      </div>
+    </div>
+
+    <div class="pane" id="pB">
+      <div class="feature flip" style="margin-top:40px">
+        <div class="copy">
+          <h3 style="font-size:clamp(30px,3.4vw,48px)" class="zh">一顆透明模組，<br>成為獨立音響。</h3>
+          <p class="lead">取下完整透明中音模組，另設底座；改為中＋高音，以同軸配置讓透明振膜站在正中央。</p>
+          <dl class="specs glass">
+            <div><dt>DRIVERS</dt><dd>中音＋高音；同軸為配置候選</dd></div>
+            <div><dt>ORIGIN</dt><dd>既有透明中音模組整體外形</dd></div>
+            <div><dt>ACOUSTICS</dt><dd>新單體需重新定義腔體、出口與分頻</dd></div>
+            <div><dt>MOUNTING</dt><dd>完整模組可拆＋獨立底座〔方向〕</dd></div>
+          </dl>
+        </div>
+        <div class="stage glass tilt"><img id="homeBimg" src="img/homeBcoax.webp" alt="HOME B 透明模組 原模型渲染"><span class="chip tag glass"><i></i>原模組渲染 · 同軸高音與底座為新提案</span></div>
+      </div>
+    </div>
+    <p class="note">未修改原 CAD 或箱體硬規格；新增底座與同軸高音為視覺提案，未經聲學或結構驗證。</p>
+  </div>
+</section>
+
+<!-- BESPOKE -->
+<section id="bespoke" class="dark">
+  <div class="wrap bespokeHero">
+    <div>
+      <div class="eyebrow reveal">03 · Bespoke Hi-Fi</div>
+      <h2 class="reveal grad"><span class="zh">單體不動，<br>主體訂製。</span></h2>
+      <p class="lead reveal">八組單體連同各自箱體全部固定。只變化承載它們、帶卡榫的主體——外形、材質與空間氣質由藏家決定。</p>
+    </div>
+    <img class="reveal d1" src="img/pair.webp" alt="FABLE A V2 截幀">
+  </div>
+</section>
+<section style="padding-top:110px">
+  <div class="wrap">
+    <div class="eyebrow reveal">Fixed Modules, Variable Chassis</div>
+    <h2 class="reveal" style="font-size:clamp(34px,5vw,68px)"><span class="zh">同一組聲學核心，三種主體。</span></h2>
+    <p class="lead reveal">三款主體皆以原網格直接渲染；固定件逐一比對，幾何與位置一致。點擊放大。</p>
+    <div class="bodies">
+      <div class="body fixed glass reveal" data-src="img/core.webp"><img src="img/core.webp" alt=""><b>FIXED CORE</b><span>固定八組單體＋箱體</span></div>
+      <div class="body glass reveal d1" data-src="img/ring.webp"><img src="img/ring.webp" alt=""><b>A · RING</b><span>外環</span></div>
+      <div class="body glass reveal d2" data-src="img/branch.webp"><img src="img/branch.webp" alt=""><b>B · BRANCH</b><span>側向分枝懸臂</span></div>
+      <div class="body glass reveal d3" data-src="img/fold.webp"><img src="img/fold.webp" alt=""><b>C · FOLD</b><span>折板</span></div>
+    </div>
+    <p class="note">新增承托部件與卡榫未經間隙、承重或製程驗證；未新增螺絲。</p>
+  </div>
+</section>
+
+<!-- REFS -->
+<section id="refs" style="padding-top:60px">
+  <div class="wrap">
+    <div class="eyebrow reveal">Design References</div>
+    <h2 class="reveal" style="font-size:clamp(34px,5vw,68px)"><span class="zh">讓精密零件，成為表情。</span></h2>
+    <div class="refs">
+      <div class="ref glass reveal"><img src="img/ref1.webp" alt=""><b>TRANSPARENT</b><span>框架、單體與機構關係一目了然</span></div>
+      <div class="ref glass reveal d1"><img src="img/ref2.webp" alt=""><b>HARMAN KARDON</b><span>透明曲面形成具辨識度的輪廓</span></div>
+      <div class="ref glass reveal d2"><img src="img/ref3.webp" alt=""><b>SHURE</b><span>內部零件與走線也屬於產品表情</span></div>
+    </div>
+    <p class="note">參考圖片僅作設計語言參照，不表示品牌合作、授權或性能比較。</p>
+  </div>
+</section>
+
+<!-- PARTNER -->
+<section id="partner">
+  <div class="wrap">
+    <div class="eyebrow reveal">Partnership</div>
+    <h2 class="reveal"><span class="zh">建議合作分工。</span></h2>
+    <div class="partners">
+      <div class="partner glass reveal"><b>MATERIAL</b><h3>玻音先創</h3><p>透明振膜樣品、尺寸介面與單體參數；確認材料、良率與供應條件。</p></div>
+      <div class="partner glass reveal d1"><b>DESIGN</b><h3>OPQ / RYTHO HYPE</h3><p>產品設計、透明結構與卡榫主體；完成樣機、視覺與展示敘事。</p></div>
+      <div class="partner glass reveal d2"><b>ENGINEERING</b><h3>音響研發合作方</h3><p>系統整合、分頻／DSP 與量測；把樣機結果轉為可追溯規格。</p></div>
+    </div>
+    <div class="road">
+      <div class="step reveal"><div class="dot glass">01</div><div class="glass"><h3>單體與視覺樣機</h3><p>確認透明振膜單體資料與導入條件</p></div></div>
+      <div class="step reveal"><div class="dot glass">02</div><div class="glass"><h3>家用聲學樣機</h3><p>比較家用 A／B，整合功放與系統並量測</p></div></div>
+      <div class="step reveal"><div class="dot glass">03</div><div class="glass"><h3>隨身可行性</h3><p>獨立評估電池、體積、耐用性與成本</p></div></div>
+      <div class="step reveal"><div class="dot glass">04</div><div class="glass"><h3>高訂主體系列</h3><p>單體與箱體不動，設計卡榫主體並複測</p></div></div>
+    </div>
+    <p class="note">本頁為合作建議，不表示已簽約或投入資金；不承諾日期、成本或銷售規模。</p>
+  </div>
+</section>
+
+<!-- FILM -->
+<section class="film dark" id="film">
+  <div class="bg"></div>
+  <div class="wrap">
+    <div class="eyebrow reveal">Render Film · FABLE A V2 · 39s</div>
+    <h2 class="reveal grad">RYTHO HYPE<br>IN MOTION</h2>
+    <p class="lead reveal">既有音響造型、透明內構與材質的動態展示。</p>
+    <a class="play reveal" href="https://drive.google.com/file/d/1wEdVd3YfNT0FC5xiAqlCfke0GSylkl78/view" target="_blank" rel="noopener"><i>▶</i>播放 39 秒渲染影片</a>
+    <p class="note reveal">沙紋、霧氣與線材為藝術化表現，非聲學量測或模擬。</p>
+  </div>
+</section>
+
+<footer><b>OPQ</b>RYTHO HYPE · Product Development Proposal · 2026<br>家用與高訂為原模型渲染（新增底座／主體為提案）；隨身為 AI 概念圖。均非聲學驗證。</footer>
+
+<div class="lightbox" id="lb"><img alt=""></div>
+
+<script>
+// word-by-word statement
+const sentence='玻音先創的透明振膜，讓聲音的源頭第一次被看見。我們以它為核心，展開一整個可視化聲學系列。';
+const w=document.getElementById('words');
+[...sentence].forEach(c=>{const s=document.createElement('span');s.textContent=c;w.appendChild(s)});
+const spans=[...w.children];
+function lightWords(){const r=w.getBoundingClientRect();const p=Math.min(1,Math.max(0,(innerHeight*.85-r.top)/(r.height+innerHeight*.35)));const n=Math.floor(p*spans.length);spans.forEach((s,i)=>s.classList.toggle('lit',i<n))}
+// reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+// nav active
+const links=[...document.querySelectorAll('nav a.l')];
+function navOn(){let cur='';document.querySelectorAll('section[id]').forEach(s=>{if(s.getBoundingClientRect().top<innerHeight*.4)cur=s.id});links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+cur))}
+addEventListener('scroll',()=>{lightWords();navOn()},{passive:true});lightWords();
+// home segmented control
+document.querySelectorAll('#seg button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#seg button').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('on',p.id==='p'+b.dataset.p))});
+// tilt
+document.querySelectorAll('.tilt').forEach(st=>{const img=st.querySelector('img');st.addEventListener('pointermove',e=>{const r=st.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;img.style.transform=`perspective(900px) rotateY(${x*10}deg) rotateX(${-y*8}deg) translateZ(20px)`});st.addEventListener('pointerleave',()=>img.style.transform='')});
+// lightbox
+const lb=document.getElementById('lb');
+document.querySelectorAll('.body').forEach(b=>b.onclick=()=>{lb.querySelector('img').src=b.dataset.src;lb.classList.add('on')});
+lb.onclick=()=>lb.classList.remove('on');
+</script>
+</body>
+</html>
