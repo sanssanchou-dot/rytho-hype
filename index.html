@@ -6,7 +6,7 @@
 <title>RYTHO HYPE — Sound takes shape.｜OPQ × 玻音先創</title>
 <meta name="theme-color" content="#000000">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Noto+Sans+HK:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Doto:wght@600;800;900&family=Inter+Tight:wght@400;500;600;700&family=Noto+Sans+HK:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{--bk:#000;--void:#0B0B12;--ice:#EEF2FF;--indigo:#3D2EBC;--peri:#8a9cff;--lime:#B6E467;--teal:#2FBFA5;--mute:rgba(238,242,255,.55);--dim:rgba(238,242,255,.32);
 --en:'Inter Tight','Helvetica Neue',Arial,sans-serif;--zh:'Noto Sans HK','PingFang TC','Microsoft JhengHei',sans-serif;--mono:ui-monospace,'SF Mono',Consolas,monospace}
@@ -200,6 +200,53 @@ main,footer{padding-left:84px}
 #chipTitle b{font:600 18px var(--mono);color:var(--lime);letter-spacing:-.02em}
 #chipTitle span{font:500 12px var(--en);color:var(--ice);letter-spacing:.06em;white-space:nowrap}
 @media(max-width:900px){#rail{left:auto;right:8px;width:46px;padding:8px 0}#rail .ch{width:32px;height:32px}#rail .ch span{font-size:9.5px}#rail .star,.rail-line{display:none}#chipTitle{display:none}main,footer{padding-left:0}main .wrap{padding-right:62px}}
+
+/* ---- tech art layer ---- */
+:root{--dot:'Doto',ui-monospace,monospace}
+.num{font-family:var(--dot)!important;font-weight:900!important;color:var(--ice)!important;-webkit-text-stroke:0!important;letter-spacing:-.02em!important;opacity:.9}
+.prop .num{line-height:1!important;padding-top:.08em;margin-bottom:8px!important;font-size:clamp(80px,10vw,150px)!important;background:linear-gradient(180deg,#fff,rgba(238,242,255,.35));-webkit-background-clip:text;background-clip:text;color:transparent!important}
+#rail .ch span{font-family:var(--dot);font-weight:900;font-size:13px}
+#chipTitle b{font-family:var(--dot);font-weight:900}
+.slash{font:500 11px var(--mono);letter-spacing:.22em;color:var(--mute);text-transform:uppercase}
+.slash::before{content:"/";margin-right:.3em;color:var(--lime)}
+/* aura stage (concentric + grain) */
+.stage,.stage.ai-glow{background:
+ radial-gradient(circle at 50% 46%,rgba(238,242,255,.16) 0 14%,transparent 14.4%),
+ radial-gradient(circle at 50% 46%,rgba(138,156,255,.18) 0 27%,transparent 27.5%),
+ radial-gradient(circle at 50% 46%,rgba(61,46,188,.22) 0 41%,transparent 41.5%),
+ radial-gradient(circle at 50% 46%,rgba(47,191,165,.10) 0 56%,transparent 56.5%),
+ radial-gradient(70% 60% at 50% 46%,#1b1a33,#07070c 75%)!important}
+.stage.ai-glow{background:
+ radial-gradient(circle at 50% 46%,rgba(182,228,103,.14) 0 14%,transparent 14.4%),
+ radial-gradient(circle at 50% 46%,rgba(138,125,255,.22) 0 27%,transparent 27.5%),
+ radial-gradient(circle at 50% 46%,rgba(61,46,188,.30) 0 41%,transparent 41.5%),
+ radial-gradient(circle at 50% 46%,rgba(61,46,188,.12) 0 56%,transparent 56.5%),
+ radial-gradient(70% 60% at 50% 46%,#221a4a,#07070c 75%)!important}
+.stage::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;mix-blend-mode:overlay;filter:blur(.6px);
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* HUD brackets (ref: gallery presents) */
+.hud{position:absolute;inset:0;pointer-events:none;z-index:3}
+.hud i{position:absolute;width:22px;height:22px;border:1.2px solid rgba(238,242,255,.85);display:grid;place-items:center;font:italic 500 11px var(--mono);color:#fff;opacity:0;transition:opacity .25s}
+.hud i.on{opacity:1}
+.hud i.g{border-color:var(--lime);color:var(--lime)}
+.hud .scan{position:absolute;left:6%;right:6%;height:1px;background:linear-gradient(90deg,transparent,var(--lime),transparent);box-shadow:0 0 12px var(--lime);opacity:.0;top:10%}
+.stage:hover .hud .scan{opacity:.8;animation:scan 2.4s linear infinite}
+@keyframes scan{from{top:8%}to{top:92%}}
+/* explode: node-line diagram labels (ref: PlayerZero) */
+.lab{background:none!important;box-shadow:none!important;backdrop-filter:none!important;padding:0!important;display:flex;align-items:center;gap:0;max-width:none}
+.lab .tg{font:500 11px var(--mono);letter-spacing:.06em;padding:6px 12px;border-radius:999px;border:1px solid rgba(238,242,255,.35);background:rgba(10,10,18,.6);white-space:nowrap}
+.lab .ln{height:1px;width:clamp(40px,8vw,140px);background:linear-gradient(90deg,rgba(238,242,255,.4),rgba(182,228,103,.9));position:relative}
+.lab .ln::after{content:"";position:absolute;right:-4px;top:-3.5px;width:8px;height:8px;border-radius:50%;background:var(--ice)}
+.ex-labels.r .lab .ln{background:linear-gradient(270deg,rgba(238,242,255,.4),rgba(182,228,103,.9))}
+.ex-labels.r .lab .ln::after{right:auto;left:-4px}
+.lab.on .tg{border-color:var(--lime);color:var(--lime);box-shadow:0 0 16px rgba(182,228,103,.25)}
+.lab b,.lab span.d{display:none}
+.lab .sub{display:block;font:400 11px var(--zh);color:var(--dim);margin-top:4px;white-space:nowrap}
+.ex-labels{gap:30px}
+/* halftone dot field behind explode */
+#s-explode .pin::before{content:"";position:absolute;inset:8% 20%;pointer-events:none;opacity:.25;
+ background-image:radial-gradient(circle,rgba(238,242,255,.9) 1px,transparent 1.6px);background-size:9px 9px;
+ -webkit-mask:radial-gradient(45% 50% at 50% 50%,#000 20%,transparent 70%);mask:radial-gradient(45% 50% at 50% 50%,#000 20%,transparent 70%)}
 </style>
 </head>
 <body>
@@ -232,18 +279,18 @@ main,footer{padding-left:84px}
   <div class="pin">
     <div class="ex-head"><span class="mono">EX / Exploded</span><span class="mono" id="exPct">000</span></div>
     <div class="ex-labels" id="labL">
-      <div class="lab glass" data-at=".18"><b>TWEETER ×2</b><span>小圓高音模組 · 原箱體</span></div>
-      <div class="lab glass" data-at=".26"><b>HIGH</b><span>方形面單體 · 原箱體</span></div>
-      <div class="lab glass" data-at=".34"><b>TRANSPARENT MID ×3</b><span>玻音先創透明振膜 · 螺旋腔</span></div>
+      <div class="lab" data-at=".18"><div><span class="tg">TWEETER ×2</span><span class="sub">小圓高音模組 · 原箱體</span></div><span class="ln"></span></div>
+      <div class="lab" data-at=".26"><div><span class="tg">HIGH</span><span class="sub">方形面單體 · 原箱體</span></div><span class="ln"></span></div>
+      <div class="lab" data-at=".34"><div><span class="tg">TRANSPARENT MID ×3</span><span class="sub">玻音先創透明振膜 · 螺旋腔</span></div><span class="ln"></span></div>
     </div>
     <div class="ex-stage"><canvas id="exCanvas" width="544" height="1367"></canvas>
       <div class="ex-groups glass" id="exGroups" style="border-radius:999px;left:50%;right:auto;transform:translateX(-50%);padding:6px;bottom:4%;position:absolute">
         <a href="#p01">01 隨身</a><a href="#p02">02 上半段</a><a href="#p03">03 單顆</a><a href="#p04">04 整組</a></div>
     </div>
     <div class="ex-labels r" id="labR">
-      <div class="lab glass" data-at=".42"><b>WOOFER ×2</b><span>低音模組 · 原箱體</span></div>
-      <div class="lab glass" data-at=".50"><b>CHASSIS</b><span>帶卡榫的承載主體 · 唯一可變件</span></div>
-      <div class="lab glass" data-at=".62"><b>→ 01—04</b><span>拆開後，重組成四個提案</span></div>
+      <div class="lab" data-at=".42"><span class="ln"></span><div style="text-align:right"><span class="tg">WOOFER ×2</span><span class="sub">低音模組 · 原箱體</span></div></div>
+      <div class="lab" data-at=".50"><span class="ln"></span><div style="text-align:right"><span class="tg">CHASSIS</span><span class="sub">帶卡榫的承載主體 · 唯一可變件</span></div></div>
+      <div class="lab" data-at=".62"><span class="ln"></span><div style="text-align:right"><span class="tg">→ 01—04</span><span class="sub">拆開後，重組成四個提案</span></div></div>
     </div>
     <div class="ex-foot"><p class="missing" id="exMissing"><span><b>缺：整塔爆炸序列</b>（Blender 原模型渲染中，72 格）。目前用固定八組的靜態渲染頂替。</span></p></div>
   </div>
@@ -251,7 +298,7 @@ main,footer{padding-left:84px}
 
 <!-- 01 PORTABLE -->
 <section class="prop" id="p01"><div class="wrap">
-  <div class="runhead"><b>OPQ STUDIO</b><span class="mono">01 / Portable</span></div>
+  <div class="runhead"><b>OPQ STUDIO</b><span class="slash">01 Portable / Bluetooth</span></div>
   <div class="grid">
     <div class="copy">
       <div class="num rv">01</div>
@@ -266,7 +313,7 @@ main,footer{padding-left:84px}
       </dl>
     </div>
     <div>
-      <div class="stage wide rv tilt" style="background:radial-gradient(60% 60% at 50% 45%,#e9ecf3 0%,#b9bec9 55%,#6d727d 100%)"><span class="tag glass">AI CONCEPT</span><img src="img/portable.webp" alt="隨身款概念" style="mix-blend-mode:multiply;max-width:96%"></div>
+      <div class="stage hudded wide rv tilt" style="background:radial-gradient(60% 60% at 50% 45%,#e9ecf3 0%,#b9bec9 55%,#6d727d 100%)"><span class="tag glass">AI CONCEPT</span><img src="img/portable.webp" alt="隨身款概念" style="mix-blend-mode:multiply;max-width:96%"></div>
       <p class="missing"><span><b>缺：隨身款精修渲染</b>（目前是 AI 概念圖、白底、沒有 CAD）。<b>缺：黑底版本</b>，以及手持或生活情境照。</span></p>
     </div>
   </div>
@@ -282,7 +329,7 @@ main,footer{padding-left:84px}
 
 <!-- 02 HOME AI upper -->
 <section class="prop flip" id="p02"><div class="wrap">
-  <div class="runhead"><b>OPQ STUDIO</b><span class="mono">02 / Home AI · Upper Two</span></div>
+  <div class="runhead"><b>OPQ STUDIO</b><span class="slash">02 Home AI / Upper Two</span></div>
   <div class="grid">
     <div class="copy">
       <div class="num rv">02</div>
@@ -297,7 +344,7 @@ main,footer{padding-left:84px}
       </dl>
     </div>
     <div>
-      <div class="stage ai-glow rv tilt"><span class="tag glass">BLENDER · 原模型</span><img src="img/homeA.webp" alt="02 上半段兩節"></div>
+      <div class="stage hudded ai-glow rv tilt"><span class="tag glass">BLENDER · 原模型</span><img src="img/homeA.webp" alt="02 上半段兩節"></div>
       <p class="missing"><span><b>缺：Wi-Fi／AI 硬體外觀</b>（麥克風孔、狀態燈、觸控）。<b>缺：居家情境渲染</b>。米字沉頭螺絲尚未替換（原模型沒有螺絲物件）。</span></p>
     </div>
   </div>
@@ -305,7 +352,7 @@ main,footer{padding-left:84px}
 
 <!-- 03 HOME AI single -->
 <section class="prop" id="p03"><div class="wrap">
-  <div class="runhead"><b>OPQ STUDIO</b><span class="mono">03 / Home AI · Single</span></div>
+  <div class="runhead"><b>OPQ STUDIO</b><span class="slash">03 Home AI / Single</span></div>
   <div class="grid">
     <div class="copy">
       <div class="num rv">03</div>
@@ -320,7 +367,7 @@ main,footer{padding-left:84px}
       </dl>
     </div>
     <div>
-      <div class="stage ai-glow rv tilt"><span class="tag glass">BLENDER · 原模組＋新增件</span><img src="img/homeBcoax.webp" alt="03 單顆＋底座"></div>
+      <div class="stage hudded ai-glow rv tilt"><span class="tag glass">BLENDER · 原模組＋新增件</span><img src="img/homeBcoax.webp" alt="03 單顆＋底座"></div>
       <p class="missing"><span><b>缺：底座修薄版</b>（目前低角度看起來偏方）。<b>缺：振膜透光的特寫</b>（目前反光偏暗）。<b>缺：Wi-Fi／AI 硬體外觀</b>。</span></p>
     </div>
   </div>
@@ -328,7 +375,7 @@ main,footer{padding-left:84px}
 
 <!-- 04 BESPOKE -->
 <section class="prop flip" id="p04"><div class="wrap">
-  <div class="runhead"><b>OPQ STUDIO</b><span class="mono">04 / Bespoke · Full Set</span></div>
+  <div class="runhead"><b>OPQ STUDIO</b><span class="slash">04 Bespoke / Full Set</span></div>
   <div class="grid">
     <div class="copy">
       <div class="num rv">04</div>
@@ -347,7 +394,7 @@ main,footer{padding-left:84px}
       </div>
     </div>
     <div>
-      <div class="stage rv tilt" style="aspect-ratio:3/4"><span class="tag glass" id="bodyTag">A · RING</span><img id="bodyImg" src="img/ring.webp" alt="04 主體"></div>
+      <div class="stage hudded rv tilt" style="aspect-ratio:3/4"><span class="tag glass" id="bodyTag">A · RING</span><img id="bodyImg" src="img/ring.webp" alt="04 主體"></div>
       <p class="missing"><span><b>缺：主體顏色版本渲染</b>（目前只有香檳金一色，色票先停用）。<b>缺：完整外殼版整組</b>（目前主體只有骨架，未含外殼）。卡榫、承重和間隙都還沒驗證。</span></p>
     </div>
   </div>
@@ -444,6 +491,13 @@ addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onS
 const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}}),{threshold:.15});$$('.rv').forEach(el=>io.observe(el));
 /* tilt */
 $$('.tilt').forEach(st=>{const im=st.querySelector('img');st.addEventListener('pointermove',e=>{const b=st.getBoundingClientRect(),x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;im.style.transform=`perspective(1000px) rotateY(${x*10}deg) rotateX(${-y*8}deg) translateZ(24px)`});st.addEventListener('pointerleave',()=>im.style.transform='')});
+
+/* HUD brackets */
+const HC='!?2Hai9S~b;Z0x#+'.split('');
+$$('.stage').forEach(st=>{const h=document.createElement('div');h.className='hud';h.innerHTML='<div class="scan"></div>';st.appendChild(h);
+ const pts=[];for(let i=0;i<14;i++){const a=Math.random()*6.283,r=.30+Math.random()*.16;const e=document.createElement('i');e.style.left=(50+Math.cos(a)*r*100*.9)+'%';e.style.top=(46+Math.sin(a)*r*100)+'%';e.textContent=HC[i%HC.length];if(Math.random()<.18)e.classList.add('g');h.appendChild(e);pts.push(e)}
+ let live=false;new IntersectionObserver(es=>es.forEach(en=>live=en.isIntersecting),{threshold:.3}).observe(st);
+ setInterval(()=>{if(!live)return;pts.forEach(e=>{if(Math.random()<.22){e.classList.toggle('on');e.textContent=HC[Math.random()*HC.length|0]}})},260)});
 /* bespoke chooser */
 $$('#chooser .bev').forEach(b=>b.onclick=()=>{$$('#chooser .bev').forEach(x=>x.classList.toggle('on',x===b));const im=$('#bodyImg');im.style.opacity=0;setTimeout(()=>{im.src=b.dataset.img;im.style.opacity=1},220);$('#bodyTag').textContent=b.textContent.toUpperCase()});
 </script>
