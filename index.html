@@ -363,13 +363,60 @@ body.light .orb .caus{border-bottom-color:rgba(61,46,188,.5)}
 .xl.c b{color:var(--lime)}
 body.light .xl.c b{color:#4a7410}
 @media(max-width:900px){#exLabs{display:none}}
+
+/* ---- products v2: one template, one idea per screen ---- */
+#s-family{padding:22vh 0 12vh}
+.fam{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:70px;align-items:end}
+.fam a{display:block;text-align:left}
+.fam figure{height:min(34vh,320px);display:flex;align-items:flex-end;justify-content:center;border-bottom:1px solid rgba(238,242,255,.16);padding-bottom:18px;margin-bottom:16px}
+.fam a:nth-child(1) figure img{max-height:40%}
+.fam a:nth-child(2) figure img{max-height:55%}
+.fam a:nth-child(3) figure img{max-height:80%}
+.fam a:nth-child(4) figure img{max-height:100%}
+.fam img{object-fit:contain;max-width:100%;transition:transform .5s cubic-bezier(.2,.7,.1,1)}
+.fam a:hover img{transform:translateY(-8px)}
+.fam b{font:900 22px var(--dot);display:block;color:var(--ice)}
+.fam span{font:700 17px var(--zh);display:block;margin-top:4px}
+.fam em{font:500 11px var(--mono);font-style:normal;letter-spacing:.12em;color:var(--mute);display:block;margin-top:6px}
+.fam em.ai{color:#a89dff}
+body.light .fam figure{border-color:rgba(11,11,18,.14)}
+body.light .fam em.ai{color:#3D2EBC}
+@media(max-width:900px){.fam{grid-template-columns:repeat(2,1fr)}}
+
+.pd{min-height:100svh;padding:16vh 0 10vh;text-align:center}
+.pd-head{display:flex;justify-content:center;gap:14px;align-items:baseline}
+.pd-n{font:900 18px var(--dot);color:var(--lime)}
+body.light .pd-n{color:#4a7410}
+.pd.ai .pd-n{color:#a89dff}
+body.light .pd.ai .pd-n{color:#3D2EBC}
+.pd-en{font:500 12px var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.pd-t{font-family:var(--zh)!important;font-weight:700!important;font-size:clamp(56px,8vw,120px)!important;letter-spacing:-.01em!important;line-height:1.05!important;margin-top:18px}
+.pd-line{font:400 clamp(17px,1.5vw,22px)/1.6 var(--zh);color:var(--mute);margin-top:14px}
+.pd-fig{margin:48px auto 0;height:min(62vh,640px);display:flex;align-items:center;justify-content:center}
+.pd-fig img{max-height:100%;max-width:min(100%,980px);object-fit:contain;filter:drop-shadow(0 40px 50px rgba(0,0,0,.45));transition:opacity .35s}
+body.light .pd-fig img{filter:drop-shadow(0 36px 40px rgba(30,30,60,.22))}
+#p01 .pd-fig{height:min(46vh,480px)}
+.pd-facts{display:grid;grid-template-columns:repeat(3,1fr);max-width:960px;margin:52px auto 0;border-top:1px solid rgba(238,242,255,.16);text-align:left}
+.pd-facts div{padding:20px 24px 0 0}
+.pd-facts dt{font:500 11px var(--mono);letter-spacing:.16em;color:var(--dim)}
+.pd-facts dd{font:500 16px/1.5 var(--zh);margin-top:8px}
+body.light .pd-facts{border-color:rgba(11,11,18,.14)}
+.pd-miss{margin-top:28px;font:400 11.5px var(--zh);color:#ffb44d;opacity:.75}
+body.light .pd-miss{color:#b06a00}
+.seg2{display:inline-flex;gap:4px;padding:5px;border-radius:999px;margin-top:28px;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+.seg2 button{all:unset;cursor:pointer;font:600 13px var(--en);padding:10px 20px;border-radius:999px;color:var(--mute)}
+.seg2 button.on{background:var(--ice);color:#000}
+body.light .seg2{background:rgba(0,0,0,.04);box-shadow:inset 0 0 0 1px rgba(0,0,0,.1)}
+body.light .seg2 button.on{background:#0B0B12;color:#fff}
+@media(max-width:900px){.pd-facts{grid-template-columns:1fr}.pd-fig{height:48vh}}
+#s-ai{padding:22vh 0 12vh}
 </style>
 </head>
 <body>
 <div id="themeT" class="glass"><button data-th="dark" class="on">DARK</button><button data-th="light">LIGHT</button></div>
 <div id="glowFloor"></div><div id="bg"><canvas id="flow"></canvas><canvas id="wave"></canvas></div>
 
-<nav id="rail" class="glass"><a class="star" href="#s-film">✦</a><a class="ch" href="#s-film" data-id="s-film" data-t="Film"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>00</span></a><a class="ch" href="#s-core" data-id="s-core" data-t="Diaphragm"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>+</span></a><a class="ch" href="#s-explode" data-id="s-explode" data-t="Explode"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>EX</span></a><a class="ch" href="#p01" data-id="p01" data-t="Portable"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>01</span></a><a class="ch ai" href="#p02" data-id="p02" data-t="Home AI · Upper"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>02</span></a><a class="ch ai" href="#p03" data-id="p03" data-t="Home AI · Single"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>03</span></a><a class="ch ai" href="#p04" data-id="p04" data-t="Bespoke"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>04</span></a><a class="ch" href="#s-partner" data-id="s-partner" data-t="Partner"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>→</span></a><div class="rail-line"><i id="railDot"></i></div></nav>
+<nav id="rail" class="glass"><a class="star" href="#s-film">✦</a><a class="ch" href="#s-film" data-id="s-film" data-t="Film"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>00</span></a><a class="ch" href="#s-core" data-id="s-core" data-t="Diaphragm"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>+</span></a><a class="ch" href="#s-explode" data-id="s-explode" data-t="Explode"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>EX</span></a><a class="ch" href="#p01" data-id="p01" data-t="Portable"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>01</span></a><a class="ch ai" href="#p02" data-id="p02" data-t="Home AI · Single"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>02</span></a><a class="ch ai" href="#p03" data-id="p03" data-t="Home AI · Upper Two"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>03</span></a><a class="ch ai" href="#p04" data-id="p04" data-t="Bespoke"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>04</span></a><a class="ch" href="#s-partner" data-id="s-partner" data-t="Partner"><svg viewBox="0 0 40 40"><circle class="tr" cx="20" cy="20" r="17"/><circle class="pg" cx="20" cy="20" r="17"/></svg><span>→</span></a><div class="rail-line"><i id="railDot"></i></div></nav>
 <div id="chipTitle" class="glass"><b id="ctN">00</b><span id="ctT">Film</span></div>
 
 <main>
@@ -410,108 +457,77 @@ body.light .xl.c b{color:#4a7410}
   </div>
 </section>
 
-<!-- 01 PORTABLE -->
-<section class="prop" id="p01"><div class="wrap">
-  <div class="runhead"><b>OPQ STUDIO</b><span class="slash">01 Portable / Bluetooth</span></div>
-  <div class="grid">
-    <div class="copy">
-      <div class="num rv">01</div>
-      <h2 class="rv">Carry<br>the wave<span class="dot">.</span><span class="zh">螺旋，全透明。</span></h2>
-      <div class="badges rv"><span class="badge bt glass">BLUETOOTH</span><span class="badge bt glass">PORTABLE</span></div>
-      <p class="body rv">螺旋狀全透明聲學音響。透明振膜與螺旋內構一起被看見，金屬端框和提帶，讓技術主角走進日常。純藍芽，是系列的入口。</p>
-      <dl class="spec glass rv">
-        <div><dt>CONNECT</dt><dd>Bluetooth（無 Wi-Fi／AI）</dd></div>
-        <div><dt>DIAPHRAGM</dt><dd>玻音先創透明振膜；型號／口徑待選</dd></div>
-        <div><dt>CAVITY</dt><dd>全透明腔體＋螺旋流道；聲學效益待驗證</dd></div>
-        <div><dt>POWER</dt><dd>內建電池、USB-C〔目標〕</dd></div>
-      </dl>
-    </div>
-    <div>
-      <div class="stage hudded wide rv tilt" style="background:radial-gradient(60% 60% at 50% 45%,#e9ecf3 0%,#b9bec9 55%,#6d727d 100%)"><span class="tag glass">AI CONCEPT</span><img src="img/portable.webp" alt="隨身款概念" style="mix-blend-mode:multiply;max-width:96%"></div>
-      <p class="missing"><span><b>缺：隨身款精修渲染</b>（目前是 AI 概念圖、白底、沒有 CAD）。<b>缺：黑底版本</b>，以及手持或生活情境照。</span></p>
-    </div>
+<!-- PRODUCTS -->
+<section id="s-family"><div class="wrap">
+  <p class="slash rv">One pair · four products</p>
+  <h2 class="rv">一座塔，<br>拆成四個產品<span class="dot">.</span></h2>
+  <p class="body rv" style="margin-top:22px">由小到大：從一顆透明模組的隨身音響，到整組可訂製的高訂。02 起內建 Wi-Fi 與 AI。</p>
+  <div class="fam rv">
+    <a href="#p01"><figure><img src="img/portable_cut.webp" alt=""></figure><b>01</b><span>隨身</span><em>Bluetooth</em></a>
+    <a href="#p02"><figure><img src="img/homeBcoax.webp" alt=""></figure><b>02</b><span>單顆＋底座</span><em class="ai">Wi-Fi · AI</em></a>
+    <a href="#p03"><figure><img src="img/homeA.webp" alt=""></figure><b>03</b><span>上半段兩節</span><em class="ai">Wi-Fi · AI</em></a>
+    <a href="#p04"><figure><img src="img/ring.webp" alt=""></figure><b>04</b><span>整組高訂</span><em class="ai">Wi-Fi · AI</em></a>
   </div>
 </div></section>
-
-<!-- AI interlude -->
+<section class="pd" id="p01"><div class="wrap">
+  <div class="pd-head rv"><span class="pd-n">01</span><span class="pd-en">Portable</span></div>
+  <h2 class="pd-t rv">隨身</h2>
+  <p class="pd-line rv">螺旋全透明聲學腔，一手帶走。</p>
+  <figure class="pd-fig rv"><img src="img/portable_cut.webp" alt="隨身"></figure>
+  
+  <dl class="pd-facts rv">
+    <div><dt>取自整塔</dt><dd>透明中音模組的振膜與螺旋腔</dd></div>
+    <div><dt>連線</dt><dd>Bluetooth</dd></div>
+    <div><dt>狀態</dt><dd>概念階段</dd></div>
+  </dl>
+  <p class="pd-miss">缺：精修渲染（目前 AI 概念圖、無 CAD）</p>
+</div></section>
 <section id="s-ai"><div class="wrap">
   <div class="orb rv"><i class="rim r1"></i><i class="rim r2"></i><i class="rim r3"></i><i class="caus"></i></div>
-  <h2 class="rv">Now it<br>listens<span class="dot">.</span><span class="zh">02—04 內建 Wi-Fi 晶片，開啟 AI。</span></h2>
-  <div class="pill rv" style="margin:34px auto 0">嘿 Rytho，播放今晚的歌單<i></i><span class="go">→</span></div>
-  <p class="missing" style="justify-content:center"><span><b>缺：AI 功能定義</b>（語音助理、串流、多房間等，待確認）。<b>缺：AI 狀態燈的實體位置渲染</b>。</span></p>
+  <h2 class="rv">Now it<br>listens<span class="dot">.</span></h2>
+  <p class="body rv" style="margin:18px auto 0;text-align:center">02—04 內建 Wi-Fi 晶片，開啟 AI。</p>
+  <p class="pd-miss" style="text-align:center">缺：AI 功能定義、麥克風／狀態燈位置</p>
 </div></section>
-
-<!-- 02 HOME AI upper -->
-<section class="prop flip" id="p02"><div class="wrap">
-  <div class="runhead"><b>OPQ STUDIO</b><span class="slash">02 Home AI / Upper Two</span></div>
-  <div class="grid">
-    <div class="copy">
-      <div class="num rv">02</div>
-      <h2 class="rv">Upper<br>half<span class="dot">.</span><span class="zh">上半段兩節，直接成為家用 AI 音響。</span></h2>
-      <div class="badges rv"><span class="badge ai">AI · WI-FI</span><span class="badge bt glass">BLUETOOTH</span><span class="badge bt glass">原模型渲染</span></div>
-      <p class="body rv">從整塔直接取下上半段兩節：兩顆小圓高音、方形單體，加第一顆透明模組。原單體、箱體與排列都不動，只加一座獨立底座。</p>
-      <dl class="spec glass rv">
-        <div><dt>ASSEMBLY</dt><dd>小圓×2／方形／透明模組（原件）</dd></div>
-        <div><dt>CONNECT</dt><dd>Wi-Fi＋Bluetooth；AI 功能待定</dd></div>
-        <div><dt>BASE</dt><dd>黑色陽極鋁底座〔新提案〕</dd></div>
-        <div><dt>AMP</dt><dd>功放／分頻／Wi-Fi 模組位置待評估</dd></div>
-      </dl>
-    </div>
-    <div>
-      <div class="stage hudded ai-glow rv tilt"><span class="tag glass">BLENDER · 原模型</span><img src="img/homeA.webp" alt="02 上半段兩節"></div>
-      <p class="missing"><span><b>缺：Wi-Fi／AI 硬體外觀</b>（麥克風孔、狀態燈、觸控）。<b>缺：居家情境渲染</b>。米字沉頭螺絲尚未替換（原模型沒有螺絲物件）。</span></p>
-    </div>
-  </div>
+<section class="pd ai" id="p02"><div class="wrap">
+  <div class="pd-head rv"><span class="pd-n">02</span><span class="pd-en">Home AI · Single</span></div>
+  <h2 class="pd-t rv">單顆＋底座</h2>
+  <p class="pd-line rv">一顆透明模組，中心加同軸高音。</p>
+  <figure class="pd-fig rv"><img src="img/homeBcoax.webp" alt="單顆＋底座"></figure>
+  
+  <dl class="pd-facts rv">
+    <div><dt>取自整塔</dt><dd>透明中音模組 ×1＋新增同軸高音、底座</dd></div>
+    <div><dt>連線</dt><dd>Wi-Fi · AI · Bluetooth</dd></div>
+    <div><dt>狀態</dt><dd>原模組渲染</dd></div>
+  </dl>
+  <p class="pd-miss">缺：底座修薄、振膜透光特寫</p>
 </div></section>
-
-<!-- 03 HOME AI single -->
-<section class="prop" id="p03"><div class="wrap">
-  <div class="runhead"><b>OPQ STUDIO</b><span class="slash">03 Home AI / Single</span></div>
-  <div class="grid">
-    <div class="copy">
-      <div class="num rv">03</div>
-      <h2 class="rv">One<br>module<span class="dot">.</span><span class="zh">一顆透明模組，同軸中高音，加上底座。</span></h2>
-      <div class="badges rv"><span class="badge ai">AI · WI-FI</span><span class="badge bt glass">BLUETOOTH</span><span class="badge bt glass">原模組渲染</span></div>
-      <p class="body rv">取下完整透明中音模組，在振膜中心加入同軸高音，讓透明振膜站在正中央。弧形托座承住圓筒。</p>
-      <dl class="spec glass rv">
-        <div><dt>DRIVER</dt><dd>透明振膜中音＋同軸高音（約 Ø25）</dd></div>
-        <div><dt>CONNECT</dt><dd>Wi-Fi＋Bluetooth；AI 功能待定</dd></div>
-        <div><dt>CRADLE</dt><dd>雙弧托座、黑色陽極鋁〔新提案〕</dd></div>
-        <div><dt>ACOUSTIC</dt><dd>新單體需重新定義腔體、出口與分頻</dd></div>
-      </dl>
-    </div>
-    <div>
-      <div class="stage hudded ai-glow rv tilt"><span class="tag glass">BLENDER · 原模組＋新增件</span><img src="img/homeBcoax.webp" alt="03 單顆＋底座"></div>
-      <p class="missing"><span><b>缺：底座修薄版</b>（目前低角度看起來偏方）。<b>缺：振膜透光的特寫</b>（目前反光偏暗）。<b>缺：Wi-Fi／AI 硬體外觀</b>。</span></p>
-    </div>
-  </div>
+<section class="pd ai" id="p03"><div class="wrap">
+  <div class="pd-head rv"><span class="pd-n">03</span><span class="pd-en">Home AI · Upper Two</span></div>
+  <h2 class="pd-t rv">上半段兩節</h2>
+  <p class="pd-line rv">整塔上半段直接取下，加一座底座。</p>
+  <figure class="pd-fig rv"><img src="img/homeA.webp" alt="上半段兩節"></figure>
+  
+  <dl class="pd-facts rv">
+    <div><dt>取自整塔</dt><dd>小圓高音 ×2、方形單體、透明中音 ×1</dd></div>
+    <div><dt>連線</dt><dd>Wi-Fi · AI · Bluetooth</dd></div>
+    <div><dt>狀態</dt><dd>原模型渲染</dd></div>
+  </dl>
+  <p class="pd-miss">缺：居家情境圖</p>
 </div></section>
-
-<!-- 04 BESPOKE -->
-<section class="prop flip" id="p04"><div class="wrap">
-  <div class="runhead"><b>OPQ STUDIO</b><span class="slash">04 Bespoke / Full Set</span></div>
-  <div class="grid">
-    <div class="copy">
-      <div class="num rv">04</div>
-      <h2 class="rv">Your<br>chassis<span class="dot">.</span><span class="zh">單體配置不動，主體與顏色可訂製。</span></h2>
-      <div class="badges rv"><span class="badge ai">AI · WI-FI</span><span class="badge bt glass">BESPOKE</span><span class="badge bt glass">原網格渲染</span></div>
-      <p class="body rv">八組單體連同各自的箱體全部固定，只換帶卡榫的承載主體。三種主體骨架，再選顏色。</p>
-      <div class="chooser rv" id="chooser">
-        <button class="bev on" data-img="img/ring.webp">A · Ring</button>
-        <button class="bev" data-img="img/branch.webp">B · Branch</button>
-        <button class="bev" data-img="img/fold.webp">C · Fold</button>
-        <button class="bev" data-img="img/core.webp">Core</button>
-      </div>
-      <div class="swatches rv" title="顏色版本待渲染">
-        <span class="sw" style="background:#d9cdb4"></span><span class="sw" style="background:#111"></span><span class="sw" style="background:#3D2EBC"></span><span class="sw" style="background:#B6E467"></span><span class="sw" style="background:linear-gradient(135deg,#fff,#cfd6e6)"></span>
-        <span class="small" style="margin-left:6px">顏色訂製</span>
-      </div>
-    </div>
-    <div>
-      <div class="stage hudded rv tilt" style="aspect-ratio:3/4"><span class="tag glass" id="bodyTag">A · RING</span><img id="bodyImg" src="img/ring.webp" alt="04 主體"></div>
-      <p class="missing"><span><b>缺：主體顏色版本渲染</b>（目前只有香檳金一色，色票先停用）。<b>缺：完整外殼版整組</b>（目前主體只有骨架，未含外殼）。卡榫、承重和間隙都還沒驗證。</span></p>
-    </div>
+<section class="pd ai" id="p04"><div class="wrap">
+  <div class="pd-head rv"><span class="pd-n">04</span><span class="pd-en">Bespoke · Full Set</span></div>
+  <h2 class="pd-t rv">整組高訂</h2>
+  <p class="pd-line rv">單體與箱體不動，只換承載主體。</p>
+  <figure class="pd-fig rv"><img id="bodyImg" src="img/ring.webp" alt="整組高訂"></figure>
+  <div class="seg2 rv" id="chooser">
+    <button class="on" data-img="img/ring.webp">Ring</button><button data-img="img/branch.webp">Branch</button><button data-img="img/fold.webp">Fold</button>
   </div>
+  <dl class="pd-facts rv">
+    <div><dt>取自整塔</dt><dd>整組八個單體與箱體</dd></div>
+    <div><dt>連線</dt><dd>Wi-Fi · AI</dd></div>
+    <div><dt>狀態</dt><dd>原網格渲染</dd></div>
+  </dl>
+  <p class="pd-miss">缺：主體顏色版本、完整外殼版</p>
 </div></section>
 
 <!-- PARTNER -->
@@ -620,7 +636,7 @@ function setTheme(th){document.body.classList.toggle('light',th==='light');$$('#
 $$('#themeT button').forEach(b=>b.onclick=()=>setTheme(b.dataset.th));
 setTheme(new URLSearchParams(location.search).get('theme')||(()=>{try{return localStorage.getItem('rh-theme')}catch(e){}})()||'dark');
 /* bespoke chooser */
-$$('#chooser .bev').forEach(b=>b.onclick=()=>{$$('#chooser .bev').forEach(x=>x.classList.toggle('on',x===b));const im=$('#bodyImg');im.style.opacity=0;setTimeout(()=>{im.src=b.dataset.img;im.style.opacity=1},220);$('#bodyTag').textContent=b.textContent.toUpperCase()});
+$$('#chooser button').forEach(b=>b.onclick=()=>{$$('#chooser button').forEach(x=>x.classList.toggle('on',x===b));const im=$('#bodyImg');im.style.opacity=0;setTimeout(()=>{im.src=b.dataset.img;im.style.opacity=1},220)});
 </script>
 </body>
 </html>
