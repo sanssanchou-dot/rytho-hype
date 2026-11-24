@@ -750,6 +750,10 @@ body.light #s-family .fam a figure img,body.light .pd-fig.stage img{-webkit-mask
 
 .pd-fig.stage img,#s-family .fam a figure img{-webkit-mask:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent),linear-gradient(180deg,transparent,#000 9%,#000 91%,transparent);-webkit-mask-composite:source-in;mask:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent),linear-gradient(180deg,transparent,#000 9%,#000 91%,transparent);mask-composite:intersect}
 body.light .pd-fig.stage img,body.light #s-family .fam a figure img{-webkit-mask:none;mask:none}
+
+/* architectural scene per product */
+.pd-arch{margin:6vh auto 0;max-width:1500px;width:100%}
+.pd-arch img{display:block;width:100%;height:auto;border-radius:24px;box-shadow:0 40px 80px -40px rgba(0,0,0,.9)}
 </style>
 </head>
 <body>
@@ -801,10 +805,10 @@ body.light .pd-fig.stage img,body.light #s-family .fam a figure img{-webkit-mask
   <p class="body rv" style="margin-top:22px">由小到大：從一顆透明模組的隨身音響，到整組可訂製的高訂。02 起內建 Wi-Fi 與 AI。</p>
   <picture class="famhero rv"><source media="(max-width:900px)" srcset="img/family_port.webp"><img src="img/family.webp" alt="RYTHO HYPE family at true scale"></picture>
   <div class="fam rv">
-    <a href="#p01" data-scene="img/p01_dark.webp"><figure><img src="img/c01.webp" alt=""></figure><b>01</b><span>隨身</span><em data-h="H 180 mm">Bluetooth</em></a>
-    <a href="#p02"><figure><img src="img/c02.webp" alt=""></figure><b>02</b><span>單顆＋底座</span><em class="ai" data-h="H 261 mm">Wi-Fi · AI</em></a>
-    <a href="#p03"><figure><img src="img/c03.webp" alt=""></figure><b>03</b><span>上半段兩節</span><em class="ai" data-h="H 1,022 mm ×2">Wi-Fi · AI</em></a>
-    <a href="#p04"><figure><img src="img/c04.webp" alt=""></figure><b>04</b><span>整組高訂</span><em class="ai" data-h="H 2,693 mm ×2">Wi-Fi · AI</em></a><div id="famScene"><img alt=""></div>
+    <a href="#p01" data-scene="img/arch_01.webp"><figure><img src="img/c01.webp" alt=""></figure><b>01</b><span>隨身</span><em data-h="H 180 mm">Bluetooth</em></a>
+    <a href="#p02" data-scene="img/arch_02.webp"><figure><img src="img/c02.webp" alt=""></figure><b>02</b><span>單顆＋底座</span><em class="ai" data-h="H 261 mm">Wi-Fi · AI</em></a>
+    <a href="#p03" data-scene="img/arch_03.webp"><figure><img src="img/c03.webp" alt=""></figure><b>03</b><span>上半段兩節</span><em class="ai" data-h="H 1,022 mm ×2">Wi-Fi · AI</em></a>
+    <a href="#p04" data-scene="img/arch_04.webp"><figure><img src="img/c04.webp" alt=""></figure><b>04</b><span>整組高訂</span><em class="ai" data-h="H 2,693 mm ×2">Wi-Fi · AI</em></a><div id="famScene"><img alt=""></div>
   </div>
 </div></section>
 <section class="pd" id="p01"><div class="wrap">
@@ -818,6 +822,10 @@ body.light .pd-fig.stage img,body.light #s-family .fam a figure img{-webkit-mask
     <div><dt>連線</dt><dd>Bluetooth</dd></div>
     <div><dt>狀態</dt><dd>概念階段</dd></div>
   </dl>
+  <figure class="pd-arch rv"><img src="img/arch_04.webp" alt="" loading="lazy"></figure>
+  <figure class="pd-arch rv"><img src="img/arch_03.webp" alt="" loading="lazy"></figure>
+  <figure class="pd-arch rv"><img src="img/arch_02.webp" alt="" loading="lazy"></figure>
+  <figure class="pd-arch rv"><img src="img/arch_01.webp" alt="" loading="lazy"></figure>
   <p class="pd-miss">缺：精修渲染（目前 AI 概念圖、無 CAD）</p>
 </div></section>
 <section id="s-ai"><div class="wrap">
@@ -1034,7 +1042,7 @@ $$('#s-family .fam a').forEach((a,k)=>{a.addEventListener('mouseenter',()=>{fam.
  img.src=u;const fr=fam.getBoundingClientRect(),fg=a.querySelector('figure').getBoundingClientRect(),gi=a.querySelector('figure img').getBoundingClientRect();
  const W=box.offsetWidth,H=box.offsetHeight;const right=k<2;
  let x=right?(gi.right-fr.left+32):(gi.left-fr.left-W-32);x=Math.max(-fr.left+90,Math.min(x,innerWidth-fr.left-W-24));
- let y=fg.bottom-fr.top-H;box.style.left=x+'px';box.style.top=y+'px';box.classList.add('show')});
+ let vy=fg.top+fg.height/2-H/2;vy=Math.max(70,Math.min(vy,innerHeight-H-20));let y=vy-fr.top;box.style.left=x+'px';box.style.top=y+'px';box.classList.add('show')});
  a.addEventListener('mouseleave',()=>{box.classList.remove('show');fam.classList.remove('hov')})});})();
 /* bespoke chooser: body + colour */
 (()=>{const B={orig:{note:'原版主體 · 原模型渲染',c:[['原版','#2a2c30','img/b_original.webp']]},
