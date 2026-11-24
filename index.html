@@ -1228,17 +1228,22 @@ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 function f(T){if(!run)return;requestAnimationFrame(f);if(!vis())return;const t=reduce?2000:T;x.clearRect(0,0,W,H);
  const d=D.dia,cx=d.x_rim*W,cy=d.centre[1]*H,R=(d.bottom_y-d.top_y)/2*H;
  // diaphragm: thin lit edge breathing like a piston
- const pis=Math.sin(t/1000*2*Math.PI*1.25)*2.2;x.strokeStyle=col(.9);x.lineWidth=1.6;x.beginPath();x.moveTo(cx+pis,cy-R);x.lineTo(cx+pis,cy+R);x.stroke();
- // front radiation: wavefronts opening to the left
- for(let k=0;k<5;k++){const ph=((t/1000*1.25+k/5)%1);const r=R*.9+ph*cx*1.05;const a=(1-ph)*.75;x.strokeStyle=col(a);x.lineWidth=1.5;x.beginPath();x.arc(cx,cy,r,Math.PI-.62,Math.PI+.62);x.stroke()}
- // spiral channels: faint guide lines (far side dimmer)
- for(const ch of D.chs){for(let i=1;i<ch.length;i++){const a=ch[i-1],b=ch[i];const tc=b[2]==null?0:b[2];x.strokeStyle=col(tc>0?.42:.12);x.lineWidth=tc>0?1.5:.9;x.beginPath();x.moveTo(a[0]*W,a[1]*H);x.lineTo(b[0]*W,b[1]*H);x.stroke()}}
+ const pis=Math.sin(t/1000*2*Math.PI*1.25)*2.2;x.strokeStyle=col(.55);x.lineWidth=.8;x.beginPath();x.moveTo(cx+pis,cy-R);x.lineTo(cx+pis,cy+R);x.stroke();
+ // front radiation: particle ripples opening to the left
+ const hs=(a,b)=>{const v=Math.sin(a*127.1+b*311.7)*43758.5453;return v-Math.floor(v)};
+ for(let k=0;k<6;k++){const ph=((t/1000*.9+k/6)%1);const r=R*.9+ph*cx*1.05;const A=(1-ph)*(1-ph);const n=Math.round(40+r*.9);
+  for(let i=0;i<n;i++){const u=i/(n-1),ang=Math.PI-.7+1.4*u,edge=Math.sin(u*Math.PI);const j=(hs(i,k)-.5)*5*(.4+ph);const rr=r+j;
+   const a=A*edge*(.35+.65*hs(k,i))*.85;if(a<.02)continue;x.fillStyle=col(a);x.fillRect(cx+Math.cos(ang)*rr,cy+Math.sin(ang)*rr,1.3,1.3)}}
+ // spiral channels: hairline guides
+ for(const ch of D.chs){x.beginPath();for(let i=0;i<ch.length;i++){const q=ch[i];i?x.lineTo(q[0]*W,q[1]*H):x.moveTo(q[0]*W,q[1]*H)}x.strokeStyle=col(.10);x.lineWidth=.6;x.stroke()}
  // back wave particles along the measured path
- x.shadowColor=light()?'transparent':'rgba(198,244,50,.8)';x.shadowBlur=8;const N=30,sp=tot/5200;for(let k=0;k<N;k++){const s=((t*sp)+k*tot/N)%tot;for(let j=0;j<10;j++){const q=at(Math.max(0,s-j*6));if(!q)continue;const seg=q[3];let a=(1-j/10)*(seg==='ex'?.25:seg==='ou'?.5:.95);if(q[2]!=null&&q[2]<0)a*=.35;
-   x.fillStyle=col(a);x.beginPath();x.arc(q[0]*W,q[1]*H,j?1.6:3,0,6.283);x.fill()}}x.shadowBlur=0;
- // port: wavefronts leaving the outlet to the right
+ x.shadowColor=light()?'transparent':'rgba(198,244,50,.8)';x.shadowBlur=5;const N=46,sp=tot/5200;for(let k=0;k<N;k++){const s=((t*sp)+k*tot/N)%tot;for(let j=0;j<10;j++){const q=at(Math.max(0,s-j*6));if(!q)continue;const seg=q[3];let a=(1-j/10)*(seg==='ex'?.25:seg==='ou'?.5:.95);if(q[2]!=null&&q[2]<0)a*=.35;
+   x.fillStyle=col(a);x.beginPath();x.arc(q[0]*W,q[1]*H,j?.9:1.8,0,6.283);x.fill()}}x.shadowBlur=0;
+ // port: particle ripples leaving the outlet to the right
  const p=D.port,px=p.x_range[1]*W,py=.5*H,PR=(p.y_outer_top_bottom[1]-p.y_outer_top_bottom[0])/2*H;
- for(let k=0;k<4;k++){const ph=((t/1000*.8+k/4)%1);const r=PR*.6+ph*Math.min(W-px,PR*2.2);x.strokeStyle=col((1-ph)*.65);x.lineWidth=1.4;x.beginPath();x.arc(px-PR*.6,py,r,-.5,.5);x.stroke()}
+ for(let k=0;k<5;k++){const ph=((t/1000*.6+k/5)%1);const r=PR*.6+ph*Math.min(W-px,PR*2.2);const A=(1-ph)*(1-ph);const n=Math.round(30+r*.7);
+  for(let i=0;i<n;i++){const u=i/(n-1),ang=-.55+1.1*u,edge=Math.sin(u*Math.PI);const rr=r+(hs(i,k+9)-.5)*5*(.4+ph);const a=A*edge*(.35+.65*hs(k+9,i))*.75;if(a<.02)continue;
+   x.fillStyle=col(a);x.fillRect(px-PR*.6+Math.cos(ang)*rr,py+Math.sin(ang)*rr,1.3,1.3)}}
 }})();
 
 /* rytho mode: true-height scale bars in the family lineup */
