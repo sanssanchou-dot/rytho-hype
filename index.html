@@ -598,7 +598,12 @@ body.light #themeT,body.light .seg2,body.light #chipTitle{background:
   radial-gradient(160px 110px at 100% 100%,rgba(230,255,170,.55) 0%,rgba(198,244,50,0) 70%),
   linear-gradient(135deg,rgba(198,244,50,.25),rgba(255,255,255,.05) 40%,rgba(255,255,255,.03) 70%,rgba(255,255,255,.12))!important}
 #themeT,.seg2,#chipTitle,#rail{-webkit-backdrop-filter:blur(26px) saturate(140%)!important;backdrop-filter:blur(26px) saturate(140%)!important}
-#p04 .pd-fig{background:#fff;border-radius:28px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}#p04 .pd-fig img{filter:none!important}</style>
+#p04 .pd-fig{background:#fff;border-radius:28px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}#p04 .pd-fig img{filter:none!important}
+/* rail: edge light continues around the concave fillets; +2px spacing */
+#rail{gap:8px!important}
+#rail::before{background:radial-gradient(circle at 100% 0,transparent 27.2px,rgba(198,244,50,.9) 27.6px,rgba(198,244,50,.35) 28.4px,rgba(22,24,20,.92) 28.6px)!important}
+#rail::after{background:radial-gradient(circle at 100% 100%,transparent 27.2px,rgba(255,255,255,.22) 27.6px,rgba(255,255,255,.08) 28.4px,rgba(6,6,9,.92) 28.6px)!important}
+</style>
 </head>
 <body>
 <div id="themeT" class="glass"><button data-th="dark" class="on">DARK</button><button data-th="light">LIGHT</button></div>
