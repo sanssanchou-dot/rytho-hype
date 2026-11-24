@@ -777,6 +777,16 @@ body.light .orb .wave i{background:linear-gradient(180deg,#a4d400,#6e9600)}
 @media(max-width:900px){#p04 .pd-fig{height:auto!important;width:100%!important;max-width:100%!important}#swatch{gap:10px}main .wrap{max-width:100vw;overflow-x:clip}}
 .orb .wave{position:absolute!important;inset:0}
 @media(max-width:600px){#rail,#chipTitle{display:none!important}main .wrap{padding-right:22px!important}}
+
+/* ---- one button system: toggle, segmented chooser, explode ---- */
+#themeT,#chooser{padding:5px!important;gap:2px!important}
+#themeT button,#chooser button,#exBtn span{font:600 12px var(--en)!important;letter-spacing:.08em!important;text-transform:uppercase!important}
+#themeT button,#chooser button{padding:9px 16px!important;line-height:15px!important;border-radius:999px!important}
+#themeT button.on,#chooser button.on{background:rgba(198,244,50,.07)!important;box-shadow:inset 0 0 0 1px var(--acc)!important;color:var(--acc)!important}
+body.light #themeT button.on,body.light #chooser button.on{background:rgba(143,192,0,.06)!important;box-shadow:inset 0 0 0 1px #6f9a00!important;color:#6f9a00!important}
+#exBtn{height:43px!important;padding:0 5px 0 18px!important;gap:12px!important}
+#exBtn b{width:33px!important;height:33px!important;font-size:18px!important}
+body.light #exBtn span{color:#6f9a00}
 </style>
 </head>
 <body>
@@ -895,7 +905,7 @@ body.light .orb .wave i{background:linear-gradient(180deg,#a4d400,#6e9600)}
     <div><dt>狀態</dt><dd>原網格渲染</dd></div>
   </dl>
   <figure class="pd-arch rv"><img src="img/arch_04.webp" width="2560" height="1440" alt="" loading="lazy"></figure>
-  <p class="pd-miss">缺：主體顏色版本、完整外殼版</p>
+  <p class="pd-miss">缺：完整外殼版</p>
 </div></section>
 
 <!-- PARTNER -->
