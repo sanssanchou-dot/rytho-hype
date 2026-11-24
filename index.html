@@ -787,11 +787,11 @@ body.light .pd-fig.stage img,body.light #s-family .fam a figure img{-webkit-mask
       
     </div>
     <div id="exLabs">
-      <div class="xl" data-y=".21"><b>TWEETER ×2</b><span>小圓高音模組 · 原箱體</span></div>
-      <div class="xl" data-y=".31"><b>HIGH</b><span>方形面單體 · 原箱體</span></div>
-      <div class="xl" data-y=".47"><b>TRANSPARENT MID ×3</b><span>玻音先創透明振膜 · 螺旋腔</span></div>
-      <div class="xl" data-y=".77"><b>WOOFER ×2</b><span>低音模組 · 原箱體</span></div>
-      <div class="xl c" data-y=".125" data-side="body"><b>CHASSIS</b><span>帶卡榫的承載主體 · 唯一可變件</span></div>
+      <div class="xl" data-y=".242"><b>TWEETER ×2</b><span>小圓高音模組 · 原箱體</span></div>
+      <div class="xl" data-y=".337"><b>HIGH</b><span>方形面單體 · 原箱體</span></div>
+      <div class="xl" data-y=".507"><b>TRANSPARENT MID ×3</b><span>玻音先創透明振膜 · 螺旋腔</span></div>
+      <div class="xl" data-y=".781"><b>WOOFER ×2</b><span>低音模組 · 原箱體</span></div>
+      <div class="xl c" data-y=".133" data-side="body"><b>CHASSIS</b><span>帶卡榫的承載主體 · 唯一可變件</span></div>
     </div>
     <button id="exBtn" type="button" aria-pressed="false"><span>Explode</span><b>+</b></button>
     <div class="ex-foot"><p class="missing" id="exMissing"><span><b>缺：整塔爆炸序列</b>（Blender 原模型渲染中，72 格）。目前用固定八組的靜態渲染頂替。</span></p></div>
@@ -1044,6 +1044,7 @@ $$('#s-family .fam a').forEach((a,k)=>{a.addEventListener('mouseenter',()=>{fam.
  let x=right?(gi.right-fr.left+32):(gi.left-fr.left-W-32);x=Math.max(-fr.left+90,Math.min(x,innerWidth-fr.left-W-24));
  let vy=fg.top+fg.height/2-H/2;vy=Math.max(70,Math.min(vy,innerHeight-H-20));let y=vy-fr.top;box.style.left=x+'px';box.style.top=y+'px';box.classList.add('show')});
  a.addEventListener('mouseleave',()=>{box.classList.remove('show');fam.classList.remove('hov')})});})();
+window.LAB_RIGHT=.80;
 /* bespoke chooser: body + colour */
 (()=>{const B={orig:{note:'原版主體 · 原模型渲染',c:[['原版','#2a2c30','img/b_original.webp']]},
  fin:{note:'Fin 主體 · AI 概念圖，已對齊原版單體位置 · 待 CAD',c:[['鋁本色','linear-gradient(135deg,#f2f3f5,#a9adb3)','img/r3_style_02_aluminium_fins.webp'],['黑色陽極','#16171a','img/fin_black_anodized.webp'],['香檳金','#d8c2a0','img/fin_champagne.webp'],['石墨灰','#7d8187','img/fin_graphite.webp'],['白陶瓷','#f7f7f4','img/fin_white_ceramic.webp'],['萊姆細線','conic-gradient(#C6F432 0 25%,#d9dbdf 0)','img/fin_rytho_lime.webp'],['古銅','#b06a3e','img/fin_bronze.webp']]},
