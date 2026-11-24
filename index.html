@@ -569,7 +569,36 @@ body.light .pill .go{color:#C6F432!important}
 .badge.ai{box-shadow:inset 0 0 0 1px rgba(198,244,50,.7)!important}
 .pill{box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 0 0 1px rgba(198,244,50,.7)!important}
 body.light .lgrim.a{background:radial-gradient(90px 70px at 0% 0%,#B6E467,#2FBFA5 38%,#3D2EBC 62%,transparent 85%),linear-gradient(180deg,rgba(255,255,255,1),rgba(0,0,0,.08) 40%,rgba(0,0,0,.12))!important}
-body.light #rail .ch.on{background:rgba(198,244,50,.07)!important}body.light #rail .ch.on span{color:#C6F432!important}body.light #rail .ch.on{box-shadow:inset 0 0 0 1px #C6F432!important}</style>
+body.light #rail .ch.on{background:rgba(198,244,50,.07)!important}body.light #rail .ch.on span{color:#C6F432!important}body.light #rail .ch.on{box-shadow:inset 0 0 0 1px #C6F432!important}
+/* ---- glass lit by one Rytho-green key light (top-left): green edge reflection + volume ---- */
+.lgrim.a{background:
+  radial-gradient(140px 110px at 0% 0%,#C6F432 0%,rgba(198,244,50,.55) 30%,rgba(198,244,50,0) 75%),
+  linear-gradient(135deg,rgba(198,244,50,.35),rgba(255,255,255,.06) 40%,rgba(255,255,255,.03) 70%,rgba(198,244,50,.18))!important}
+#rail .lgrim.a{background:
+  radial-gradient(90px 140px at 100% 0%,#C6F432 0%,rgba(198,244,50,.55) 30%,rgba(198,244,50,0) 75%),
+  linear-gradient(170deg,rgba(198,244,50,.3),rgba(255,255,255,.05) 35%,rgba(255,255,255,.03) 75%,rgba(198,244,50,.15))!important}
+/* inner volume: soft green sheen from the key side, darker on the far side */
+#themeT,.seg2,#chipTitle{background:
+  radial-gradient(120% 140% at 0% 0%,rgba(198,244,50,.10),transparent 45%),
+  linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.015) 60%,rgba(0,0,0,.25))!important}
+#rail{background:
+  radial-gradient(120% 40% at 100% 0%,rgba(198,244,50,.10),transparent 60%),
+  linear-gradient(180deg,rgba(26,28,24,.92),rgba(6,6,9,.95))!important}
+.orb{box-shadow:inset 0 0 0 1px rgba(198,244,50,.35),inset 14px 10px 30px -18px rgba(198,244,50,.55),0 30px 60px -30px rgba(0,0,0,.9)!important}
+body.light .lgrim.a{background:
+  radial-gradient(140px 110px at 0% 0%,#9ed11a 0%,rgba(158,209,26,.5) 30%,rgba(158,209,26,0) 75%),
+  linear-gradient(135deg,rgba(158,209,26,.35),rgba(0,0,0,.06) 45%,rgba(0,0,0,.1))!important}
+body.light #themeT,body.light .seg2,body.light #chipTitle{background:
+  radial-gradient(120% 140% at 0% 0%,rgba(198,244,50,.22),transparent 45%),
+  linear-gradient(180deg,rgba(255,255,255,.95),rgba(240,242,236,.7))!important}
+
+/* ref: frosted pill — thin bright rim on lit side + faint counter-rim, soft frosted body */
+.lgrim.a{background:
+  radial-gradient(160px 110px at 0% 0%,#C6F432 0%,rgba(198,244,50,.45) 32%,rgba(198,244,50,0) 75%),
+  radial-gradient(160px 110px at 100% 100%,rgba(230,255,170,.55) 0%,rgba(198,244,50,0) 70%),
+  linear-gradient(135deg,rgba(198,244,50,.25),rgba(255,255,255,.05) 40%,rgba(255,255,255,.03) 70%,rgba(255,255,255,.12))!important}
+#themeT,.seg2,#chipTitle,#rail{-webkit-backdrop-filter:blur(26px) saturate(140%)!important;backdrop-filter:blur(26px) saturate(140%)!important}
+</style>
 </head>
 <body>
 <div id="themeT" class="glass"><button data-th="dark" class="on">DARK</button><button data-th="light">LIGHT</button></div>
