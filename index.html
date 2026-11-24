@@ -1341,7 +1341,7 @@ function f(T){if(!run)return;requestAnimationFrame(f);if(!vis())return;const t=r
 /* bespoke chooser: body + colour */
 (()=>{const B={orig:{note:'原版主體 · 原模型渲染',c:[['原版','#2a2c30','img/b_original.webp']]},
  fin:{note:'Fin 主體 · AI 概念圖，已對齊原版單體位置 · 待 CAD',c:[['鋁本色','linear-gradient(135deg,#f2f3f5,#a9adb3)','img/r3_style_02_aluminium_fins.webp'],['黑色陽極','#16171a','img/fin_black_anodized.webp'],['香檳金','#d8c2a0','img/fin_champagne.webp'],['石墨灰','#7d8187','img/fin_graphite.webp'],['白陶瓷','#f7f7f4','img/fin_white_ceramic.webp'],['萊姆細線','conic-gradient(#C6F432 0 25%,#d9dbdf 0)','img/fin_rytho_lime.webp'],['古銅','#b06a3e','img/fin_bronze.webp']]},
- hifi:{note:'Hi-Fi 主體 · AI 概念圖，已對齊原版單體位置 · 待 CAD',c:[['胡桃木＋緞黑','linear-gradient(135deg,#6b4429 50%,#1b1b1d 50%)','img/hifi_walnut.webp'],['柚木＋拉絲鋁','linear-gradient(135deg,#c8955c 50%,#c9ccd0 50%)','img/hifi_teak_alu.webp'],['鋼琴黑＋大理石','linear-gradient(135deg,#0b0b0d 50%,#e7e5e0 50%)','img/hifi_piano_marble.webp']]}};
+ hifi:{note:'Hi-Fi 主體 · 經典 Hi-Fi 設計語彙（Blender 渲染，已對齊原版單體位置）· 待 CAD',c:[['70s 錄音室監聽','linear-gradient(135deg,#6b4429 50%,#d8653a 50%)','img/hifi6_studio70s.webp'],['英式傳統監聽','linear-gradient(135deg,#3a2618 50%,#c9a24a 50%)','img/hifi6_heritage.webp'],['北歐雕塑','linear-gradient(135deg,#d9dcdf 50%,#b9b2a6 50%)','img/hifi6_scandi_sculpt.webp']]}};
 const im=$('#bodyImg'),sw=$('#swatch');
 function show(u){if(im.getAttribute('src')===u)return;im.style.opacity=0;setTimeout(()=>{im.src=u;im.style.opacity=1},200)}
 function body(k){$$('#chooser button').forEach(x=>x.classList.toggle('on',x.dataset.body===k));const d=B[k];$('#bodyNote').textContent=d.note;
