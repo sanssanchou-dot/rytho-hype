@@ -754,6 +754,29 @@ body.light .pd-fig.stage img,body.light #s-family .fam a figure img{-webkit-mask
 /* architectural scene per product */
 .pd-arch{margin:6vh auto 0;max-width:1500px;width:100%}
 .pd-arch img{display:block;width:100%;height:auto;border-radius:24px;box-shadow:0 40px 80px -40px rgba(0,0,0,.9)}
+
+/* ---- UX pass 1 ---- */
+/* AI orb = listening waveform inside a glass pill */
+.orb>.rim,.orb>.caus{display:none!important}
+.orb{background:transparent!important}
+.orb .wave{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:5px;z-index:2}
+.orb .wave i{display:block;width:3px;border-radius:3px;height:8%;background:linear-gradient(180deg,#E6FF8A,var(--acc));opacity:.9;
+ animation:lis 1.6s ease-in-out infinite;animation-delay:calc(var(--k) * -0.11s)}
+@keyframes lis{0%,100%{height:var(--lo)}50%{height:var(--hi)}}
+body.light .orb .wave i{background:linear-gradient(180deg,#a4d400,#6e9600)}
+/* mobile */
+@media(max-width:900px){
+ #s-family .fam{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:14px 12px!important}
+ #s-family .fam em{white-space:normal!important}
+ #s-family .fam b{font-size:15px!important}#s-family .fam span{font-size:14px!important}
+ .say{font-size:clamp(26px,7.4vw,40px)!important;text-wrap:balance}
+ .pd-arch img{border-radius:16px}
+ #exBtn{bottom:4vh}
+}
+.say{text-wrap:balance}
+@media(max-width:900px){#p04 .pd-fig{height:auto!important;width:100%!important;max-width:100%!important}#swatch{gap:10px}main .wrap{max-width:100vw;overflow-x:clip}}
+.orb .wave{position:absolute!important;inset:0}
+@media(max-width:600px){#rail,#chipTitle{display:none!important}main .wrap{padding-right:22px!important}}
 </style>
 </head>
 <body>
@@ -822,14 +845,11 @@ body.light .pd-fig.stage img,body.light #s-family .fam a figure img{-webkit-mask
     <div><dt>連線</dt><dd>Bluetooth</dd></div>
     <div><dt>狀態</dt><dd>概念階段</dd></div>
   </dl>
-  <figure class="pd-arch rv"><img src="img/arch_04.webp" alt="" loading="lazy"></figure>
-  <figure class="pd-arch rv"><img src="img/arch_03.webp" alt="" loading="lazy"></figure>
-  <figure class="pd-arch rv"><img src="img/arch_02.webp" alt="" loading="lazy"></figure>
-  <figure class="pd-arch rv"><img src="img/arch_01.webp" alt="" loading="lazy"></figure>
+  <figure class="pd-arch rv"><img src="img/arch_01.webp" width="2560" height="1440" alt="" loading="lazy"></figure>
   <p class="pd-miss">缺：精修渲染（目前 AI 概念圖、無 CAD）</p>
 </div></section>
 <section id="s-ai"><div class="wrap">
-  <div class="orb rv"><i class="rim r1"></i><i class="rim r2"></i><i class="rim r3"></i><i class="caus"></i></div>
+  <div class="orb rv"><span class="wave" aria-hidden="true"></span></div>
   <h2 class="rv">Now it<br>listens<span class="dot">.</span></h2>
   <p class="body rv" style="margin:18px auto 0;text-align:center">02—04 內建 Wi-Fi 晶片，開啟 AI。</p>
   <p class="pd-miss" style="text-align:center">缺：AI 功能定義、麥克風／狀態燈位置</p>
@@ -845,6 +865,7 @@ body.light .pd-fig.stage img,body.light #s-family .fam a figure img{-webkit-mask
     <div><dt>連線</dt><dd>Wi-Fi · AI · Bluetooth</dd></div>
     <div><dt>狀態</dt><dd>原模組渲染</dd></div>
   </dl>
+  <figure class="pd-arch rv"><img src="img/arch_02.webp" width="2560" height="1440" alt="" loading="lazy"></figure>
   <p class="pd-miss">缺：底座修薄、振膜透光特寫</p>
 </div></section>
 <section class="pd ai" id="p03"><div class="wrap">
@@ -858,6 +879,7 @@ body.light .pd-fig.stage img,body.light #s-family .fam a figure img{-webkit-mask
     <div><dt>連線</dt><dd>Wi-Fi · AI · Bluetooth</dd></div>
     <div><dt>狀態</dt><dd>原模型渲染</dd></div>
   </dl>
+  <figure class="pd-arch rv"><img src="img/arch_03.webp" width="2560" height="1440" alt="" loading="lazy"></figure>
 </div></section>
 <section class="pd ai" id="p04"><div class="wrap">
   <div class="pd-head rv"><span class="pd-n">04</span><span class="pd-en">Bespoke · Full Set</span></div>
@@ -872,6 +894,7 @@ body.light .pd-fig.stage img,body.light #s-family .fam a figure img{-webkit-mask
     <div><dt>連線</dt><dd>Wi-Fi · AI</dd></div>
     <div><dt>狀態</dt><dd>原網格渲染</dd></div>
   </dl>
+  <figure class="pd-arch rv"><img src="img/arch_04.webp" width="2560" height="1440" alt="" loading="lazy"></figure>
   <p class="pd-miss">缺：主體顏色版本、完整外殼版</p>
 </div></section>
 
@@ -1045,6 +1068,9 @@ $$('#s-family .fam a').forEach((a,k)=>{a.addEventListener('mouseenter',()=>{fam.
  let vy=fg.top+fg.height/2-H/2;vy=Math.max(70,Math.min(vy,innerHeight-H-20));let y=vy-fr.top;box.style.left=x+'px';box.style.top=y+'px';box.classList.add('show')});
  a.addEventListener('mouseleave',()=>{box.classList.remove('show');fam.classList.remove('hov')})});})();
 window.LAB_RIGHT=.80;
+
+/* listening waveform bars */
+(()=>{const w=document.querySelector('.orb .wave');if(!w)return;const N=29;let h='';for(let k=0;k<N;k++){const c=1-Math.abs(k-(N-1)/2)/((N-1)/2);const hi=Math.round(12+52*Math.pow(c,1.4)*(.6+.4*Math.abs(Math.sin(k*1.7))));h+=`<i style="--k:${k};--lo:${Math.max(6,Math.round(hi*.22))}%;--hi:${hi}%"></i>`}w.innerHTML=h})();
 /* bespoke chooser: body + colour */
 (()=>{const B={orig:{note:'原版主體 · 原模型渲染',c:[['原版','#2a2c30','img/b_original.webp']]},
  fin:{note:'Fin 主體 · AI 概念圖，已對齊原版單體位置 · 待 CAD',c:[['鋁本色','linear-gradient(135deg,#f2f3f5,#a9adb3)','img/r3_style_02_aluminium_fins.webp'],['黑色陽極','#16171a','img/fin_black_anodized.webp'],['香檳金','#d8c2a0','img/fin_champagne.webp'],['石墨灰','#7d8187','img/fin_graphite.webp'],['白陶瓷','#f7f7f4','img/fin_white_ceramic.webp'],['萊姆細線','conic-gradient(#C6F432 0 25%,#d9dbdf 0)','img/fin_rytho_lime.webp'],['古銅','#b06a3e','img/fin_bronze.webp']]},

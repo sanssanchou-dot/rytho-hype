@@ -66,7 +66,7 @@ function rail(){
     g.querySelectorAll('path').forEach(p=>p.setAttribute('d',open));};
   new MutationObserver(go).observe(s,{attributes:true,attributeFilter:['style']});go();
 }
-const SEL=['#themeT','#chipTitle','.seg2','#exBtn','#s-partner .col.glass'];
+const SEL=['#themeT','#chipTitle','.seg2','#exBtn','#s-partner .col.glass','.orb'];
 function init(){document.querySelectorAll(SEL.join(',')).forEach(glassify);rail()}
 if(document.readyState==='complete')init();else addEventListener('load',init);
 })();
