@@ -622,6 +622,37 @@ body.light .lgrim.a{background:conic-gradient(from var(--la),#8fc000 0deg,rgba(1
 .cols{grid-template-columns:repeat(4,1fr)!important}
 @media(max-width:1100px){.cols{grid-template-columns:repeat(2,1fr)!important}}
 @media(max-width:700px){.cols{grid-template-columns:1fr!important}}
+
+/* ---- rail as ONE shape: body + concave fillets in a single path ---- */
+#rail{background:none!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;border-radius:0!important;
+ gap:16px!important;padding:30px 0 32px!important;width:60px!important;overflow:visible!important}
+#rail::before,#rail::after,#rail>.lgrim{display:none!important}
+#rail .rshape{position:absolute;left:0;top:-28px;bottom:-28px;width:100%;z-index:-1;pointer-events:none;
+ background:radial-gradient(120% 60% at 0% 0%,rgba(198,244,50,.10),transparent 45%),linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.015) 60%,rgba(0,0,0,.25));
+ -webkit-backdrop-filter:blur(26px) saturate(140%);backdrop-filter:blur(26px) saturate(140%)}
+body.light #rail .rshape{background:radial-gradient(120% 60% at 0% 0%,rgba(198,244,50,.22),transparent 45%),linear-gradient(180deg,rgba(255,255,255,.95),rgba(240,242,236,.7))}
+#rail .redge{position:absolute;left:0;top:-28px;width:100%;overflow:visible;pointer-events:none;z-index:4}
+#rail .redge path{fill:none;stroke:url(#rEdgeG);stroke-width:1}
+#rail .rail-line{height:70px!important}
+@media(max-width:900px){#rail .rshape,#rail .redge{display:none}#rail{background:rgba(20,20,24,.8)!important;border-radius:22px 0 0 22px!important;gap:8px!important;padding:10px 0!important}}
+
+:root{--lb:1}.lgrim.a{opacity:var(--lb)!important}#rail .redge{opacity:var(--lb)}
+
+/* explode = one screen, click to open */
+#s-explode{height:100svh!important}
+#s-explode .pin{position:relative!important}
+#exBtn{position:absolute;left:50%;bottom:2.4vh;transform:translateX(-50%);z-index:5;display:flex;align-items:center;gap:14px;height:48px;padding:0 8px 0 24px;border-radius:999px;border:0;cursor:pointer;
+ font:500 13px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--acc);isolation:isolate;
+ background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.015) 60%,rgba(0,0,0,.25));-webkit-backdrop-filter:blur(26px) saturate(140%);backdrop-filter:blur(26px) saturate(140%);box-shadow:0 20px 40px -20px rgba(0,0,0,.8)}
+#exBtn b{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font:300 20px var(--en);color:#0B0B12;background:var(--acc);transition:transform .5s cubic-bezier(.6,0,.2,1)}
+#exBtn.open b{transform:rotate(45deg)}
+#exBtn:hover b{box-shadow:0 0 16px rgba(198,244,50,.55)}
+body.light #exBtn{background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(240,242,236,.7));color:#4a7410}
+/* rail edge in light theme */
+body.light #rEdgeG stop:nth-child(3){stop-color:rgba(0,0,0,.10)}
+body.light #rEdgeG stop:nth-child(4){stop-color:rgba(0,0,0,.16)}
+body.light #rEdgeG stop:nth-child(5){stop-color:rgba(0,0,0,.08)}
+body.light #rEdgeG stop:nth-child(1){stop-color:#8fc000}
 </style>
 </head>
 <body>
@@ -661,6 +692,7 @@ body.light .lgrim.a{background:conic-gradient(from var(--la),#8fc000 0deg,rgba(1
       <div class="xl" data-y=".77"><b>WOOFER ×2</b><span>低音模組 · 原箱體</span></div>
       <div class="xl c" data-y=".125" data-side="body"><b>CHASSIS</b><span>帶卡榫的承載主體 · 唯一可變件</span></div>
     </div>
+    <button id="exBtn" type="button" aria-pressed="false"><span>Explode</span><b>+</b></button>
     <div class="ex-foot"><p class="missing" id="exMissing"><span><b>缺：整塔爆炸序列</b>（Blender 原模型渲染中，72 格）。目前用固定八組的靜態渲染頂替。</span></p></div>
   </div>
 </section>
@@ -812,9 +844,7 @@ function onScroll(){const y=scrollY,vh=innerHeight;
  // statement
  const r=say.getBoundingClientRect();const sp=clamp((vh*.85-r.top)/(r.height+vh*.4));const n=Math.floor(sp*ss.length);ss.forEach((s,i)=>{s.classList.toggle('lit',i<n);s.classList.toggle('g',!!s.dataset.g)});
  // explode
- const e=$('#s-explode'),er=e.getBoundingClientRect();const ep=clamp(-er.top/(er.height-vh));
- drawExplode(clamp((ep-.05)/.6));$('#exPct').textContent=String(Math.round(ep*100)).padStart(3,'0');
- $('#exLabs').classList.toggle('on',ep>.08);
+ const e=$('#s-explode'),er=e.getBoundingClientRect();const ep=window.exP||0;
  // bg mode
  const inEx=er.top<vh*.5&&er.bottom>vh*.5;const ai=['s-ai','p02','p03','p04'].some(id=>{const b=document.getElementById(id).getBoundingClientRect();return b.top<vh*.6&&b.bottom>vh*.4});
  mode.thin=y<vh*.8?1:0;mode.spread=inEx?Math.sin(clamp(ep/.8)*Math.PI)*.5:0;mode.ai=ai?1:0;document.body.classList.toggle('ai-on',ai);
@@ -823,7 +853,7 @@ function onScroll(){const y=scrollY,vh=innerHeight;
  chs.forEach((c,i)=>c.classList.toggle('on',i===ci));
  if(ci!==lastCi){lastCi=ci;const r=chs[ci].getBoundingClientRect(),ct=$('#chipTitle');$('#ctN').textContent=chs[ci].querySelector('span').textContent;$('#ctT').textContent=chs[ci].dataset.t;ct.style.top=(r.top+r.height/2-18)+'px';ct.classList.add('show');clearTimeout(chipT);chipT=setTimeout(()=>ct.classList.remove('show'),1800)}
 }
-addEventListener('scroll',onScroll,{passive:true});addEventListener('scroll',()=>document.documentElement.style.setProperty('--la',(-45+scrollY*.12)%360+'deg'),{passive:true});document.documentElement.style.setProperty('--la','-45deg');addEventListener('resize',onScroll);onScroll();
+addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();
 
 /* reveal */
 const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}}),{threshold:.15});$$('.rv').forEach(el=>io.observe(el));
@@ -864,10 +894,41 @@ window.redrawDots=draw;
 addEventListener('resize',()=>{init();draw()});init();draw()})();
 
 /* liquid glass edge refraction */
-['#themeT','#chooser','#chipTitle','.pill','#rail','.seg2'].forEach(s=>document.querySelectorAll(s).forEach(el=>{if(el.querySelector(':scope>.lgrim'))return;el.insertAdjacentHTML('beforeend','<i class="lgrim a"></i><i class="lgrim b"></i>')}));
+['#themeT','#chooser','#chipTitle','.pill','#rail','.seg2','#exBtn'].forEach(s=>document.querySelectorAll(s).forEach(el=>{if(el.querySelector(':scope>.lgrim'))return;el.insertAdjacentHTML('beforeend','<i class="lgrim a"></i><i class="lgrim b"></i>')}));
 
 /* hero film: clean shots only (no burned-in title) */
 (()=>{const v=document.getElementById('heroVid');let i=0;v.addEventListener('ended',()=>{i=(i+1)%5;v.src='img/apex_s'+i+'.mp4';v.play().catch(()=>{})})})();
+
+/* rail single-shape path */
+(()=>{const r=document.getElementById('rail');if(!r)return;const R=28,c=28;
+r.insertAdjacentHTML('afterbegin','<div class="rshape"></div><svg class="redge"><defs><linearGradient id="rEdgeG" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#C6F432"/><stop offset=".22" stop-color="rgba(198,244,50,.35)"/><stop offset=".5" stop-color="rgba(255,255,255,.10)"/><stop offset=".78" stop-color="rgba(255,255,255,.22)"/><stop offset="1" stop-color="rgba(255,255,255,.06)"/></linearGradient></defs><path/></svg>');
+const sh=r.querySelector('.rshape'),sv=r.querySelector('.redge'),pa=sv.querySelector('path'),g=sv.querySelector('#rEdgeG');
+let W=0,H=0;
+function build(){W=r.offsetWidth;H=r.offsetHeight;const T=H+2*R;
+ const d=`M0,0 A${R},${R} 0 0 0 ${R},${R} L${W-c},${R} A${c},${c} 0 0 1 ${W},${R+c} L${W},${R+H-c} A${c},${c} 0 0 1 ${W-c},${R+H} L${R},${R+H} A${R},${R} 0 0 0 0,${T}`;
+ sh.style.clipPath=`path('${d} Z')`;sv.setAttribute('width',W);sv.setAttribute('height',T);sv.setAttribute('viewBox',`0 0 ${W} ${T}`);
+ pa.setAttribute('d',d.replace(/^M0,0/,'M0.5,0').replace(/ 0,(\d+)$/,' 0.5,$1'));spin()}
+function spin(){const T=H+2*R,a=(window.__la||-45)*Math.PI/180,cx=W/2,cy=T/2,L=T/2;
+ g.setAttribute('x1',cx-Math.cos(a)*L);g.setAttribute('y1',cy-Math.sin(a)*L);g.setAttribute('x2',cx+Math.cos(a)*L);g.setAttribute('y2',cy+Math.sin(a)*L)}
+addEventListener('resize',build);
+sv.__spin=spin;if(document.fonts)document.fonts.ready.then(build);build()})();
+/* breathing key light: slow loop, independent of scroll */
+(()=>{const st=document.documentElement.style;function f(T){const s=T/1000;
+ const a=-45+80*Math.sin(s*2*Math.PI/9)+25*Math.sin(s*2*Math.PI/23);window.__la=a;st.setProperty('--la',a+'deg');
+ st.setProperty('--lb',(.72+.28*(.5+.5*Math.sin(s*2*Math.PI/4.5))).toFixed(3));
+ const r=document.querySelector('#rail .redge');if(r&&r.__spin)r.__spin();requestAnimationFrame(f)}requestAnimationFrame(f)})();
+
+
+/* explode: click to open / close (no scroll scrub) */
+(()=>{let p=0,target=0,from=0,t0=0;const D=1700,btn=$('#exBtn');window.exP=0;
+const ease=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+function tick(T){if(!t0)t0=T;const k=Math.min(1,(T-t0)/D);p=from+(target-from)*ease(k);window.exP=p;drawExplode(p);
+ $('#exPct').textContent=String(Math.round(p*100)).padStart(3,'0');$('#exLabs').classList.toggle('on',p>.7);
+ if(k<1)requestAnimationFrame(tick)}
+btn.addEventListener('click',()=>{from=p;target=target?0:1;t0=0;btn.setAttribute('aria-pressed',target?'true':'false');
+ btn.querySelector('span').textContent=target?'Assemble':'Explode';btn.classList.toggle('open',!!target);requestAnimationFrame(tick)});
+addEventListener('resize',()=>drawExplode(p));
+const f0=setInterval(()=>{if(frames[0]&&frames[0].complete&&frames[0].naturalWidth){drawExplode(p);clearInterval(f0)}},120)})();
 /* bespoke chooser */
 $$('#chooser button').forEach(b=>b.onclick=()=>{$$('#chooser button').forEach(x=>x.classList.toggle('on',x===b));const im=$('#bodyImg');im.style.opacity=0;setTimeout(()=>{im.src=b.dataset.img;im.style.opacity=1},220);$('#bodyNote').textContent=b.dataset.ai==='1'?'AI 概念主體 · 已對齊原版單體位置 · 待 CAD':'原版主體 · 原模型渲染'});
 </script>
