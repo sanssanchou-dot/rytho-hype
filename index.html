@@ -670,6 +670,67 @@ body.light #swatch button.on span{color:#4a7410}
 .pd-scene{display:grid;grid-template-columns:1.6fr 1fr;gap:14px;margin-top:5vh}
 .pd-scene img{width:100%;height:100%;object-fit:cover;border-radius:22px}
 @media(max-width:900px){.pd-scene{grid-template-columns:1fr}}
+
+/* family lineup: wider, bigger type, hover scene card */
+#s-family .fam{max-width:min(94vw,2200px)!important;gap:5vw!important;position:relative}
+#s-family .fam b{font-size:20px!important;margin-right:10px}
+#s-family .fam span{font-size:19px!important;font-weight:600!important}
+#s-family .fam em{font-size:12.5px!important;margin-top:10px!important;letter-spacing:.1em}
+#famScene{position:absolute;z-index:6;width:min(40vw,720px);aspect-ratio:16/9;border-radius:22px;overflow:hidden;pointer-events:none;opacity:0;transform:translateY(12px) scale(.98);
+ transition:opacity .35s,transform .45s cubic-bezier(.2,.7,.1,1);box-shadow:0 40px 80px -30px rgba(0,0,0,.9),inset 0 0 0 1px rgba(255,255,255,.14)}
+#famScene.show{opacity:1;transform:none}
+#famScene img{width:100%;height:100%;object-fit:cover;display:block}
+#famScene::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:conic-gradient(from var(--la),#C6F432,rgba(198,244,50,.3) 30deg,rgba(255,255,255,.08) 90deg,rgba(255,255,255,.25) 190deg,rgba(255,255,255,.06) 260deg,rgba(198,244,50,.3) 330deg,#C6F432);
+ -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:var(--lb)}
+@media(hover:none),(max-width:900px){#famScene{display:none}}
+
+#s-family .fam a{transition:opacity .35s}
+#s-family .fam.hov a:not(.cur){opacity:.28}
+#s-family .fam em{white-space:nowrap}
+
+/* ================= liquid glass v2: refraction + thickness + green key ================= */
+:root{--kx:calc(cos(var(--la)) * 1);--ky:calc(sin(var(--la)) * 1)}
+.lgx{background:transparent!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;isolation:isolate;
+ box-shadow:0 18px 40px -18px rgba(0,0,0,.85),0 2px 6px -2px rgba(0,0,0,.5)!important}
+.lgx>.lgrim{display:none!important}
+.lg-b{position:absolute;inset:0;border-radius:inherit;z-index:-1;pointer-events:none;
+ background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.02) 55%,rgba(255,255,255,.045))}
+.lg-t{position:absolute;inset:0;border-radius:inherit;z-index:3;pointer-events:none;
+ box-shadow:
+  inset 0 0 0 .5px rgba(255,255,255,.32),
+  inset calc(var(--kx) * 1.2px) calc(var(--ky) * 1.2px) 0 -.2px rgba(198,244,50,.95),
+  inset calc(var(--kx) * 6px) calc(var(--ky) * 6px) 12px -6px rgba(198,244,50,.42),
+  inset 0 1.5px 1px -.5px rgba(255,255,255,.55),
+  inset 0 -1.5px 1.5px -.5px rgba(255,255,255,.16),
+  inset calc(var(--kx) * -10px) calc(var(--ky) * -10px) 18px -10px rgba(0,0,0,.65),
+  inset 0 0 22px rgba(255,255,255,.035);opacity:calc(.75 + var(--lb) * .25)}
+.lg-t::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;opacity:.9;
+ background:conic-gradient(from var(--la),rgba(198,244,50,.95),rgba(198,244,50,.25) 35deg,rgba(255,255,255,.08) 90deg,rgba(255,255,255,.04) 150deg,rgba(255,255,255,.35) 185deg,rgba(255,255,255,.05) 230deg,rgba(198,244,50,.25) 325deg,rgba(198,244,50,.95));
+ -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+.lg-t::after{content:"";position:absolute;left:8%;right:8%;top:1px;height:40%;border-radius:inherit;
+ background:linear-gradient(180deg,rgba(255,255,255,.10),transparent);filter:blur(1px)}
+/* light theme: bright clear glass */
+body.light .lgx{box-shadow:0 16px 36px -18px rgba(20,24,40,.35),0 1px 3px rgba(20,24,40,.12)!important}
+body.light .lg-b{background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,.22) 55%,rgba(255,255,255,.38))}
+body.light .lg-t{box-shadow:
+  inset 0 0 0 .5px rgba(255,255,255,.9),
+  inset calc(var(--kx) * 1.2px) calc(var(--ky) * 1.2px) 0 -.2px rgba(143,192,0,.9),
+  inset calc(var(--kx) * 6px) calc(var(--ky) * 6px) 12px -6px rgba(170,220,40,.45),
+  inset 0 1.5px 1px -.5px #fff,
+  inset calc(var(--kx) * -10px) calc(var(--ky) * -10px) 18px -10px rgba(30,40,60,.18)}
+body.light .lg-t::before{background:conic-gradient(from var(--la),#8fc000,rgba(143,192,0,.25) 35deg,rgba(255,255,255,.9) 90deg,rgba(0,0,0,.06) 150deg,#fff 185deg,rgba(0,0,0,.05) 230deg,rgba(143,192,0,.25) 325deg,#8fc000)}
+/* keep the selected states readable above the glass */
+.lgx>*:not(.lg-b):not(.lg-t){position:relative;z-index:1}
+#exBtn.lgx{position:absolute}
+/* rail glass */
+#rail .rshape{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02) 55%,rgba(255,255,255,.05))!important}
+body.light #rail .rshape{background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,.22) 55%,rgba(255,255,255,.38))!important}
+#rail .lg-th .t1{fill:none;stroke:rgba(255,255,255,.22);stroke-width:5}
+#rail .lg-th .t2{fill:none;stroke:url(#rEdgeG);stroke-width:12;opacity:.45}
+#rail .lg-th .t3{fill:none;stroke:rgba(255,255,255,.35);stroke-width:2;transform:translate(-1px,1px);opacity:.5}
+body.light #rail .lg-th .t1{stroke:rgba(255,255,255,.95)}
+#rail .redge>path{stroke-width:1.2}
+body.light #rail{background:none!important;box-shadow:none!important}
 </style>
 </head>
 <body>
@@ -721,10 +782,10 @@ body.light #swatch button.on span{color:#4a7410}
   <p class="body rv" style="margin-top:22px">由小到大：從一顆透明模組的隨身音響，到整組可訂製的高訂。02 起內建 Wi-Fi 與 AI。</p>
   <picture class="famhero rv"><source media="(max-width:900px)" srcset="img/family_port.webp"><img src="img/family.webp" alt="RYTHO HYPE family at true scale"></picture>
   <div class="fam rv">
-    <a href="#p01"><figure><img src="img/portable_cut.webp" alt=""></figure><b>01</b><span>隨身</span><em data-h="H 180 mm">Bluetooth</em></a>
+    <a href="#p01" data-scene="img/p01_dark.webp"><figure><img src="img/portable_cut.webp" alt=""></figure><b>01</b><span>隨身</span><em data-h="H 180 mm">Bluetooth</em></a>
     <a href="#p02"><figure><img src="img/u02.webp" alt=""></figure><b>02</b><span>單顆＋底座</span><em class="ai" data-h="H 261 mm">Wi-Fi · AI</em></a>
-    <a href="#p03"><figure><img src="img/u03.webp" alt=""></figure><b>03</b><span>上半段兩節</span><em class="ai" data-h="H 1,022 mm ×2">Wi-Fi · AI</em></a>
-    <a href="#p04"><figure><img src="img/u04.webp" alt=""></figure><b>04</b><span>整組高訂</span><em class="ai" data-h="H 2,693 mm ×2">Wi-Fi · AI</em></a>
+    <a href="#p03" data-scene="img/scene_03_wide.webp"><figure><img src="img/u03.webp" alt=""></figure><b>03</b><span>上半段兩節</span><em class="ai" data-h="H 1,022 mm ×2">Wi-Fi · AI</em></a>
+    <a href="#p04"><figure><img src="img/u04.webp" alt=""></figure><b>04</b><span>整組高訂</span><em class="ai" data-h="H 2,693 mm ×2">Wi-Fi · AI</em></a><div id="famScene"><img alt=""></div>
   </div>
 </div></section>
 <section class="pd" id="p01"><div class="wrap">
@@ -949,6 +1010,15 @@ btn.addEventListener('click',()=>{from=p;target=target?0:1;t0=0;btn.setAttribute
  btn.querySelector('span').textContent=target?'Assemble':'Explode';btn.classList.toggle('open',!!target);requestAnimationFrame(tick)});
 addEventListener('resize',()=>drawExplode(p));
 const f0=setInterval(()=>{if(frames[0]&&frames[0].complete&&frames[0].naturalWidth){drawExplode(p);clearInterval(f0)}},120)})();
+
+/* family hover scene: card opens beside the hovered product */
+(()=>{const box=$('#famScene'),img=box.querySelector('img'),fam=box.parentElement;
+$$('#s-family .fam a').forEach((a,k)=>{a.addEventListener('mouseenter',()=>{fam.classList.add('hov');$$('#s-family .fam a').forEach(x=>x.classList.toggle('cur',x===a));const u=a.dataset.scene;if(!u){box.classList.remove('show');return}
+ img.src=u;const fr=fam.getBoundingClientRect(),fg=a.querySelector('figure').getBoundingClientRect(),gi=a.querySelector('figure img').getBoundingClientRect();
+ const W=box.offsetWidth,H=box.offsetHeight;const right=k<2;
+ let x=right?(gi.right-fr.left+32):(gi.left-fr.left-W-32);x=Math.max(-fr.left+90,Math.min(x,innerWidth-fr.left-W-24));
+ let y=fg.bottom-fr.top-H;box.style.left=x+'px';box.style.top=y+'px';box.classList.add('show')});
+ a.addEventListener('mouseleave',()=>{box.classList.remove('show');fam.classList.remove('hov')})});})();
 /* bespoke chooser: body + colour */
 (()=>{const B={orig:{note:'原版主體 · 原模型渲染',c:[['原版','#2a2c30','img/b_original.webp']]},
  fin:{note:'Fin 主體 · AI 概念圖，已對齊原版單體位置 · 待 CAD',c:[['鋁本色','linear-gradient(135deg,#f2f3f5,#a9adb3)','img/r3_style_02_aluminium_fins.webp'],['黑色陽極','#16171a','img/fin_black_anodized.webp'],['香檳金','#d8c2a0','img/fin_champagne.webp'],['石墨灰','#7d8187','img/fin_graphite.webp'],['白陶瓷','#f7f7f4','img/fin_white_ceramic.webp'],['萊姆細線','conic-gradient(#C6F432 0 25%,#d9dbdf 0)','img/fin_rytho_lime.webp'],['古銅','#b06a3e','img/fin_bronze.webp']]},
@@ -961,5 +1031,6 @@ function body(k){$$('#chooser button').forEach(x=>x.classList.toggle('on',x.data
 Object.values(B).forEach(v=>v.c.forEach(c=>{const p=new Image();p.src=c[2]}));
 $$('#chooser button').forEach(b=>b.onclick=()=>body(b.dataset.body));})();
 </script>
+<script src="lg.js"></script>
 </body>
 </html>
