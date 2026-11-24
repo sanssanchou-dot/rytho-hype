@@ -731,6 +731,25 @@ body.light #rail .rshape{background:linear-gradient(180deg,rgba(255,255,255,.55)
 body.light #rail .lg-th .t1{stroke:rgba(255,255,255,.95)}
 #rail .redge>path{stroke-width:1.2}
 body.light #rail{background:none!important;box-shadow:none!important}
+
+/* on-stage close-ups (opaque near-black renders): melt edges into the page */
+#s-family .fam{grid-template-columns:1.5fr 1.5fr 1.6fr 1.6fr!important;gap:1.6vw!important;align-items:start!important}
+#s-family .fam figure{height:auto!important;aspect-ratio:auto;display:block!important;margin-bottom:14px!important}
+#s-family .fam a figure img{max-height:none!important;width:100%!important;height:auto!important;filter:none!important;transform:none!important;border-radius:18px;
+ -webkit-mask:radial-gradient(120% 120% at 50% 45%,#000 55%,transparent 100%);mask:radial-gradient(120% 120% at 50% 45%,#000 55%,transparent 100%);transition:transform .6s cubic-bezier(.2,.7,.1,1)}
+#s-family .fam a:hover figure img{transform:scale(1.03)!important}
+.pd-fig.stage img{filter:none!important;width:auto;max-width:100%;max-height:100%;object-fit:contain;
+ -webkit-mask:radial-gradient(75% 75% at 50% 48%,#000 60%,transparent 100%);mask:radial-gradient(75% 75% at 50% 48%,#000 60%,transparent 100%)}
+body.light #s-family .fam a figure img,body.light .pd-fig.stage img{-webkit-mask:none;mask:none;border-radius:22px;box-shadow:0 30px 60px -30px rgba(0,0,0,.45)}
+#p01 .pd-fig{height:72vh!important}
+@media(max-width:900px){#s-family .fam{grid-template-columns:1fr 1fr!important}}
+
+.pd-fig.stage{background:none!important;border:0!important;box-shadow:none!important;border-radius:0!important;width:100%!important;max-width:1500px!important;aspect-ratio:auto!important;padding:0!important}
+.pd-fig.stage::before,.pd-fig.stage::after,.pd-fig.stage>*:not(img){display:none!important}
+.pd-fig.stage img{width:100%!important;height:100%!important;max-width:none!important}
+
+.pd-fig.stage img,#s-family .fam a figure img{-webkit-mask:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent),linear-gradient(180deg,transparent,#000 9%,#000 91%,transparent);-webkit-mask-composite:source-in;mask:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent),linear-gradient(180deg,transparent,#000 9%,#000 91%,transparent);mask-composite:intersect}
+body.light .pd-fig.stage img,body.light #s-family .fam a figure img{-webkit-mask:none;mask:none}
 </style>
 </head>
 <body>
@@ -782,17 +801,17 @@ body.light #rail{background:none!important;box-shadow:none!important}
   <p class="body rv" style="margin-top:22px">由小到大：從一顆透明模組的隨身音響，到整組可訂製的高訂。02 起內建 Wi-Fi 與 AI。</p>
   <picture class="famhero rv"><source media="(max-width:900px)" srcset="img/family_port.webp"><img src="img/family.webp" alt="RYTHO HYPE family at true scale"></picture>
   <div class="fam rv">
-    <a href="#p01" data-scene="img/p01_dark.webp"><figure><img src="img/portable_cut.webp" alt=""></figure><b>01</b><span>隨身</span><em data-h="H 180 mm">Bluetooth</em></a>
-    <a href="#p02"><figure><img src="img/u02.webp" alt=""></figure><b>02</b><span>單顆＋底座</span><em class="ai" data-h="H 261 mm">Wi-Fi · AI</em></a>
-    <a href="#p03" data-scene="img/scene_03_wide.webp"><figure><img src="img/u03.webp" alt=""></figure><b>03</b><span>上半段兩節</span><em class="ai" data-h="H 1,022 mm ×2">Wi-Fi · AI</em></a>
-    <a href="#p04"><figure><img src="img/u04.webp" alt=""></figure><b>04</b><span>整組高訂</span><em class="ai" data-h="H 2,693 mm ×2">Wi-Fi · AI</em></a><div id="famScene"><img alt=""></div>
+    <a href="#p01" data-scene="img/p01_dark.webp"><figure><img src="img/c01.webp" alt=""></figure><b>01</b><span>隨身</span><em data-h="H 180 mm">Bluetooth</em></a>
+    <a href="#p02"><figure><img src="img/c02.webp" alt=""></figure><b>02</b><span>單顆＋底座</span><em class="ai" data-h="H 261 mm">Wi-Fi · AI</em></a>
+    <a href="#p03" data-scene="img/scene_03_wide.webp"><figure><img src="img/c03.webp" alt=""></figure><b>03</b><span>上半段兩節</span><em class="ai" data-h="H 1,022 mm ×2">Wi-Fi · AI</em></a>
+    <a href="#p04"><figure><img src="img/c04.webp" alt=""></figure><b>04</b><span>整組高訂</span><em class="ai" data-h="H 2,693 mm ×2">Wi-Fi · AI</em></a><div id="famScene"><img alt=""></div>
   </div>
 </div></section>
 <section class="pd" id="p01"><div class="wrap">
   <div class="pd-head rv"><span class="pd-n">01</span><span class="pd-en">Portable</span></div>
   <h2 class="pd-t rv">隨身</h2>
   <p class="pd-line rv">螺旋全透明聲學腔，一手帶走。</p>
-  <figure class="pd-fig rv p01fig"><img class="th-d" src="img/p01_dark.webp" alt="隨身"><img class="th-l" src="img/p01_light.webp" alt="隨身"></figure>
+  <figure class="pd-fig rv stage p01fig"><img src="img/c01.webp" alt="隨身"></figure>
   
   <dl class="pd-facts rv">
     <div><dt>取自整塔</dt><dd>透明中音模組的振膜與螺旋腔</dd></div>
@@ -813,7 +832,7 @@ body.light #rail{background:none!important;box-shadow:none!important}
   <div class="pd-head rv"><span class="pd-n">02</span><span class="pd-en">Home AI · Single</span></div>
   <h2 class="pd-t rv">單顆＋底座</h2>
   <p class="pd-line rv">一顆透明模組，中心加同軸高音。</p>
-  <figure class="pd-fig rv"><img src="img/u02.webp" alt="單顆＋底座"></figure>
+  <figure class="pd-fig rv stage"><img src="img/c02.webp" alt="單顆＋底座"></figure>
   
   <dl class="pd-facts rv">
     <div><dt>取自整塔</dt><dd>透明中音模組 ×1＋新增同軸高音、底座</dd></div>
@@ -826,7 +845,7 @@ body.light #rail{background:none!important;box-shadow:none!important}
   <div class="pd-head rv"><span class="pd-n">03</span><span class="pd-en">Home AI · Upper Two</span></div>
   <h2 class="pd-t rv">上半段兩節</h2>
   <p class="pd-line rv">整塔上半段直接取下，自己就能站立。</p>
-  <figure class="pd-fig rv"><img src="img/u03.webp" alt="上半段兩節"></figure>
+  <figure class="pd-fig rv stage"><img src="img/c03.webp" alt="上半段兩節"></figure>
   
   <dl class="pd-facts rv">
     <div><dt>取自整塔</dt><dd>小圓高音 ×2、方形單體、透明中音 ×1</dd></div>
