@@ -1,0 +1,233 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* dark utilities apply in both dark themes */
+@custom-variant dark (&:is(.dark *, .rytho *));
+@custom-variant rytho (&:is(.rytho *));
+@custom-variant light (&:is(.light *));
+
+/* =====================================================================
+   Tokens — tweakcn / shadcn format. ONE source of truth for all 3 modes.
+   Rule: green is light, not paint. --key / --fill are the two light
+   sources the glass is lit by; --primary is used only for the single
+   primary action + selected state + acoustic data.
+   ===================================================================== */
+:root,
+.light {
+  --background: oklch(0.975 0.002 260);
+  --foreground: oklch(0.17 0.01 270);
+  --card: oklch(1 0 0 / 55%);
+  --card-foreground: oklch(0.17 0.01 270);
+  --popover: oklch(0.99 0 0 / 82%);
+  --popover-foreground: oklch(0.17 0.01 270);
+  --primary: oklch(0.6 0.16 128);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.93 0.003 260);
+  --secondary-foreground: oklch(0.2 0.01 270);
+  --muted: oklch(0.94 0.003 260);
+  --muted-foreground: oklch(0.47 0.01 270);
+  --accent: oklch(0.93 0.003 260);
+  --accent-foreground: oklch(0.2 0.01 270);
+  --destructive: oklch(0.58 0.22 27);
+  --border: oklch(0.17 0.01 270 / 10%);
+  --input: oklch(0.17 0.01 270 / 14%);
+  --ring: oklch(0.6 0.16 128 / 60%);
+  --chart-1: oklch(0.6 0.16 128);
+  --chart-2: oklch(0.47 0.01 270);
+  --chart-3: oklch(0.7 0.01 270);
+  --chart-4: oklch(0.82 0.01 270);
+  --chart-5: oklch(0.9 0.01 270);
+  --radius: 1rem;
+  --font-sans: "Inter Tight", "Noto Sans HK", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --tracking-normal: -0.01em;
+  --shadow-sm: 0 1px 2px oklch(0.2 0.02 270 / 10%), 0 8px 24px -12px oklch(0.2 0.02 270 / 25%);
+  --shadow-lg: 0 2px 6px oklch(0.2 0.02 270 / 8%), 0 30px 60px -30px oklch(0.2 0.02 270 / 35%);
+  /* light sources (RYTHO-specific tokens) */
+  --key: oklch(0.72 0.19 125);
+  --fill: oklch(1 0 0);
+  --glass-tint: oklch(1 0 0 / 50%);
+  --glass-edge: oklch(1 0 0 / 95%);
+  --glass-shade: oklch(0.25 0.03 270 / 18%);
+  --ambient: none;
+}
+
+.dark {
+  --background: oklch(0.12 0.004 270);
+  --foreground: oklch(0.965 0.002 260);
+  --card: oklch(1 0 0 / 4%);
+  --card-foreground: oklch(0.965 0.002 260);
+  --popover: oklch(0.16 0.004 270 / 80%);
+  --popover-foreground: oklch(0.965 0.002 260);
+  --primary: oklch(0.91 0.2 124);
+  --primary-foreground: oklch(0.15 0.01 270);
+  --secondary: oklch(1 0 0 / 7%);
+  --secondary-foreground: oklch(0.965 0.002 260);
+  --muted: oklch(1 0 0 / 6%);
+  --muted-foreground: oklch(0.7 0.006 260);
+  --accent: oklch(1 0 0 / 8%);
+  --accent-foreground: oklch(0.965 0.002 260);
+  --destructive: oklch(0.7 0.19 22);
+  --border: oklch(1 0 0 / 9%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.91 0.2 124 / 55%);
+  --chart-1: oklch(0.91 0.2 124);
+  --chart-2: oklch(0.75 0.006 260);
+  --chart-3: oklch(0.55 0.006 260);
+  --chart-4: oklch(0.4 0.006 260);
+  --chart-5: oklch(0.3 0.006 260);
+  --shadow-sm: 0 1px 2px oklch(0 0 0 / 50%), 0 10px 30px -14px oklch(0 0 0 / 80%);
+  --shadow-lg: 0 2px 6px oklch(0 0 0 / 40%), 0 40px 80px -30px oklch(0 0 0 / 90%);
+  --key: oklch(0.91 0.2 124);
+  --fill: oklch(0.93 0.02 255);
+  --glass-tint: oklch(1 0 0 / 5%);
+  --glass-edge: oklch(1 0 0 / 32%);
+  --glass-shade: oklch(0 0 0 / 60%);
+  --ambient: none;
+}
+
+/* RYTHO: black/white base, glass lit by TWO lights — lime key (top-left), purple fill (bottom-right) */
+.rytho {
+  --background: oklch(0.08 0.004 285);
+  --foreground: oklch(0.975 0.002 260);
+  --card: oklch(1 0 0 / 4%);
+  --card-foreground: oklch(0.975 0.002 260);
+  --popover: oklch(0.12 0.01 285 / 80%);
+  --popover-foreground: oklch(0.975 0.002 260);
+  --primary: oklch(0.95 0.17 122);
+  --primary-foreground: oklch(0.1 0.01 285);
+  --secondary: oklch(1 0 0 / 7%);
+  --secondary-foreground: oklch(0.975 0.002 260);
+  --muted: oklch(1 0 0 / 6%);
+  --muted-foreground: oklch(0.7 0.01 285);
+  --accent: oklch(0.6 0.23 290 / 22%);
+  --accent-foreground: oklch(0.975 0.002 260);
+  --destructive: oklch(0.7 0.19 22);
+  --border: oklch(1 0 0 / 9%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.6 0.23 290 / 70%);
+  --chart-1: oklch(0.95 0.17 122);
+  --chart-2: oklch(0.6 0.23 290);
+  --chart-3: oklch(0.75 0.01 285);
+  --chart-4: oklch(0.45 0.01 285);
+  --chart-5: oklch(0.3 0.01 285);
+  --font-sans: "Urbanist", "Noto Sans HK", ui-sans-serif, system-ui, sans-serif;
+  --shadow-sm: 0 1px 2px oklch(0 0 0 / 50%), 0 10px 30px -14px oklch(0 0 0 / 80%);
+  --shadow-lg: 0 2px 6px oklch(0 0 0 / 40%), 0 40px 90px -30px oklch(0.45 0.2 290 / 55%);
+  --key: oklch(0.95 0.17 122);
+  --fill: oklch(0.6 0.23 290);
+  --glass-tint: oklch(1 0 0 / 5%);
+  --glass-edge: oklch(1 0 0 / 30%);
+  --glass-shade: oklch(0.45 0.2 290 / 55%);
+  --ambient: radial-gradient(40vw 34vw at 6% 8%, oklch(0.95 0.17 122 / 10%), transparent 70%),
+    radial-gradient(46vw 40vw at 96% 96%, oklch(0.5 0.23 290 / 22%), transparent 70%);
+}
+
+@theme inline {
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-key: var(--key);
+  --color-fill: var(--fill);
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: calc(var(--radius) * 0.75);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.5);
+  --radius-2xl: calc(var(--radius) * 2);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-lg: var(--shadow-lg);
+}
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  html { @apply font-sans; scroll-behavior: smooth; scroll-padding-top: 88px; letter-spacing: var(--tracking-normal); }
+  body { @apply bg-background text-foreground antialiased; transition: background-color .5s ease, color .5s ease; }
+  body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: var(--ambient); }
+  :root { --la: -45deg; --lb: .5; --kx: calc(cos(var(--la))); --ky: calc(sin(var(--la))); }
+}
+
+/* =====================================================================
+   Liquid glass. Markup: <Glass> renders .lg (host) > .lg-b (refraction,
+   map from glass.ts) + content + .lg-t (thickness rim lit by --key/--fill,
+   rotating with the breathing --la).
+   Levels: data-level="1" nav (thickest) · "2" controls · "3" cards (thin).
+   ===================================================================== */
+@layer components {
+  .lg { position: relative; isolation: isolate; box-shadow: var(--shadow-sm); }
+  .lg-b {
+    position: absolute; inset: 0; border-radius: inherit; z-index: -1; pointer-events: none;
+    background: linear-gradient(180deg, var(--glass-tint), transparent 55%, var(--glass-tint));
+    backdrop-filter: blur(14px) saturate(160%);
+  }
+  /* thickness rim: neutral glass edge everywhere; the KEY light only grazes the side facing --la,
+     the FILL light the opposite side. Green stays a light, never a full outline. */
+  .lg-t {
+    position: absolute; inset: 0; border-radius: inherit; z-index: 2; pointer-events: none;
+    opacity: calc(.8 + var(--lb) * .2);
+    box-shadow:
+      inset 0 0 0 .5px var(--glass-edge),
+      inset calc(var(--kx) * 1px) calc(var(--ky) * 1px) 0 -.3px color-mix(in oklch, var(--key) 75%, transparent),
+      inset calc(var(--kx) * 8px) calc(var(--ky) * 8px) 16px -10px color-mix(in oklch, var(--key) 30%, transparent),
+      inset calc(var(--kx) * -1px) calc(var(--ky) * -1px) 0 -.3px color-mix(in oklch, var(--fill) 55%, transparent),
+      inset calc(var(--kx) * -10px) calc(var(--ky) * -10px) 18px -10px var(--glass-shade),
+      inset 0 1.5px 1px -.5px color-mix(in oklch, white 45%, transparent);
+  }
+  .lg-t::before {
+    content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; opacity: .85;
+    background: conic-gradient(from var(--la),
+      var(--key), color-mix(in oklch, var(--key) 18%, transparent) 26deg, oklch(1 0 0 / 6%) 60deg,
+      oklch(1 0 0 / 4%) 140deg, color-mix(in oklch, var(--fill) 45%, transparent) 180deg, oklch(1 0 0 / 4%) 220deg,
+      oklch(1 0 0 / 6%) 300deg, color-mix(in oklch, var(--key) 18%, transparent) 334deg, var(--key));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  }
+  .dark .lg-t::before { opacity: .75; }
+  .lg[data-level="3"] .lg-t { opacity: calc(.45 + var(--lb) * .15); }
+  .lg[data-level="3"] .lg-b { backdrop-filter: blur(18px) saturate(150%); }
+
+  /* product stage: renders have dark studio backdrops. Dark modes: the stage dissolves into the page.
+     Light mode: it becomes a framed dark showcase card (never feather dark renders into white). */
+  .stage { border-radius: 28px; overflow: hidden; }
+  .light .stage { background: #0b0b0e; box-shadow: var(--shadow-lg); }
+
+  /* faint diagonal hatch on frosted surfaces (ref: frosted dashboard set) */
+  .hatch { background-image: repeating-linear-gradient(135deg, color-mix(in oklch, var(--foreground) 3.5%, transparent) 0 1px, transparent 1px 7px); }
+
+  /* lit action: green as light on glass, not a solid fill */
+  .lit { box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--primary) 70%, transparent), inset 0 0 22px color-mix(in oklch, var(--primary) 16%, transparent), 0 0 40px -10px color-mix(in oklch, var(--primary) 45%, transparent); }
+
+  /* product imagery: soft vignette so renders sit on the page, never cropped */
+  .stage-img { width: 100%; height: 100%; object-fit: contain; }
+  /* renders carry their own backdrop: dissolve the frame edges instead of showing a hard box */
+  .soft-edge { -webkit-mask: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent), linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent); -webkit-mask-composite: source-in;
+    mask: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent), linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent); mask-composite: intersect; }
+  .fade-x { -webkit-mask: linear-gradient(90deg, transparent 0, #000 22%, #000 78%, transparent 100%); mask: linear-gradient(90deg, transparent 0, #000 22%, #000 78%, transparent 100%); }
+  .hairline { background: linear-gradient(90deg, transparent, var(--border), transparent); height: 1px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
