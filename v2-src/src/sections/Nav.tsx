@@ -2,8 +2,8 @@ import * as React from "react"
 import { motion } from "motion/react"
 import { Menu } from "lucide-react"
 import { Glass } from "@/lib/glass"
-import { SECTIONS } from "@/data"
-import { useApp, type Theme } from "@/app-state"
+import { LANG_LABELS as LANGS, SECTIONS, UI } from "@/data"
+import { useApp, useT, type Theme } from "@/app-state"
 import { Switch } from "@/components/ui/switch"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
@@ -50,7 +50,8 @@ export function Segmented<T extends string>({ value, onChange, items, id, size =
 const THEMES: { v: Theme; label: string }[] = [{ v: "dark", label: "DARK" }, { v: "rytho", label: "RYTHO" }, { v: "light", label: "LIGHT" }]
 
 export function Nav() {
-  const { theme, setTheme, notes, setNotes } = useApp()
+  const { theme, setTheme, lang, setLang, notes, setNotes } = useApp()
+  const tr = useT()
   const active = useScrollSpy(SECTIONS.map((s) => s.id))
   const [open, setOpen] = React.useState(false)
   return (
@@ -73,11 +74,12 @@ export function Nav() {
           <Tooltip>
             <TooltipTrigger asChild>
               <label className="flex cursor-pointer items-center gap-2 text-[11px] text-muted-foreground">
-                <Switch checked={notes} onCheckedChange={setNotes} aria-label="顯示待補項" />待補
+                <Switch checked={notes} onCheckedChange={setNotes} aria-label={tr(UI.notesLong)} />{tr(UI.notes)}
               </label>
             </TooltipTrigger>
-            <TooltipContent>顯示／隱藏內部待補註記</TooltipContent>
+            <TooltipContent>{tr(UI.notesTip)}</TooltipContent>
           </Tooltip>
+          <Segmented id="lang" size="sm" value={lang} onChange={setLang} items={LANGS} />
           <Segmented id="theme" size="sm" value={theme} onChange={setTheme} items={THEMES} />
         </div>
         <Sheet open={open} onOpenChange={setOpen}>
@@ -90,8 +92,8 @@ export function Nav() {
               <div className="grid grid-cols-2 gap-1">
                 {SECTIONS.map((s) => <a key={s.id} href={"#" + s.id} onClick={() => setOpen(false)} className={cn("rounded-xl px-3 py-3 text-sm", active === s.id ? "bg-foreground/8 text-foreground" : "text-muted-foreground")}>{s.t}</a>)}
               </div>
-              <Segmented id="theme-m" value={theme} onChange={setTheme} items={THEMES} className="justify-self-start" />
-              <label className="flex items-center gap-3 text-sm text-muted-foreground"><Switch checked={notes} onCheckedChange={setNotes} />顯示待補項</label>
+              <div className="flex flex-wrap gap-2"><Segmented id="lang-m" value={lang} onChange={setLang} items={LANGS} /><Segmented id="theme-m" value={theme} onChange={setTheme} items={THEMES} /></div>
+              <label className="flex items-center gap-3 text-sm text-muted-foreground"><Switch checked={notes} onCheckedChange={setNotes} />{tr(UI.notesLong)}</label>
             </div>
           </SheetContent>
         </Sheet>

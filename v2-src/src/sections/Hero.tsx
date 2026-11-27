@@ -1,9 +1,9 @@
 import * as React from "react"
 import { motion } from "motion/react"
 import { Glass } from "@/lib/glass"
-import { IMG } from "@/data"
+import { IMG, UI } from "@/data"
 import { cn } from "@/lib/utils"
-import { useApp } from "@/app-state"
+import { useApp, useT } from "@/app-state"
 
 const XF = 1.2 // seconds of picture + sound cross-fade at the loop point
 
@@ -13,6 +13,7 @@ export function Hero() {
   const [onA, setOnA] = React.useState(true)
   const [sound, setSound] = React.useState(false)
   const { theme } = useApp()
+  const tr = useT()
   const st = React.useRef({ cur: 0, xf: 0, t0: 0, sound: false })
 
   React.useEffect(() => {
@@ -53,8 +54,8 @@ export function Hero() {
 
       <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .4, duration: .9, ease: [.22, 1, .36, 1] }}
         className="absolute bottom-10 left-6 max-w-[17rem] md:bottom-16 md:left-12">
-        <p className="font-mono text-[10px] tracking-[.24em] text-muted-foreground">TRANSPARENT GLASS DIAPHRAGM</p>
-        <h1 className="mt-3 text-[26px] leading-[1.15] font-light tracking-tight md:text-[32px]">讓聲音<br />第一次被看見<span className="text-key">.</span></h1>
+        <p className="font-mono text-[10px] tracking-[.24em] text-muted-foreground">{tr(UI.heroEyebrow)}</p>
+        <h1 className="mt-3 text-[26px] leading-[1.15] font-light tracking-tight md:text-[32px]">{tr(UI.heroH1).split("\n").map((l, i) => <React.Fragment key={i}>{i > 0 && <br />}{l}</React.Fragment>)}<span className="text-key">.</span></h1>
       </motion.div>
 
       <Glass as="button" level={2} onClick={toggle} aria-pressed={sound} aria-label={sound ? "Sound off" : "Sound on"}

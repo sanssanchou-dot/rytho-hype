@@ -7,8 +7,9 @@ Two versions, one repo (GitHub Pages → https://sanssanchou-dot.github.io/rytho
 ## Standard website workflow (every change)
 1. Edit `v2-src/src/`. Colours/radius/shadows/fonts live only in `src/index.css` tokens (tweakcn format, `:root`/.dark/.rytho/.light) — no per-component colours, no `!important`.
    Copy and product data live only in `src/data.ts`; FAQ answers there are facts only (no acoustic performance claims — see ../../聲學設計強制規則.md §3).
-2. `npm --prefix v2-src run build` — typecheck → vite build → `prerender.mjs` (bakes HTML for non-JS AI crawlers, JSON-LD, writes `/llms.txt` + `/sitemap.xml`).
-3. `npm --prefix v2-src run qa` — 3 themes × desktop/mobile + interactions + SEO/GEO static checks; screenshots in `v2-src/qa-out/`. **Look at the screenshots**, not just PASS.
+   **Bilingual = whole-page switch.** Every visible string is a `{ zh, en }` pair in `data.ts`, rendered with `useT()`; the 中/EN switch in the nav swaps the entire page in place (URL `/v2/` ↔ `/v2/en/`, `<html lang>`, title, description). Never add a separate English section or an English-only block — new copy gets both languages in the same edit. `lint-i18n.mjs` fails the build on CJK outside `data.ts`.
+2. `npm --prefix v2-src run build` — i18n lint → typecheck → vite build → `prerender.mjs` (bakes one HTML per language for non-JS AI crawlers with hreflang + JSON-LD, writes `/llms.txt` + `/sitemap.xml`).
+3. `npm --prefix v2-src run qa` — 2 languages × 3 themes × desktop/mobile + interactions + language switch + SEO/GEO static checks (incl. untranslated CJK on EN); screenshots in `v2-src/qa-out/` (`zh_*`, `en_*`). **Look at the screenshots of both languages**, not just PASS — English runs longer.
 4. Commit with `-c user.name=sanssanchou-dot -c user.email=sanssanchou-dot@users.noreply.github.com`, push (pre-push hook re-runs QA).
 5. After deploy: `/geo quick https://sanssanchou-dot.github.io/rytho-hype/v2/`; run `/geo audit` before any public launch.
 

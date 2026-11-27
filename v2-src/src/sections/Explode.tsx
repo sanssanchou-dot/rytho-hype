@@ -2,7 +2,8 @@ import * as React from "react"
 import { animate, motion, AnimatePresence } from "motion/react"
 import { Plus, Minus } from "lucide-react"
 import { Glass } from "@/lib/glass"
-import { EXPLODE_LABELS, IMG } from "@/data"
+import { EXPLODE_LABELS, IMG, UI } from "@/data"
+import { useT } from "@/app-state"
 import { cn } from "@/lib/utils"
 
 const FR = 72, LAB_X = .8
@@ -15,6 +16,7 @@ export function Explode() {
   const [open, setOpen] = React.useState(false)
   const [p, setP] = React.useState(0)
   const [ready, setReady] = React.useState(false)
+  const tr = useT()
 
   const draw = React.useCallback((q: number) => {
     const c = cv.current; if (!c) return
@@ -49,7 +51,7 @@ export function Explode() {
       <div className="mx-auto flex w-full max-w-6xl items-end justify-between gap-6 px-6">
         <div>
           <p className="font-mono text-[10px] tracking-[.24em] text-muted-foreground">02 / EXPLODED</p>
-          <h2 className="mt-4 text-[clamp(28px,3.6vw,48px)] leading-tight font-light tracking-tight">八個單體，一個可換的主體。</h2>
+          <h2 className="mt-4 text-[clamp(28px,3.6vw,48px)] leading-tight font-light tracking-tight">{tr(UI.explodeH)}</h2>
         </div>
         <span className="font-mono text-xs text-muted-foreground tabular-nums">{String(Math.round(p * 100)).padStart(3, "0")}</span>
       </div>
@@ -65,7 +67,7 @@ export function Explode() {
                 <span className="h-px w-8 bg-gradient-to-r from-transparent to-foreground/40" />
                 <span className="-translate-y-1/2 pt-[0.6em]">
                   <b className={cn("block font-mono text-[11px] font-medium tracking-[.16em]", l.hero ? "text-primary" : "text-foreground")}>{l.t}</b>
-                  <span className="mt-1 block text-xs text-muted-foreground">{l.s}</span>
+                  <span className="mt-1 block text-xs text-muted-foreground">{tr(l.s)}</span>
                 </span>
               </motion.div>
             ))}
@@ -76,7 +78,7 @@ export function Explode() {
       <div className="mt-8 flex justify-center">
         <Glass as="button" level={2} onClick={toggle} aria-pressed={open}
           className="lit flex h-11 items-center gap-3 rounded-full pr-1.5 pl-5 text-sm font-medium">
-          {open ? "Assemble" : "Explode"}
+          {tr(open ? UI.assemble : UI.explode)}
           <span className="grid size-8 place-items-center rounded-full text-primary ring-1 ring-primary/70">
             {open ? <Minus className="size-3.5" /> : <Plus className="size-3.5" />}
           </span>
@@ -87,7 +89,7 @@ export function Explode() {
         {EXPLODE_LABELS.map((l) => (
           <li key={l.t} className="flex items-baseline justify-between gap-4 border-b border-border pb-3">
             <b className={cn("font-mono text-[11px] font-medium tracking-[.14em]", l.hero ? "text-primary" : "")}>{l.t}</b>
-            <span className="text-right text-xs text-muted-foreground">{l.s}</span>
+            <span className="text-right text-xs text-muted-foreground">{tr(l.s)}</span>
           </li>
         ))}
       </ul>

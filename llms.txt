@@ -1,16 +1,42 @@
 # RYTHO HYPE
 
-> 透明喇叭產品概念：以玻音先創的透明玻璃振膜為核心，搭配透明箱體與螺旋葉片內構，讓發聲結構被看見。OPQ Studio（設計）× Rytho（軟體）× 玻音先創（單體）× 玩樂生活（DSP）。目前為概念與樣機階段，尚未販售。
+> RYTHO HYPE is a transparent loudspeaker concept built around a glass diaphragm by 玻音先創 and a clear spiral enclosure. One pair of towers splits into four products. OPQ Studio × Rytho × 玩樂生活.
 
-## 主要頁面
-- [RYTHO HYPE v2](https://sanssanchou-dot.github.io/rytho-hype/v2/): 完整介紹——影片、透明振膜、爆炸圖、四個產品、AI、合作方、常見問題
-- [RYTHO HYPE v1](https://sanssanchou-dot.github.io/rytho-hype/): 前一版提案頁
+## Pages
+- [RYTHO HYPE (中文)](https://sanssanchou-dot.github.io/rytho-hype/v2/): 完整介紹——影片、透明振膜、爆炸圖、四個產品、AI、合作方、常見問題
+- [RYTHO HYPE (English)](https://sanssanchou-dot.github.io/rytho-hype/v2/en/): the full page in English
+- [RYTHO HYPE v1](https://sanssanchou-dot.github.io/rytho-hype/): earlier pitch page (Chinese)
+
+## Products
+- 01 Portable (Portable): A fully transparent spiral acoustic chamber you carry in one hand. H 180 mm; From the tower: The transparent mid module’s diaphragm and spiral chamber; Connectivity: Bluetooth; Status: Concept stage
+- 02 Single + Base (Home AI · Single): One transparent module with a coaxial tweeter at its centre. H 261 mm; From the tower: Transparent mid module ×1 + new coaxial tweeter and base; Connectivity: Wi‑Fi · AI · Bluetooth; Status: Rendered from the original module
+- 03 Upper Two Sections (Home AI · Upper Two): The tower’s upper half lifts off and stands on its own. H 1,022 mm ×2; From the tower: Small round tweeters ×2, square driver, transparent mid ×1; Connectivity: Wi‑Fi · AI · Bluetooth; Status: Rendered from the original model
+- 04 Bespoke Full Set (Bespoke · Full Set): Drivers and enclosures stay; only the carrying body changes. H 2,693 mm ×2; From the tower: All eight drivers and enclosures; Connectivity: Wi‑Fi · AI; Status: Rendered from the original mesh
+
+## FAQ
+### What is RYTHO HYPE?
+RYTHO HYPE is a transparent loudspeaker concept built around a transparent glass diaphragm from 玻音先創, a clear enclosure and an internal spiral vane, so the structure that makes the sound stays visible. OPQ Studio leads the design; Rytho, 玻音先創 and 玩樂生活 co-develop it.
+
+### Which products are in the RYTHO HYPE family?
+One pair of tower speakers splits into four products: 01 Portable (Bluetooth, 180 mm tall), 02 Single + Base (Wi‑Fi and AI, 261 mm), 03 Upper Two Sections (Wi‑Fi and AI, 1,022 mm, a pair) and 04 Bespoke Full Set (Wi‑Fi and AI, 2,693 mm, a pair).
+
+### What do the glass diaphragm and the spiral vane do?
+The mid-range module radiates through the transparent glass diaphragm at the front. Inside the enclosure the spiral vane doubles as the port: the rear wave follows the spiral channel and leaves through the outlet at the tail. The particle animation on this site is traced from the channel geometry of the 261027 model; it is an illustration, not a simulation or measurement.
+
+### What can be customised on the 04 Bespoke set?
+The eight drivers and their enclosures stay the same; only the body that carries them changes. Current body directions are Original, Fin (seven finishes) and Hi‑Fi (70s studio monitor, British heritage monitor, Scandinavian sculpture), all pending CAD.
+
+### Who does what?
+玻音先創: driver technology and manufacturing (transparent glass diaphragm). Rytho: software (AI listening, app, Wi‑Fi). OPQ Studio: product design. 玩樂生活: DSP acoustics (tuning, crossover and measurement).
+
+### Can I buy RYTHO HYPE?
+Not yet. RYTHO HYPE is at concept and prototype stage. Next steps are driver and visual prototypes, a home AI prototype, a portable feasibility study and the bespoke body series.
 
 ## 產品
-- 01 隨身（Portable）：螺旋全透明聲學腔，一手帶走。 H 180 mm；取自整塔：透明中音模組的振膜與螺旋腔；連線：Bluetooth；狀態：概念階段
-- 02 單顆＋底座（Home AI · Single）：一顆透明模組，中心加同軸高音。 H 261 mm；取自整塔：透明中音模組 ×1＋新增同軸高音、底座；連線：Wi-Fi · AI · Bluetooth；狀態：原模組渲染
-- 03 上半段兩節（Home AI · Upper Two）：整塔上半段直接取下，自己就能站立。 H 1,022 mm ×2；取自整塔：小圓高音 ×2、方形單體、透明中音 ×1；連線：Wi-Fi · AI · Bluetooth；狀態：原模型渲染
-- 04 整組高訂（Bespoke · Full Set）：單體與箱體不動，只換承載主體。 H 2,693 mm ×2；取自整塔：整組八個單體與箱體；連線：Wi-Fi · AI；狀態：原網格渲染
+- 01 隨身 (Portable): 螺旋全透明聲學腔，一手帶走。 H 180 mm; 取自整塔: 透明中音模組的振膜與螺旋腔; 連線: Bluetooth; 狀態: 概念階段
+- 02 單顆＋底座 (Home AI · Single): 一顆透明模組，中心加同軸高音。 H 261 mm; 取自整塔: 透明中音模組 ×1＋新增同軸高音、底座; 連線: Wi-Fi · AI · Bluetooth; 狀態: 原模組渲染
+- 03 上半段兩節 (Home AI · Upper Two): 整塔上半段直接取下，自己就能站立。 H 1,022 mm ×2; 取自整塔: 小圓高音 ×2、方形單體、透明中音 ×1; 連線: Wi-Fi · AI · Bluetooth; 狀態: 原模型渲染
+- 04 整組高訂 (Bespoke · Full Set): 單體與箱體不動，只換承載主體。 H 2,693 mm ×2; 取自整塔: 整組八個單體與箱體; 連線: Wi-Fi · AI; 狀態: 原網格渲染
 
 ## 常見問題
 ### RYTHO HYPE 是什麼？
@@ -31,26 +57,5 @@ RYTHO HYPE 是一套透明喇叭產品概念：以玻音先創的透明玻璃振
 ### RYTHO HYPE 現在可以購買嗎？
 還不行。RYTHO HYPE 目前在概念與樣機階段，下一步是單體與視覺樣機、家用 AI 樣機、隨身可行性評估，以及高訂主體系列。
 
-## 注意
-- 網站上的聲學粒子動畫取自 261027 模型的螺旋流道幾何，屬示意，非模擬或量測結果。
-
-## English
-RYTHO HYPE is a transparent loudspeaker concept. Its core is a transparent glass diaphragm made by 玻音先創, set in a clear enclosure with a spiral vane inside, so the structure that makes the sound stays visible. It is designed by OPQ Studio and developed with Rytho (software) and 玩樂生活 (DSP). It is at concept and prototype stage and is not for sale.
-
-### What is RYTHO HYPE?
-RYTHO HYPE is a transparent loudspeaker concept built around a transparent glass diaphragm from 玻音先創, a clear enclosure and an internal spiral vane. OPQ Studio leads the design; Rytho, 玻音先創 and 玩樂生活 co-develop it.
-
-### Which products are in the RYTHO HYPE family?
-One pair of tower speakers splits into four products: 01 Portable (Bluetooth, 180 mm tall), 02 Home AI Single with base (Wi‑Fi and AI, 261 mm), 03 Home AI Upper Two (Wi‑Fi and AI, 1,022 mm, a pair) and 04 Bespoke Full Set (Wi‑Fi and AI, 2,693 mm, a pair).
-
-### What do the glass diaphragm and the spiral vane do?
-The mid-range module radiates through the transparent glass diaphragm at the front. Inside the enclosure the spiral vane doubles as the port: the rear wave follows the spiral channel and leaves through the outlet at the tail. The particle animation on this site is traced from the channel geometry of the 261027 model; it is an illustration, not a simulation or measurement.
-
-### What can be customised on the 04 Bespoke set?
-The eight drivers and their enclosures stay the same; only the body that carries them changes. Current body directions are Original, Fin (seven finishes) and Hi‑Fi (70s studio monitor, British heritage monitor, Scandinavian sculpture), all pending CAD.
-
-### Who does what?
-玻音先創: driver technology and manufacturing (transparent glass diaphragm). Rytho: software (AI listening, app, Wi‑Fi). OPQ Studio: product design. 玩樂生活: DSP acoustics (tuning, crossover and measurement).
-
-### Can I buy RYTHO HYPE?
-Not yet. RYTHO HYPE is at concept and prototype stage. Next steps are driver and visual prototypes, a home AI prototype, a portable feasibility study and the bespoke body series.
+## Note
+- The acoustic particle animation is traced from the spiral channel geometry of the 261027 model; it is illustrative, not a simulation or measurement. 動畫為示意，非模擬或量測結果。

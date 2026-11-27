@@ -1,7 +1,7 @@
 import * as React from "react"
 import { motion } from "motion/react"
-import { IMG } from "@/data"
-import { useApp } from "@/app-state"
+import { IMG, UI } from "@/data"
+import { useApp, useT } from "@/app-state"
 
 type Paths = { path: [number, number, number | null, string][]; chs: [number, number][][]; dia: any; port: any }
 
@@ -9,6 +9,7 @@ type Paths = { path: [number, number, number | null, string][]; chs: [number, nu
 function MidViz() {
   const box = React.useRef<HTMLDivElement>(null), cv = React.useRef<HTMLCanvasElement>(null)
   const { theme } = useApp()
+  const tr = useT()
   const themeRef = React.useRef(theme); themeRef.current = theme
   const [labels, setLabels] = React.useState<{ d: [number, number]; s: [number, number]; p: [number, number] } | null>(null)
 
@@ -66,23 +67,24 @@ function MidViz() {
       <img src={IMG("mid_explode.webp")} width={3200} height={1400} alt="" className="absolute inset-0 size-full opacity-55 light:opacity-80 rytho:opacity-45" />
       <canvas ref={cv} className="absolute inset-0 size-full" />
       {labels && <div className="hidden md:block">
-        <Lab at={labels.d} t="GLASS DIAPHRAGM" s="玻音先創 透明振膜" />
-        <Lab at={labels.s} t="SPIRAL = PORT LENGTH" s="螺旋葉片即導音管" />
-        <Lab at={labels.p} t="PORT" s="出氣口" />
+        <Lab at={labels.d} t="GLASS DIAPHRAGM" s={tr(UI.vizD)} />
+        <Lab at={labels.s} t="SPIRAL = PORT LENGTH" s={tr(UI.vizS)} />
+        <Lab at={labels.p} t="PORT" s={tr(UI.vizP)} />
       </div>}
     </div>
   )
 }
 
-const LINE1 = "玻璃振膜＋透明箱體，", LINE2 = "讓聲音第一次被看見。"
-
 export function Core() {
-  const chars = [...LINE1, "\n", ...LINE2]
+  const tr = useT()
+  const text = tr(UI.coreLines), en = /^[A-Za-z]/.test(text)
+  // CJK lights up per character, English per word
+  const chars = en ? text.split(/(\s+)/).flatMap((w) => w.includes("\n") ? ["\n"] : [w]) : [...text]
   return (
     <section id="core" className="relative overflow-hidden py-28 md:py-40">
       <div className="mx-auto max-w-6xl px-6">
         <p className="font-mono text-[10px] tracking-[.24em] text-muted-foreground">01 / THE IDEA</p>
-        <motion.h2 initial="h" whileInView="v" viewport={{ once: true, amount: .6 }} transition={{ staggerChildren: .045 }}
+        <motion.h2 key={text} initial="h" whileInView="v" viewport={{ once: true, amount: .6 }} transition={{ staggerChildren: .045 }}
           className="mt-5 text-[clamp(30px,5vw,68px)] leading-[1.12] font-light tracking-tight">
           {chars.map((c, i) => c === "\n" ? <br key={i} /> : (
             <motion.span key={i} variants={{ h: { opacity: .12 }, v: { opacity: 1 } }} transition={{ duration: .5 }}>{c}</motion.span>
@@ -91,8 +93,8 @@ export function Core() {
       </div>
       <div className="mt-16 px-4 md:mt-24"><MidViz /></div>
       <p className="mx-auto mt-10 max-w-md px-6 text-center text-sm text-muted-foreground">
-        中音模組側視：前方是透明振膜的直接輻射，後方背波沿螺旋葉片走完導音管，從尾端出氣口離開。
-        <span className="mt-2 block text-[11px] opacity-70">粒子路徑取自 261027 模型的螺旋流道幾何；動畫為示意，非模擬結果。</span>
+        {tr(UI.coreCaption)}
+        <span className="mt-2 block text-[11px] opacity-70">{tr(UI.coreNote)}</span>
       </p>
     </section>
   )
