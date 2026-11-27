@@ -32,14 +32,15 @@ await browser.close(); srv.close()
 // ---------- 2. JSON-LD ----------
 const org = { "@type": "Organization", "@id": SITE + "#opq", name: "OPQ Studio", url: SITE }
 const ld = { "@context": "https://schema.org", "@graph": [
-  { "@type": "WebSite", "@id": SITE + "#site", url: SITE, name: "RYTHO HYPE", inLanguage: "zh-Hant", publisher: { "@id": SITE + "#opq" } },
+  { "@type": "WebSite", "@id": SITE + "#site", url: SITE, name: "RYTHO HYPE", inLanguage: ["zh-Hant", "en"], description: D.SUMMARY_EN, publisher: { "@id": SITE + "#opq" } },
   org,
   { "@type": "WebPage", "@id": SITE + "#page", url: SITE, name: "RYTHO HYPE — 讓聲音第一次被看見", isPartOf: { "@id": SITE + "#site" }, inLanguage: "zh-Hant",
     primaryImageOfPage: { "@type": "ImageObject", url: IMGU("og_v2.jpg"), width: 1200, height: 630 }, dateModified: new Date().toISOString().slice(0, 10) },
   { "@type": "ItemList", name: "RYTHO HYPE 產品系列", itemListElement: D.PRODUCTS.map((p, i) => ({ "@type": "ListItem", position: i + 1, item: {
     "@type": "Product", name: `RYTHO HYPE ${p.n} ${p.zh}`, alternateName: p.en, description: p.line, image: IMGU(p.closeup), brand: { "@type": "Brand", name: "RYTHO HYPE" },
     additionalProperty: [{ "@type": "PropertyValue", name: "高度", value: p.heightLabel }, ...p.facts.map((f) => ({ "@type": "PropertyValue", name: f.k, value: f.v }))] } })) },
-  { "@type": "FAQPage", mainEntity: D.FAQ.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) },
+  { "@type": "FAQPage", inLanguage: "zh-Hant", mainEntity: D.FAQ.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) },
+  { "@type": "FAQPage", inLanguage: "en", mainEntity: D.FAQ_EN.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) },
 ] }
 
 // ---------- 3. write index.html ----------
@@ -66,6 +67,11 @@ ${D.FAQ.map((f) => `### ${f.q}\n${f.a}`).join("\n\n")}
 
 ## 注意
 - 網站上的聲學粒子動畫取自 261027 模型的螺旋流道幾何，屬示意，非模擬或量測結果。
+
+## English
+${D.SUMMARY_EN}
+
+${D.FAQ_EN.map((f) => `### ${f.q}\n${f.a}`).join("\n\n")}
 `
 fs.writeFileSync(path.join(ROOT, "llms.txt"), llms)
 const today = new Date().toISOString().slice(0, 10)

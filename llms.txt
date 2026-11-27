@@ -33,3 +33,24 @@ RYTHO HYPE 是一套透明喇叭產品概念：以玻音先創的透明玻璃振
 
 ## 注意
 - 網站上的聲學粒子動畫取自 261027 模型的螺旋流道幾何，屬示意，非模擬或量測結果。
+
+## English
+RYTHO HYPE is a transparent loudspeaker concept. Its core is a transparent glass diaphragm made by 玻音先創, set in a clear enclosure with a spiral vane inside, so the structure that makes the sound stays visible. It is designed by OPQ Studio and developed with Rytho (software) and 玩樂生活 (DSP). It is at concept and prototype stage and is not for sale.
+
+### What is RYTHO HYPE?
+RYTHO HYPE is a transparent loudspeaker concept built around a transparent glass diaphragm from 玻音先創, a clear enclosure and an internal spiral vane. OPQ Studio leads the design; Rytho, 玻音先創 and 玩樂生活 co-develop it.
+
+### Which products are in the RYTHO HYPE family?
+One pair of tower speakers splits into four products: 01 Portable (Bluetooth, 180 mm tall), 02 Home AI Single with base (Wi‑Fi and AI, 261 mm), 03 Home AI Upper Two (Wi‑Fi and AI, 1,022 mm, a pair) and 04 Bespoke Full Set (Wi‑Fi and AI, 2,693 mm, a pair).
+
+### What do the glass diaphragm and the spiral vane do?
+The mid-range module radiates through the transparent glass diaphragm at the front. Inside the enclosure the spiral vane doubles as the port: the rear wave follows the spiral channel and leaves through the outlet at the tail. The particle animation on this site is traced from the channel geometry of the 261027 model; it is an illustration, not a simulation or measurement.
+
+### What can be customised on the 04 Bespoke set?
+The eight drivers and their enclosures stay the same; only the body that carries them changes. Current body directions are Original, Fin (seven finishes) and Hi‑Fi (70s studio monitor, British heritage monitor, Scandinavian sculpture), all pending CAD.
+
+### Who does what?
+玻音先創: driver technology and manufacturing (transparent glass diaphragm). Rytho: software (AI listening, app, Wi‑Fi). OPQ Studio: product design. 玩樂生活: DSP acoustics (tuning, crossover and measurement).
+
+### Can I buy RYTHO HYPE?
+Not yet. RYTHO HYPE is at concept and prototype stage. Next steps are driver and visual prototypes, a home AI prototype, a portable feasibility study and the bespoke body series.

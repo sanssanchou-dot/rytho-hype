@@ -88,3 +88,14 @@ export const FAQ = [
   { q: "各合作方負責什麼？", a: "玻音先創負責單體技術與製造（透明玻璃振膜）；Rytho 負責軟體技術（AI 聆聽、App、Wi‑Fi 連網）；OPQ Studio 負責產品設計；玩樂生活負責 DSP 聲學技術（調校、分頻與量測）。" },
   { q: "RYTHO HYPE 現在可以購買嗎？", a: "還不行。RYTHO HYPE 目前在概念與樣機階段，下一步是單體與視覺樣機、家用 AI 樣機、隨身可行性評估，以及高訂主體系列。" },
 ]
+
+/* English — same facts as FAQ (keep in sync). Partner names without an official English name stay in Chinese. */
+export const SUMMARY_EN = "RYTHO HYPE is a transparent loudspeaker concept. Its core is a transparent glass diaphragm made by 玻音先創, set in a clear enclosure with a spiral vane inside, so the structure that makes the sound stays visible. It is designed by OPQ Studio and developed with Rytho (software) and 玩樂生活 (DSP). It is at concept and prototype stage and is not for sale."
+export const FAQ_EN = [
+  { q: "What is RYTHO HYPE?", a: "RYTHO HYPE is a transparent loudspeaker concept built around a transparent glass diaphragm from 玻音先創, a clear enclosure and an internal spiral vane. OPQ Studio leads the design; Rytho, 玻音先創 and 玩樂生活 co-develop it." },
+  { q: "Which products are in the RYTHO HYPE family?", a: "One pair of tower speakers splits into four products: 01 Portable (Bluetooth, 180 mm tall), 02 Home AI Single with base (Wi‑Fi and AI, 261 mm), 03 Home AI Upper Two (Wi‑Fi and AI, 1,022 mm, a pair) and 04 Bespoke Full Set (Wi‑Fi and AI, 2,693 mm, a pair)." },
+  { q: "What do the glass diaphragm and the spiral vane do?", a: "The mid-range module radiates through the transparent glass diaphragm at the front. Inside the enclosure the spiral vane doubles as the port: the rear wave follows the spiral channel and leaves through the outlet at the tail. The particle animation on this site is traced from the channel geometry of the 261027 model; it is an illustration, not a simulation or measurement." },
+  { q: "What can be customised on the 04 Bespoke set?", a: "The eight drivers and their enclosures stay the same; only the body that carries them changes. Current body directions are Original, Fin (seven finishes) and Hi‑Fi (70s studio monitor, British heritage monitor, Scandinavian sculpture), all pending CAD." },
+  { q: "Who does what?", a: "玻音先創: driver technology and manufacturing (transparent glass diaphragm). Rytho: software (AI listening, app, Wi‑Fi). OPQ Studio: product design. 玩樂生活: DSP acoustics (tuning, crossover and measurement)." },
+  { q: "Can I buy RYTHO HYPE?", a: "Not yet. RYTHO HYPE is at concept and prototype stage. Next steps are driver and visual prototypes, a home AI prototype, a portable feasibility study and the bespoke body series." },
+]

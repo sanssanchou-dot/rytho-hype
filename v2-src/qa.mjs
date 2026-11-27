@@ -73,6 +73,7 @@ for (const theme of ["dark", "rytho", "light"]) for (const [vk, vp] of Object.en
   const text = root.replace(/<script[\s\S]*?<\/script>/g, "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim()
   need(text.length > 1500, `prerendered text only ${text.length} chars — is prerender.mjs running?`)
   need((root.match(/<h1[\s>]/g) || []).length === 1, "exactly one <h1> expected in prerendered HTML")
+  need(/lang="en"/.test(root), "English block (lang=en) missing from prerendered HTML")
   need((root.match(/<h2[\s>]/g) || []).length >= 6, "fewer than 6 <h2> in prerendered HTML")
   const noAlt = (root.match(/<img(?![^>]*alt=)[^>]*>/g) || []).length; need(!noAlt, `${noAlt} <img> without alt`)
   need(!/待補：/.test(text), "internal 待補 notes leaked into prerendered HTML")
