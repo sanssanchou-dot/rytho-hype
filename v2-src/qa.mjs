@@ -1,26 +1,16 @@
 // QA: 3 themes × desktop/mobile against the BUILT site (../v2 served from ../).
-// Fails on: page errors, console errors, failed requests, horizontal overflow, broken images.
+// Fails on: page errors, console errors, failed requests, horizontal overflow, broken images,
+// and SEO/GEO static checks on the raw HTML (what non-JS AI crawlers see).
 // Usage: npm run qa            (screens -> qa-out/, add --shots=0 to skip screenshots)
-import http from "node:http"
 import fs from "node:fs"
 import path from "node:path"
 import puppeteer from "puppeteer-core"
+import { serve } from "./serve.mjs"
 
-const ROOT = path.resolve(import.meta.dirname, "..")
 const OUT = path.resolve(import.meta.dirname, "qa-out")
 const SHOTS = !process.argv.includes("--shots=0")
 const CHROME = process.env.CHROME || "C:/Program Files/Google/Chrome/Application/chrome.exe"
-const TYPES = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css", ".webp": "image/webp", ".jpg": "image/jpeg", ".png": "image/png", ".json": "application/json", ".mp4": "video/mp4", ".svg": "image/svg+xml" }
-
-const srv = http.createServer((req, res) => {
-  let p = decodeURIComponent(new URL(req.url, "http://x").pathname); if (p.endsWith("/")) p += "index.html"
-  const f = path.join(ROOT, p); if (!f.startsWith(ROOT) || !fs.existsSync(f)) { res.writeHead(404); return res.end() }
-  const st = fs.statSync(f), type = TYPES[path.extname(f)] || "application/octet-stream", range = req.headers.range
-  if (range) { const [a, b] = range.replace("bytes=", "").split("-"); const s = +a, e = b ? +b : st.size - 1
-    res.writeHead(206, { "Content-Type": type, "Content-Range": `bytes ${s}-${e}/${st.size}`, "Accept-Ranges": "bytes", "Content-Length": e - s + 1 }); return fs.createReadStream(f, { start: s, end: e }).pipe(res) }
-  res.writeHead(200, { "Content-Type": type, "Content-Length": st.size, "Accept-Ranges": "bytes" }); fs.createReadStream(f).pipe(res)
-}).listen(0)
-const URL0 = `http://localhost:${srv.address().port}/v2/`
+const { srv, url: URL0 } = serve()
 fs.mkdirSync(OUT, { recursive: true })
 
 const VIEWS = { d: { width: 1440, height: 900 }, m: { width: 390, height: 844, isMobile: true, hasTouch: true, deviceScaleFactor: 2 } }
@@ -63,6 +53,31 @@ for (const theme of ["dark", "rytho", "light"]) for (const [vk, vp] of Object.en
     await page.screenshot({ path: path.join(OUT, `${theme}_${vk}_x_p04-hifi.jpg`), type: "jpeg", quality: 70 })
   }
   await page.close()
+}
+
+// ---------- SEO / GEO static checks: the raw HTML, no JS (GPTBot / ClaudeBot / PerplexityBot view) ----------
+{
+  const ROOT = path.resolve(import.meta.dirname, ".."), raw = fs.readFileSync(path.join(ROOT, "v2", "index.html"), "utf8")
+  const need = (ok, msg) => ok || fails.push("seo: " + msg)
+  const meta = (k) => (raw.match(new RegExp(`<meta[^>]+(?:name|property)="${k}"[^>]+content="([^"]*)"`)) || [])[1]
+  const title = (raw.match(/<title>([^<]*)<\/title>/) || [])[1] || ""
+  need(/<html[^>]+lang="/.test(raw), "<html lang> missing")
+  need(title.length >= 10 && title.length <= 70, `title length ${title.length} (10–70)`)
+  const desc = meta("description") || ""; need(desc.length >= 50 && desc.length <= 320, `meta description length ${desc.length} (50–320)`)
+  need(/<link rel="canonical" href="https:\/\//.test(raw), "canonical missing")
+  for (const k of ["og:title", "og:description", "og:image", "og:url", "twitter:card"]) need(meta(k), k + " missing")
+  const ogImg = meta("og:image"); if (ogImg) need(fs.existsSync(path.join(ROOT, ogImg.replace(/^https?:\/\/[^/]+\/rytho-hype\//, ""))), "og:image file not in repo: " + ogImg)
+  const lds = [...raw.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => { try { return JSON.parse(m[1]) } catch { fails.push("seo: JSON-LD does not parse"); return null } })
+  const types = JSON.stringify(lds); for (const ty of ["WebSite", "Organization", "FAQPage", "ItemList"]) need(types.includes(`"@type":"${ty}"`), `JSON-LD ${ty} missing`)
+  const root = (raw.match(/<div id="root">([\s\S]*)<\/div>\s*<\/body>/) || [])[1] || ""
+  const text = root.replace(/<script[\s\S]*?<\/script>/g, "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim()
+  need(text.length > 1500, `prerendered text only ${text.length} chars — is prerender.mjs running?`)
+  need((root.match(/<h1[\s>]/g) || []).length === 1, "exactly one <h1> expected in prerendered HTML")
+  need((root.match(/<h2[\s>]/g) || []).length >= 6, "fewer than 6 <h2> in prerendered HTML")
+  const noAlt = (root.match(/<img(?![^>]*alt=)[^>]*>/g) || []).length; need(!noAlt, `${noAlt} <img> without alt`)
+  need(!/待補：/.test(text), "internal 待補 notes leaked into prerendered HTML")
+  for (const f of ["llms.txt", "sitemap.xml"]) need(fs.existsSync(path.join(ROOT, f)), f + " missing")
+  console.log(`seo       title ${title.length} · desc ${desc.length} · text ${text.length} chars · JSON-LD ${lds.length} block(s)`)
 }
 await browser.close(); srv.close()
 if (fails.length) { console.log("\nFAIL\n" + [...new Set(fails)].join("\n")); process.exit(1) }

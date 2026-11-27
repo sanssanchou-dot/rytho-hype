@@ -75,4 +75,16 @@ export const SECTIONS = [
   { id: "products", t: "Products" },
   { id: "ai", t: "AI" },
   { id: "partner", t: "Partner" },
+  { id: "faq", t: "FAQ" },
 ] as const
+
+/* FAQ — self-contained answers (AI-citable). Facts only: no performance claims (聲學設計強制規則 §3). Also emitted as FAQPage JSON-LD by prerender.mjs. */
+export const SITE_URL = "https://sanssanchou-dot.github.io/rytho-hype/v2/"
+export const FAQ = [
+  { q: "RYTHO HYPE 是什麼？", a: "RYTHO HYPE 是一套透明喇叭產品概念：以玻音先創的透明玻璃振膜為核心，搭配透明箱體與螺旋葉片內構，讓發聲的結構被看見。由 OPQ Studio 設計，Rytho、玻音先創、玩樂生活共同開發。" },
+  { q: "RYTHO HYPE 有哪幾個產品？", a: "一對完整的塔型喇叭可以拆成四個產品：01 隨身（Bluetooth，高 180 mm）、02 單顆＋底座（Wi‑Fi／AI，高 261 mm）、03 上半段兩節（Wi‑Fi／AI，高 1,022 mm，一對）、04 整組高訂（Wi‑Fi／AI，高 2,693 mm，一對）。" },
+  { q: "透明振膜和螺旋葉片在結構上扮演什麼角色？", a: "中音模組正面是玻音先創的透明玻璃振膜；箱體內的螺旋葉片同時是導音管，背波沿螺旋流道前進，從尾端出氣口離開。網站上的粒子動畫取自 261027 模型的流道幾何，屬示意，不是模擬或量測結果。" },
+  { q: "04 整組高訂可以訂製什麼？", a: "八個單體與箱體維持不變，只更換承載它們的主體。目前提供 Original、Fin（七種表面）與 Hi‑Fi（70s 錄音室監聽、英式傳統監聽、北歐雕塑）三種主體方向，皆待 CAD。" },
+  { q: "各合作方負責什麼？", a: "玻音先創負責單體技術與製造（透明玻璃振膜）；Rytho 負責軟體技術（AI 聆聽、App、Wi‑Fi 連網）；OPQ Studio 負責產品設計；玩樂生活負責 DSP 聲學技術（調校、分頻與量測）。" },
+  { q: "RYTHO HYPE 現在可以購買嗎？", a: "還不行。RYTHO HYPE 目前在概念與樣機階段，下一步是單體與視覺樣機、家用 AI 樣機、隨身可行性評估，以及高訂主體系列。" },
+]

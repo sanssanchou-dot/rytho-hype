@@ -8,6 +8,7 @@ import { Core } from "@/sections/Core"
 import { Explode } from "@/sections/Explode"
 import { Family, Products } from "@/sections/Products"
 import { AI, Partner, CTA } from "@/sections/Closing"
+import { Faq } from "@/sections/Faq"
 
 function Page() {
   useBreathingLight()
@@ -22,6 +23,7 @@ function Page() {
         <Products />
         <AI />
         <Partner />
+        <Faq />
         <CTA />
       </main>
     </>
